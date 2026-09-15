@@ -1,0 +1,159 @@
+/* Local editorial visual proposal only. Open sections supersede the initial card idea. Load after existing page/reference/approval CSS.
+   Opt-in requires data-reader-cohesion on each existing body. No content or JS changes. */
+body[data-reader-cohesion] {
+  --paper: #f7f5ef; --paper-2: #e3eadd; --paper-3: #edf0e7;
+  --card: #fffef9; --panel: #fffef9;
+  --ink: #123f3a; --ink-2: #546c61; --ink-3: #607267;
+  --mute: #607267; --rule: #d9ded2; --line: #d9ded2;
+  --accent: #34604e; --accent-2: #a97936; --chip: #f6efdf;
+  --green: #507262; --green-deep: #34604e;
+  --green-soft: #e3eadd; --amber-soft: #f6efdf;
+  --reference-accent: #507262; --reference-focus: #a97936;
+  --body: "Instrument Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body[data-reader-cohesion] .preview {
+  background: #e3eadd; color: #546c61; letter-spacing: .06em;
+  font-size: 10px; line-height: 1.5; font-weight: 500;
+}
+body[data-reader-cohesion] nav {
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  border-bottom: 1px solid var(--line); gap: 6px;
+}
+body[data-reader-cohesion] nav a {
+  font: 500 13px/1.3 "Instrument Sans", system-ui, sans-serif;
+  text-transform: none; letter-spacing: 0; min-height: 44px;
+  border: 1px solid transparent; border-radius: 24px;
+  padding: 10px 14px; color: var(--ink-2);
+}
+body[data-reader-cohesion] nav a[aria-current="page"] {
+  background: var(--ink); color: var(--panel); box-shadow: none; border-color: var(--ink);
+}
+body[data-reader-cohesion] nav a:hover { background: #e3eadd; color: var(--ink); }
+body[data-reader-cohesion] :is(.card,.status-card,.panel,.speech-overview,.approval-note,.article-nav) {
+  background: transparent; border: 0; border-top: 1px solid var(--line); border-radius: 0;
+  box-shadow: none;
+}
+body[data-reader-cohesion] :is(.card,.status-card,.panel) { padding: 24px 0; }
+body[data-reader-cohesion] :is(.card,.button):hover {
+  transform: none; box-shadow: none; border-color: #91a68f;
+}
+body[data-reader-cohesion] :is(.button,.btn,.mail,.speech-overview button) {
+  border: 1px solid #b9c8b4; border-radius: 12px; min-height: 46px;
+  font: 500 14px/1.35 "Instrument Sans", system-ui, sans-serif;
+  letter-spacing: 0; text-transform: none; padding: 12px 17px;
+}
+body[data-reader-cohesion] .button.primary,
+body[data-reader-cohesion] .speech-overview button[data-speech="play"] {
+  background: var(--ink); border-color: var(--ink); color: var(--panel);
+}
+body[data-reader-cohesion] .speech-overview { background: transparent; padding: 22px 0; }
+body[data-reader-cohesion] :is(a,button,summary):focus-visible {
+  outline: 3px solid #a97936; outline-offset: 4px;
+}
+/* Keep the established personal grid and Archivo Black hero; soften reading headings. */
+body[data-reader-cohesion][data-reference-style="signal"] { font: 17px/1.8 var(--body); }
+body[data-reader-cohesion][data-reference-style="signal"] :is(h2,h3) {
+  font-family: "Newsreader", Georgia, serif; font-weight: 400; line-height: 1.2; letter-spacing: -.02em;
+}
+body[data-reader-cohesion][data-reference-style="signal"] h2 { font-size: clamp(1.9rem,5vw,2.8rem); }
+body[data-reader-cohesion][data-reference-style="signal"] h3 { font-size: 1.6rem; }
+body[data-reader-cohesion][data-reference-style="signal"] h1 { font-size: clamp(2.6rem,7vw,4.6rem); line-height: 1.05; }
+body[data-reader-cohesion][data-reference-style="signal"] .lede { line-height: 1.75; }
+body[data-reader-cohesion][data-reference-style="signal"] :is(.hero,.page-head,.signal,footer,.source-notes,.link-list) {
+  border-color: var(--line); border-width: 1px;
+}
+body[data-reader-cohesion][data-reference-style="signal"] .hero::before { background: none; }
+body[data-reader-cohesion][data-reference-style="signal"] .hero-inner { padding-block: 56px; }
+body[data-reader-cohesion][data-reference-style="signal"] .panel { background: transparent; }
+body[data-reader-cohesion][data-reference-style="signal"] .panel-row strong {
+  font: 400 21px/1.25 "Newsreader", Georgia, serif;
+}
+body[data-reader-cohesion][data-reference-style="signal"] .panel-row span.desc { font-size: 14px; line-height: 1.7; }
+body[data-reader-cohesion][data-reference-style="signal"] .ticker { border: 0; background: #e3eadd; color: var(--ink); }
+body[data-reader-cohesion][data-reference-style="signal"] .ticker span { font: 500 15px/1.5 var(--body); }
+/* Research already has the desired reading measure, type and motion. Retain them. */
+body[data-reader-cohesion][data-reference-style="paper"] { line-height: 1.75; }
+body[data-reader-cohesion][data-reference-style="paper"] .mast h1 { line-height: 1.08; }
+body[data-reader-cohesion][data-reference-style="paper"] .mast .issue { line-height: 1.6; }
+body[data-reader-cohesion][data-reference-style="paper"] .reference-orbit { opacity: .3; }
+body[data-reader-cohesion][data-reference-style="paper"] .status-card p { line-height: 1.75; }
+body[data-reader-cohesion] .approval-item { padding-block: 32px; }
+body[data-reader-cohesion] .approval-note { border-left: 0; padding: 20px 0; }
+body[data-reader-cohesion] .table-scroll th { background: #e3eadd; }
+@media(max-width:620px) {
+  body[data-reader-cohesion] :is(.card,.status-card,.panel) { padding: 24px 0; border-radius: 0; }
+  body[data-reader-cohesion][data-reference-style="signal"] { font-size: 16px; }
+  body[data-reader-cohesion][data-reference-style="signal"] .hero-inner { padding-block: 36px 40px; }
+  body[data-reader-cohesion] nav { gap: 3px; }
+  body[data-reader-cohesion] nav a { padding-inline: 10px; font-size: 12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body[data-reader-cohesion] *,body[data-reader-cohesion] *::before,body[data-reader-cohesion] *::after { transition: none !important; }
+}
+
+/* Latest preference: open editorial reading, not boxed sections. */
+body[data-reader-cohesion][data-reference-style="signal"] :is(main,.shell,footer) { width: min(100% - 40px, 60rem); }
+body[data-reader-cohesion][data-reference-style="signal"] .grid { gap: 28px; }
+body[data-reader-cohesion][data-reference-style="signal"] .card { min-height: 0; }
+body[data-reader-cohesion][data-reference-style="signal"] .card .num { margin-bottom: 18px; }
+body[data-reader-cohesion] .article-nav { padding: 18px 0; }
+body[data-reader-cohesion][data-reference-style="paper"] .reference-orbit { display: none; }
+body[data-reader-cohesion][data-reader-motif="alignment"] .reference-orbit { display: block; opacity: .45; }
+.reader-progress { position: absolute; inset: auto 0 0; height: 3px; background: transparent; }
+.reader-progress::before { content: ''; display: block; width: calc(var(--reference-progress,0) * 100%); height: 100%; background: #507262; }
+body[data-reader-cohesion][data-reader-motif="alignment"] nav::after { display: none; }
+body[data-reader-cohesion] .cohesion-marquee { position: relative; border-block: 1px solid var(--line); background: transparent; padding-right: 112px; }
+body[data-reader-cohesion] .cohesion-marquee .track { width: max-content; flex-wrap: nowrap; animation: reader-marquee 48s linear infinite; }
+body[data-reader-cohesion] .cohesion-marquee .marquee-group { display: flex; flex: none; }
+body[data-reader-cohesion] .cohesion-marquee .marquee-toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); min-height: 44px; border: 0; border-left: 1px solid var(--line); background: var(--paper); color: var(--ink); font: 500 12px/1.3 "Instrument Sans",system-ui,sans-serif; padding: 8px 12px; }
+body[data-reader-cohesion] .cohesion-marquee:is(:hover,:focus-within,[data-paused="true"]) .track { animation-play-state: paused; }
+@keyframes reader-marquee { to { transform: translateX(-50%); } }
+@media(prefers-reduced-motion:reduce) {
+ body[data-reader-cohesion] .cohesion-marquee { padding-right: 0; }
+ body[data-reader-cohesion] .cohesion-marquee .track { animation: none; width: auto; }
+ body[data-reader-cohesion] .cohesion-marquee .marquee-group { flex-wrap: wrap; }
+ body[data-reader-cohesion] .cohesion-marquee .marquee-group[aria-hidden], body[data-reader-cohesion] .marquee-toggle { display: none; }
+}
+@media print { body[data-reader-cohesion] .cohesion-marquee .track { animation: none; } .marquee-toggle,.marquee-group[aria-hidden] { display: none; } }
+
+/* Domain identity: ASI.blue and optional future ASI.red. Other motifs stay green. */
+body[data-reader-cohesion][data-reader-motif="safety"] {
+  --paper: #f5f7fb; --paper-2: #e7eef8; --paper-3: #e1e9f4;
+  --panel: #ffffff; --card: #ffffff;
+  --ink: #17334f; --ink-2: #4a6076; --ink-3: #52677b; --mute: #52677b;
+  --rule: #d2ddeb; --line: #d2ddeb;
+  --accent: #285e9b; --accent-2: #235fad;
+  --green: #396a9e; --green-deep: #285e9b; --green-soft: #e7eef8;
+  --reference-accent: #285e9b; --reference-focus: #235fad;
+}
+body[data-reader-cohesion][data-reader-motif="adversarial"] {
+  --paper: #fbf6f3; --paper-2: #f6e9e6; --paper-3: #efdfdb;
+  --panel: #fffdfb; --card: #fffdfb;
+  --ink: #522c2c; --ink-2: #765b59; --ink-3: #765b59; --mute: #765b59;
+  --rule: #e4d2ce; --line: #e4d2ce;
+  --accent: #a33b3b; --accent-2: #a03232;
+  --green: #aa5250; --green-deep: #a33b3b; --green-soft: #f6e9e6;
+  --reference-accent: #a33b3b; --reference-focus: #a03232;
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .preview {
+  background: var(--paper-2); color: var(--ink-2);
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav a:hover {
+  background: var(--paper-2); color: var(--ink);
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) :is(.card,.button):hover {
+  border-color: var(--accent);
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) :is(.button,.btn,.mail,.speech-overview button) {
+  border-color: var(--accent);
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .table-scroll th {
+  background: var(--paper-2);
+}
+body[data-reader-cohesion]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) :is(a,button,summary):focus-visible {
+  outline-color: var(--reference-focus);
+}
+
+/* Follow the actual wrapping navigation rather than assuming a fixed height. */
+body[data-reader-cohesion][data-reference-style] :is(h2,h3,section,[id]){scroll-margin-top:var(--reader-nav-offset,10rem)}

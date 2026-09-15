@@ -1,0 +1,105 @@
+/* Source-bound presentation adapter. Opt in with body[data-reference-style].
+   Load fonts.css first. Current text, links, metadata and speech handlers remain unchanged. */
+html:has(body[data-reference-style]) { scroll-behavior: smooth; }
+body[data-reference-style] { --reference-progress: 0; }
+body[data-reference-style="signal"] {
+  --display: "Archivo Black", ui-sans-serif, system-ui, sans-serif;
+  --body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --reference-accent: #17b06a;
+  --reference-focus: #0d7a49;
+}
+body[data-reference-style="paper"] {
+  --paper: #f7f4ee; --ink: #17140f; --mute: #5b554b;
+  --rule: rgba(23,20,15,.16); --accent: #2f6b4f; --accent-2: #b8892b;
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --reference-accent: #2f6b4f; --reference-focus: #2f6b4f;
+  font: 18px/1.65 var(--serif);
+}
+body[data-reference-style="paper"] .mast {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: 64px max(18px, calc((100vw - 44rem) / 2)) 40px;
+  border-bottom: 1px solid var(--rule);
+}
+body[data-reference-style="paper"] .mast > :not(.reference-orbit) { position: relative; z-index: 1; }
+body[data-reference-style="paper"] .mast h1 {
+  margin: 14px 0 18px; font: 400 clamp(2.3rem, 9vw, 4.4rem)/1.02 var(--serif);
+  letter-spacing: -.02em; max-width: 22ch; text-wrap: balance;
+}
+body[data-reference-style="paper"] .mast .issue {
+  max-width: 34rem; font: 400 clamp(1.15rem, 3.8vw, 1.45rem)/1.45 var(--serif); color: var(--mute);
+}
+body[data-reference-style="paper"] .mast-kicker { font: 700 11px/1.3 var(--sans); letter-spacing: .18em; }
+body[data-reference-style="paper"] nav {
+  padding: 10px max(18px, calc((100vw - 44rem) / 2));
+  background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(14px); z-index: 20;
+}
+body[data-reference-style="paper"] main {
+  width: min(100% - 36px, 44rem); max-width: none; margin-inline: auto; padding: 48px 0 80px;
+}
+body[data-reference-style="paper"] main h2 {
+  font: 600 clamp(1.5rem, 5vw, 2.2rem)/1.1 var(--serif); margin: 48px 0 14px;
+}
+body[data-reference-style="paper"] main > h2:first-child { margin-top: 0; }
+body[data-reference-style="paper"] main h3 { font: 600 1.25rem/1.25 var(--serif); }
+body[data-reference-style="paper"] main > p { margin-bottom: 1.25rem; }
+body[data-reference-style="paper"] .lede { font-size: clamp(1.15rem, 3.8vw, 1.45rem); line-height: 1.45; }
+body[data-reference-style="paper"] blockquote {
+  margin: 28px 0; padding: 4px 0 4px 18px; border-left: 3px solid #b8892b;
+  font: italic 400 1.2rem/1.45 var(--serif);
+}
+body[data-reference-style="paper"] .status-card { padding: 20px; }
+body[data-reference-style="paper"] .status-card p { font-size: 1rem; line-height: 1.55; }
+body[data-reference-style="paper"] .btn, body[data-reference-style="paper"] .mail {
+  min-height: 46px; border-radius: 999px; font-size: 13px; line-height: 1.2; padding: 13px 18px;
+}
+body[data-reference-style="paper"] footer {
+  width: min(100% - 36px, 44rem); margin-inline: auto; padding: 22px 0 60px;
+}
+.reference-orbit { position: absolute; right: -28vw; top: -10vh; width: min(120vw, 44rem); aspect-ratio: 1; pointer-events: none; z-index: 0; opacity: .6; }
+.reference-orbit span { position: absolute; border-radius: 50%; border: 1px solid rgba(47,107,79,.22); }
+.reference-orbit span:nth-child(1) { inset: 0; }
+.reference-orbit span:nth-child(2) { inset: 12%; border-color: rgba(184,137,43,.28); }
+.reference-orbit span:nth-child(3) { inset: 26%; }
+.reference-orbit span:nth-child(4) { inset: 42%; border-color: rgba(184,137,43,.28); }
+/* Painted inside the sticky nav, so a nav with horizontal overflow cannot clip the bar. */
+body[data-reference-style] nav::after {
+  content: ""; position: absolute; inset: auto 0 0; height: 3px; pointer-events: none;
+  background: var(--reference-accent); transform-origin: left;
+  transform: scaleX(var(--reference-progress)); transition: transform 60ms linear;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--reference-accent) 45%, transparent);
+}
+body[data-reference-style] :is(h2,h3,section,[id]) { scroll-margin-top: 88px; }
+body[data-reference-style] :is(a,button,summary):focus-visible {
+  outline: 3px solid var(--reference-focus); outline-offset: 4px;
+}
+body[data-reference-style] nav :is(a,button), body[data-reference-style] .speech-overview button { min-height: 44px; }
+body[data-reference-style] main :is(p,li,a,h1,h2,h3) { overflow-wrap: anywhere; }
+.reference-reveal { opacity: 1; transform: none; }
+@media (min-width: 700px) {
+  body[data-reference-style="paper"] .mast { padding-top: 96px; padding-bottom: 64px; }
+  .reference-orbit { right: -12vw; top: -20vh; width: min(60vw, 48rem); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reference-reveal.reference-pending { opacity: 0; transform: translateY(18px); }
+  .reference-reveal { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(body[data-reference-style]) { scroll-behavior: auto; }
+  body[data-reference-style] *, body[data-reference-style] *::before, body[data-reference-style] *::after { animation: none !important; transition: none !important; }
+  body[data-reference-style] .reference-reveal { opacity: 1 !important; transform: none !important; }
+  body[data-reference-style] :is(.button,.card,.btn,.speech-overview button):hover { transform: none; }
+}
+@media print {
+  body[data-reference-style] .reference-reveal { opacity: 1 !important; transform: none !important; }
+  body[data-reference-style] nav { position: static; }
+  body[data-reference-style] nav::after, .reference-orbit { display: none; }
+}
+/* Retain every navigation option on small screens (reference Alignment's wrapping pattern). */
+@media (max-width: 430px) {
+  body[data-reference-style] nav { flex-wrap: wrap; overflow-x: visible; gap: 0 2px; padding: 8px 12px; }
+  body[data-reference-style="signal"] nav .mark { flex: 1 0 100%; padding: 4px 7px 8px; }
+  body[data-reference-style] nav a { font-size: 12px; padding-inline: 7px; }
+}

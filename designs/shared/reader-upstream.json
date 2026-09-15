@@ -1,0 +1,13 @@
+{
+  "upstream": "ericbuess/goscreenless-app",
+  "files": {
+    "speech.mjs": {
+      "source": "lib/speech.mjs",
+      "sha256": "3f79a9955a0740ea0e8c1713941398c07a9805425e1e2464ff3364f35d94ec8f"
+    },
+    "voices.mjs": {
+      "source": "lib/voices.mjs",
+      "sha256": "77d8900d8968aea4c6867276476ead0dce690b76257469d74d5248f8c5b43d80"
+    }
+  }
+}

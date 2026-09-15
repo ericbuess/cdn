@@ -1,0 +1,173 @@
+/* Engineer/Opus direction — instrument-panel design from the recovered Opus
+   mockups: IBM-Plex-style mono labels on warm paper, thin rules, signal red.
+   Personal page = light theme; research page = dark safety theme. */
+:root {
+  --bg: #f5f3ee;
+  --sf: #fffefb;
+  --fg: #161512;
+  --mut: #6d6759;
+  --rule: #dcd6ca;
+  --acc: #b03a1e;
+  --ai: #fffaf8;
+  --chip: #eae4d9;
+}
+body.dark {
+  --bg: #0e0d0b;
+  --sf: #171614;
+  --fg: #f2efe7;
+  --mut: #9c9589;
+  --rule: #2b2926;
+  --acc: #e5603f;
+  --ai: #160c09;
+  --chip: #211f1b;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+a { color: var(--acc); text-decoration: none; }
+a:hover { color: var(--fg); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+p { margin: 0 0 .9rem; }
+h1, h2, h3 { margin: 0; font-weight: 600; }
+ul, ol, dl { margin: 0 0 1rem; }
+li { margin-bottom: .3rem; }
+
+.preview {
+  background: var(--fg);
+  color: var(--bg);
+  font: 600 10.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 9px 12px;
+}
+
+/* shell: topbar + content */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 15px 20px; border-bottom: 1px solid var(--rule);
+}
+.topbar .brand { font-size: 12.5px; letter-spacing: .04em; }
+.topbar nav { display: flex; flex-wrap: wrap; gap: 2px 14px; }
+.topbar nav a { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--fg); letter-spacing: .04em; padding: 6px 2px; }
+.topbar nav a[aria-current="page"] { color: var(--acc); box-shadow: inset 0 -2px 0 var(--acc); }
+
+section.block { padding: 26px 20px; border-bottom: 1px solid var(--rule); }
+.sec-label { display: flex; gap: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; letter-spacing: .15em; color: var(--mut); text-transform: uppercase; margin-bottom: 16px; }
+.sec-label .num { color: var(--acc); }
+
+.hero h1 { font-size: clamp(1.7rem, 7vw, 2.6rem); line-height: 1.12; letter-spacing: -.02em; margin: 14px 0 14px; text-wrap: pretty; }
+.hero h1 em { font-style: normal; color: var(--acc); }
+.hero .lede { font-size: 1.02rem; color: var(--mut); text-wrap: pretty; max-width: 38rem; }
+.hero .kicker { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .16em; color: var(--mut); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.hero .kicker::after { content: ""; display: block; width: 8px; height: 15px; background: var(--acc); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.actions .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 48px; padding: 0 20px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  background: var(--acc); color: var(--ai); border: 1px solid var(--acc);
+}
+.actions .btn.ghost { background: transparent; color: var(--fg); border-color: var(--rule); }
+.actions .btn:hover { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+
+/* spec cards and rows */
+.panel { background: var(--sf); border: 1px solid var(--rule); padding: 15px 16px; margin-bottom: 12px; }
+.panel h3 { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; letter-spacing: .02em; margin-bottom: 6px; }
+.panel p { font-size: .95rem; color: var(--mut); margin: 0; }
+.kv-rows { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 12px 0; }
+.kv-rows a, .kv-rows .kv { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 50px; padding: 10px 14px; background: var(--sf); color: var(--fg); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; }
+.kv-rows a:hover { color: var(--acc); }
+.kv-rows .arr { color: var(--acc); }
+
+dl.spec dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); margin-top: 14px; }
+dl.spec dd { margin: 4px 0 0; color: var(--mut); font-size: .95rem; }
+dl.spec dd p { margin: 0 0 .5rem; }
+
+.principles { display: grid; gap: 14px; }
+.principles .pr { display: flex; gap: 12px; }
+.principles .dash { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--acc); flex: none; width: 16px; padding-top: 2px; }
+.principles h3 { font-size: 1rem; margin-bottom: 3px; }
+.principles p { font-size: .93rem; color: var(--mut); margin: 0; }
+
+/* status chips */
+.chip {
+  display: inline-block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 8px; border: 1px solid var(--rule); color: var(--mut); background: var(--bg);
+}
+.status-card { background: var(--sf); border: 1px solid var(--rule); border-left: 4px solid var(--mut); padding: 14px 15px; margin-bottom: 11px; }
+.status-card h3 { font-size: 1rem; margin: 8px 0 5px; }
+.status-card p { font-size: .92rem; color: var(--mut); margin: 0 0 6px; }
+.status-card .src { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; color: var(--mut); }
+.status-card[data-status="completed"] { border-left-color: #3d8a5f; }
+.status-card[data-status="prepared"] { border-left-color: #b8892b; }
+.status-card[data-status="proposed"] { border-left-color: #7a5fd0; }
+.status-card[data-status="missing"] { border-left-color: var(--acc); }
+.status-card[data-status="completed"] .chip { color: #3d8a5f; border-color: #3d8a5f; }
+.status-card[data-status="prepared"] .chip { color: #b8892b; border-color: #b8892b; }
+.status-card[data-status="proposed"] .chip { color: #7a5fd0; border-color: #7a5fd0; }
+.status-card[data-status="missing"] .chip { color: var(--acc); border-color: var(--acc); }
+body.dark .status-card[data-status="completed"] .chip { color: #6cc494; border-color: #6cc494; }
+body.dark .status-card[data-status="completed"] { border-left-color: #6cc494; }
+
+.confirm { color: var(--acc); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .82em; }
+
+/* speech control */
+.speech-overview { background: var(--sf); border: 1px dashed var(--rule); padding: 14px 15px; margin: 14px 0; }
+.speech-overview .controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.speech-overview button {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase;
+  padding: 11px 14px; border: 1px solid var(--acc); background: var(--acc); color: var(--ai); cursor: pointer;
+}
+.speech-overview button[data-speech="pause"], .speech-overview button[data-speech="stop"] { background: transparent; color: var(--fg); border-color: var(--rule); }
+.speech-overview button:hover:not(:disabled) { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.speech-overview button:disabled { opacity: .35; cursor: default; }
+.speech-status { margin: 10px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; line-height: 1.6; color: var(--mut); }
+
+/* dark "show" band */
+.band { background: var(--fg); color: var(--bg); padding: 28px 20px; border-bottom: 1px solid var(--rule); }
+.band .mono-big { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; font-weight: 600; letter-spacing: .22em; }
+.band p { font-size: 1.25rem; line-height: 1.3; letter-spacing: -.01em; margin: 10px 0 16px; }
+.band .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border: 1px solid currentColor; color: var(--bg); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; letter-spacing: .06em; }
+
+.source-notes { padding: 22px 20px; }
+.source-notes h2 { font-size: .95rem; margin-bottom: 10px; }
+.source-notes ul { padding-left: 1.2em; margin: 0; }
+.source-notes li { font-size: .82rem; color: var(--mut); margin-bottom: .45rem; }
+.source-notes code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85em; }
+
+footer { padding: 20px; border-top: 1px solid var(--rule); }
+footer p { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; line-height: 1.8; color: var(--mut); margin: 0; }
+
+/* left rail appears on wide screens */
+.rail { display: none; }
+@media (min-width: 1080px) {
+  .shell { display: flex; }
+  .rail {
+    display: flex; flex: none; width: 290px; flex-direction: column; gap: 34px;
+    padding: 38px 30px; border-right: 1px solid var(--rule);
+    position: sticky; top: 0; align-self: flex-start; max-height: 100vh; overflow-y: auto;
+  }
+  .rail .name { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; letter-spacing: .1em; display: flex; align-items: center; gap: 8px; }
+  .rail .name::after { content: ""; display: block; width: 9px; height: 16px; background: var(--acc); }
+  .rail .rh { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: .16em; color: var(--mut); text-transform: uppercase; margin-bottom: 10px; }
+  .rail nav { display: flex; flex-direction: column; gap: 9px; }
+  .rail nav a { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--fg); }
+  .rail nav a .n { color: var(--acc); margin-right: 10px; }
+  .rail .doms { border-top: 1px solid var(--rule); padding-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .rail .doms a { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; }
+  .rail .doms a small { color: var(--mut); }
+  .rail .foot { margin-top: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9.5px; line-height: 1.8; color: var(--mut); }
+  .content { flex: 1; min-width: 0; }
+  section.block, .band, .source-notes { padding-left: 56px; padding-right: 56px; }
+  .topbar { padding-left: 56px; padding-right: 56px; }
+}

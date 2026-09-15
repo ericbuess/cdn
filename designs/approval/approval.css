@@ -1,0 +1,39 @@
+/* Owner-private approval package: extends the reviewed paper skin. */
+.approval-hero .issue { max-width: 36rem; }
+.approval-note { padding: 18px 20px; border: 1px solid var(--rule); border-left: 3px solid var(--accent); background: #fffdf8; }
+.approval-note p:last-child { margin-bottom: 0; }
+.approval-list { margin: 36px 0 52px; }
+.approval-item { padding: 28px 0; border-top: 1px solid var(--rule); }
+.approval-item:last-child { border-bottom: 1px solid var(--rule); }
+.approval-item h2 { margin: 8px 0 12px !important; }
+.approval-label, .artifact-state { font: 600 11px/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.approval-label { display: block; }
+.approval-actions { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 16px; font: 500 15px/1.5 var(--sans); }
+.approval-actions a { padding-block: 8px; min-height: 44px; }
+.artifact-state { color: var(--mute); letter-spacing: .04em; display: block; margin: 12px 0 0; }
+.domain-map { margin: 24px 0 40px; }
+.domain-map div { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; padding: 16px 0; border-top: 1px solid var(--rule); }
+.domain-map dt { font: 600 15px/1.5 var(--sans); overflow-wrap: anywhere; }
+.domain-map dd { margin: 0; color: var(--mute); font-size: 1rem; }
+.article-nav { margin: 0 0 36px; padding: 20px; border: 1px solid var(--rule); background: #fffdf8; font: 500 15px/1.7 var(--sans); }
+.article-nav strong { display: block; margin-bottom: 8px; }
+.article-nav a { display: inline-block; margin: 4px 16px 4px 0; min-height: 32px; }
+.document-section { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule); }
+.document-section > h2:first-child { margin-top: 0 !important; }
+.document-section h2 { font-size: clamp(1.65rem,5vw,2.2rem); }
+.document-section h3 { margin: 32px 0 14px; font-size: 1.6rem !important; }
+.document-section h4 { font: 600 1.25rem/1.25 var(--serif); margin: 28px 0 12px; }
+.document-section p { margin-bottom: 1.25rem; }
+.document-section a { text-underline-offset: 3px; overflow-wrap: anywhere; }
+.table-scroll { width: 100%; overflow-x: auto; margin: 28px 0; }
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.table-scroll table { min-width: 38rem; width: 100%; border-collapse: collapse; font: 400 15px/1.55 var(--sans); }
+.table-scroll th { text-align: left; background: #eeebe3; font-weight: 700; }
+.table-scroll :is(th,td) { padding: 13px 14px; border: 1px solid var(--rule); vertical-align: top; }
+.source-stamp { font: 400 12px/1.6 var(--sans); color: var(--mute); margin-top: 24px; overflow-wrap: anywhere; }
+.outreach-source-title { display: block; font: 600 11px/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+@media(max-width:430px) { .domain-map div { grid-template-columns: 1fr; gap: 4px; } }
+@media print { .article-nav, nav, .approval-actions { display: none; } .table-scroll { overflow: visible; } .table-scroll table { min-width: 0; font-size: 11px; } }
+
+/* An illustrative workflow, kept legible on narrow reading screens. */
+.illustrative-workflow{margin:2.2rem 0;padding:0}.illustrative-workflow>ol{list-style:none;margin:0;padding:0;counter-reset:workflow}.illustrative-workflow>ol>li{position:relative;margin:0 0 1.4rem;padding:.8rem 1rem;background:color-mix(in srgb,#1aad79 7%,transparent);border-left:2px solid #288465;line-height:1.45}.illustrative-workflow>ol>li+li:before{content:'↓';position:absolute;top:-1.35rem;left:1rem;color:#288465}.workflow-branches{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}.workflow-branches>span{display:block;padding:.6rem .75rem;background:#fff;border-top:1px solid #c8d6cf}.workflow-branches b{display:block;font:600 .7em 'Instrument Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}.illustrative-workflow figcaption{font-size:.86em;color:#52675e;margin-top:.8rem}.document-section [id]{scroll-margin-top:5rem}@media(max-width:480px){.workflow-branches{grid-template-columns:1fr;gap:.6rem}}

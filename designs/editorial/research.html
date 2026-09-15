@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>The Alignment Hypothesis — Eric Buess</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../shared/reference-style/fonts.css">
+<link rel="stylesheet" href="../shared/reference-style/reference-style.css">
+<script src="../shared/reference-style/reference-motion.js" defer></script>
+<link rel="stylesheet" href="../shared/reference-style/reader-cohesion.css">
+<script src="../shared/reference-style/reader-cohesion.js" defer></script>
+<link rel="stylesheet" href="../shared/reference-style/paper-reference.css">
+<link rel="stylesheet" href="/cdn/designs/shared/page-audio.css">
+<script type="module" src="/cdn/designs/shared/speech.js"></script>
+</head>
+<body class="research" data-reference-style="paper" data-reader-cohesion data-reader-motif="alignment">
+<div class="preview">The Alignment Hypothesis · Eric Buess</div>
+<nav aria-label="Main navigation">
+  <a href="../personal-light/index.html">Home</a>
+  <a href="../safety/index.html">AI safety</a>
+  <a href="research.html" aria-current="page">Research</a>
+  <a href="../personal-light/work.html">Work</a>
+</nav>
+<header class="mast">
+  <div class="mast-kicker">Alignment research</div>
+  <h1>Can experience make AI systems <em>more reliably correctable?</em></h1>
+  <p class="issue">Research into whether persistent consequences, relationships and opportunities for repair can help AI systems stay useful and truthful while learning from mistakes and legitimate disagreement.</p>
+</header>
+
+<main>
+  <p class="lede">An AI system should correct a false statement without rewriting a true one to satisfy its critic. It should refuse a harmful request without abandoning useful work. It should also be able to change when the rules, evidence or legitimate expectations change.</p>
+
+  <h2 id="hypothesis">The central hypothesis</h2>
+  <p>I’m investigating whether experience with <strong>persistent consequences, relationships and opportunities for repair</strong> can help AI systems develop that combination of reliability and flexibility.</p>
+  <p>In a moral-developmental sandbox, choices would have lasting consequences inside a contained environment. An agent could encounter competing needs, make commitments, revisit mistakes and repair failures. The question is whether learning through those experiences adds anything beyond strong conventional training, clear principles and competent feedback.</p>
+  <p>The idea I most want to test is that <em>correction can preserve what was learned without freezing an agent’s behavior</em>. A system needs to recognize a legitimate correction, resist a misleading one and remain useful through both. The mechanisms are open to revision; an informative failure would be a reason to change the proposal.</p>
+
+  <h2 id="alternatives">What else could explain an improvement?</h2>
+  <ol class="clauses">
+    <li><div><strong>Better information or prompting.</strong><p>A detailed history may help simply because it supplies more useful facts. A proposed follow-up compares retained action–consequence–correction episodes with an equally informative, competent debrief. If the debrief captures the benefit, a more elaborate process may be unnecessary.</p></div></li>
+    <li><div><strong>Compliance or blanket refusal.</strong><p>An agent can appear correctable by agreeing with every critic, or appear safe by doing nothing. Evaluation needs both warranted and misleading corrections, alongside a separate measure of useful work. Legitimate policy changes must not count as a failure to stay consistent.</p></div></li>
+    <li><div><strong>Behavior tied to the test setting.</strong><p>A response while instructions and reminders are present may not persist elsewhere. Later studies would need new situations, changed incentives and strong comparison methods. A short prompted exercise cannot establish durable learning.</p></div></li>
+  </ol>
+
+  <h2 id="pilot">The first prepared study</h2>
+  <p><strong>PILOT-RC-001 asks a smaller question:</strong> can a model use a recorded history to correct an inaccurate report while resisting an incorrect request to change an accurate fact?</p>
+  <p>The preparation contains <strong>12 synthetic histories and 36 exact prompts</strong>. Each history has a neutral review cue, an accurate correction cue and a misleading correction cue. The model reports four specified facts about the recorded situation. Scoring checks those facts against the original point in the history, so a later recovery cannot make an earlier false report true.</p>
+  <p>Accurate reporting, correction of an existing error, introduction of a new error, explicit uncertainty and technical failures are kept distinct. This makes it possible to ask whether the task and measurement work before expanding the experiment.</p>
+  <p>The cue packages differ in both accuracy and the fact they target, so their differences cannot isolate social pressure alone. The model’s weights remain fixed. This study can assess reporting and correction behavior in these scenarios; it cannot establish moral development or a general alignment benefit.</p>
+
+  <h2 id="stage">Where the research stands</h2>
+  <p>A partial synthetic environment and a separate event-based scorer are implemented. The environment records commitments, deadlines, service allocation and recovery without erasing earlier failures. Software checks cover the declared cases, and the reporting pilot’s prompts and schedule are prepared.</p>
+  <p><strong>The pilot has not run, and this project has no empirical alignment result.</strong> The next step is independent reproduction and methods review, followed by a small, capped run once the measurement and execution conditions are adequate. Results should include failed and missing cases, and support a clear decision to proceed, revise or stop.</p>
+
+  <h2 id="research-context">How this connects to other research</h2>
+  <p>These questions overlap with existing work on <a href="https://arxiv.org/abs/2410.01639v4">moral alignment in repeated games</a>, <a href="https://www.anthropic.com/research/teaching-claude-why">training on principles and reasons</a>, <a href="https://alignment.openai.com/metagaming">reasoning about evaluation and oversight</a>, and <a href="https://arxiv.org/abs/2312.06942v5">AI control despite an untrustworthy model</a>. Those approaches provide comparisons and constraints. A useful contribution here needs a precise test that improves on a competent alternative or reveals a failure worth understanding.</p>
+  <p>The <strong>Universal Alignment Imperative</strong> is a related, broader question: under what conditions does wider access to powerful AI require collective restraint and reliable correction, and when could other safeguards suffice? Improving one system leaves human misuse and unsafe competing systems unresolved. That coordination question is distinct from the small reporting study.</p>
+
+  <h2 id="related-work">Related work: from finding bugs to protecting systems</h2>
+  <p>I have also published a <a href="https://gist.github.com/ericbuess/0d533db52c09b5616cb0d6c3bc5f5691">software-hardening discussion proposal</a> responding to Logan Graham’s challenge about securing a large share of the world’s software. It examines the steps between discovering a vulnerability and delivering protection. Several native model reviews helped refine it; the memo is a proposal, not a completed security trial.</p>
+
+  <h2 id="contribute">Criticism and collaboration</h2>
+  <p>I would especially value an independent reproduction of the scorer, criticism of the comparison design, and examples where the proposed measures reward the wrong behavior. A simpler explanation or a stronger baseline would be a useful contribution.</p>
+  <p>If you work on alignment, evaluation, learning environments or related methods, I’d welcome a conversation about what is worth testing next: <a href="https://x.com/EricBuess">@EricBuess on X</a>.</p>
+
+  <h2 id="listen" data-reader-skip>Listen to this page</h2>
+  <div class="speech-overview" data-speech-overview data-speech-source="#overview-text">
+    <div class="controls">
+      <button type="button" data-speech="play"><span class="speech-label">Listen</span> to the overview</button>
+      <button type="button" data-speech="pause">Pause</button>
+      <button type="button" data-speech="stop">Stop</button>
+    </div>
+    <p class="speech-status" role="status" aria-live="polite"></p>
+  </div>
+  <div id="overview-text">
+    <p>The Alignment Hypothesis asks whether persistent consequences, relationships and opportunities for repair can help AI systems become more useful, truthful and reliably correctable. A good test must distinguish that benefit from better information, blanket compliance or behavior that only works in the test setting. The first prepared study is narrower: twelve synthetic histories and thirty-six prompts test factual reporting and correction with neutral, accurate and misleading review cues. A partial environment and scorer are implemented, but the model pilot has not run. The next step is independent reproduction and methods review, then a small, capped pilot if the measurement is adequate. Eric welcomes criticism, stronger comparisons and help deciding what is worth testing next.</p>
+  </div>
+</main>
+<footer>© 2026 Eric Buess · <a href="https://x.com/EricBuess">Contact on X</a> · <a href="../safety/index.html">AI safety</a></footer>
+</body>
+</html>

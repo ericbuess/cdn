@@ -1,0 +1,84 @@
+/* ASI domain identity, 2026-09-13. Load LAST, after reader-cohesion.css.
+   Scoped to existing ASI.blue / ASI.red body attributes. No HTML or JS required.
+   Curves and lines are decorative, with no data or scientific meaning. */
+body[data-reader-cohesion][data-reference-style="paper"][data-reader-motif="safety"] {
+  --paper: #eef4ff; --paper-2: #dce9ff; --paper-3: #cfdef7;
+  --ink: #102c51; --ink-2: #365274; --ink-3: #425c7b; --mute: #425c7b;
+  --panel: #f8fbff; --card: #f8fbff; --rule: #bfcee6; --line: #bfcee6;
+  --accent: #174fa3; --accent-2: #174fa3;
+  --reference-accent: #246bdb; --reference-focus: #174fa3;
+  --domain-deep: #092453; --domain-mid: #153e80; --domain-light: #e1edff;
+  --domain-bright: #d3e5ff; --domain-hero-ink: #f7fbff;
+  --domain-art: url("blue-curves.svg");
+  background: radial-gradient(ellipse 48rem 42rem at 0 48rem, #dce9ff 0, transparent 74%), var(--paper);
+}
+body[data-reader-cohesion][data-reference-style="paper"][data-reader-motif="adversarial"] {
+  --paper: #fff2ef; --paper-2: #f9dfd9; --paper-3: #f2cec7;
+  --ink: #48201f; --ink-2: #6d3e3b; --ink-3: #76504c; --mute: #76504c;
+  --panel: #fffaf8; --card: #fffaf8; --rule: #e7c6bf; --line: #e7c6bf;
+  --accent: #9e292c; --accent-2: #9e292c;
+  --reference-accent: #c54341; --reference-focus: #9e292c;
+  --domain-deep: #48191f; --domain-mid: #76232b; --domain-light: #ffe9e3;
+  --domain-bright: #ffe0d6; --domain-hero-ink: #fff9f5;
+  --domain-art: url("red-lines.svg");
+  background: radial-gradient(ellipse 48rem 42rem at 100% 36rem, #f9e2dc 0, transparent 74%), var(--paper);
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .preview {
+  background: var(--domain-deep); color: var(--domain-light);
+  border-bottom: 1px solid #ffffff30;
+  font: 500 .75rem/1.5 var(--sans); letter-spacing: .065em; padding-block: 10px;
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast {
+  background: linear-gradient(112deg, var(--domain-deep) 14%, var(--domain-mid) 100%);
+  color: var(--domain-hero-ink); border-bottom: 0;
+  /* Existing reading measure and responsive type are retained. */
+  padding-block: clamp(3.5rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem);
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: var(--domain-art) no-repeat right center / auto 100%; opacity: .6;
+  /* Keep the reading area quiet; no drawing sits over text. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 38%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 38%, #000 100%);
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::after {
+  content: ""; position: absolute; inset: auto 0 0; height: 4px; pointer-events: none;
+  background: linear-gradient(90deg, var(--reference-accent), var(--domain-bright));
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast h1 { color: var(--domain-hero-ink); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast h1 em { color: var(--domain-bright); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast :is(.mast-kicker,.issue) { color: var(--domain-light); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast-kicker { font-size: .75rem; line-height: 1.55; }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav {
+  background: var(--paper-2); border-color: var(--line); backdrop-filter: none;
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav a { color: var(--ink); font-size: .875rem; }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav a:hover { background: var(--paper-3); color: var(--ink); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) main h2 { color: var(--accent); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) main > h2::before {
+  content: ""; display: block; width: 2rem; height: 3px; background: var(--reference-accent); margin-bottom: .85rem;
+}
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) main a { text-underline-offset: .18em; text-decoration-thickness: 1px; }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) main a:hover { text-decoration-thickness: 2px; }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .reader-progress::before { background: var(--reference-accent); }
+body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) ::selection { background: var(--accent); color: #fff; }
+@media (max-width: 620px) {
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::before { opacity: .35; background-position: 70% center; }
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav { flex-wrap: wrap; overflow-x: visible; gap: 2px; }
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) nav a { min-height: 44px; padding-inline: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::before { transform: none; animation: none; }
+}
+@media (forced-colors: active) {
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::before,
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::after { display: none; }
+}
+@media print {
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) { background: #fff; color: #111; }
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) :is(.preview,.mast,nav) { background: #fff; color: #111; }
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast :is(h1,h1 em,.mast-kicker,.issue) { color: #111; }
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::before,
+  body[data-reader-cohesion][data-reference-style="paper"]:is([data-reader-motif="safety"],[data-reader-motif="adversarial"]) .mast::after { display: none; }
+}

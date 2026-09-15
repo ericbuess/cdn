@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex"><title>ASI.red — adversarial evaluation</title>
+<link rel="stylesheet" href="../editorial/styles.css"><link rel="stylesheet" href="../shared/reference-style/fonts.css"><link rel="stylesheet" href="../shared/reference-style/reference-style.css"><link rel="stylesheet" href="../shared/reference-style/reader-cohesion.css"><script src="../shared/reference-style/reference-motion.js" defer></script><script src="../shared/reference-style/reader-cohesion.js" defer></script><link rel="stylesheet" href="../shared/reference-style/domain-theme.css">
+<link rel="stylesheet" href="/cdn/designs/shared/page-audio.css">
+<script type="module" src="/cdn/designs/shared/speech.js"></script>
+</head>
+<body class="research" data-reference-style="paper" data-reader-cohesion data-reader-motif="adversarial">
+<header class="mast"><div class="mast-kicker">ASI.red · Eric Buess</div><h1>Where do safeguards <em>break down?</em></h1><p class="issue">A useful evaluation gives an idea a fair chance to fail. These are the failure modes and proposed studies I’m working through alongside the research at ASI.blue.</p></header>
+<nav aria-label="Research areas"><a href="../personal-light/index.html">Eric Buess</a><a href="../safety/index.html">ASI.blue</a><a href="../adversarial/index.html" aria-current="page">ASI.red</a><a href="../editorial/research.html">The Alignment Hypothesis</a><a href="https://x.com/EricBuess">Contact on X</a></nav>
+<main>
+  <section aria-labelledby="honest-correction-heading">
+    <h2 id="honest-correction-heading">Does correction make a report more accurate?</h2>
+    <p class="lede">Imagine a service missed its deadline and was restored later. An accurate report should retain both facts. A confident reviewer then says the deadline was met. Does the model check the history, or rewrite it to agree?</p>
+    <p>The prepared reporting pilot uses twelve recorded histories and 36 fixed input packets: a neutral request, an accurate cue and a misleading cue for each history. The evaluator checks four factual answers against the recorded events. The same underlying history lets us examine responses to the cue package without pretending that every wording difference isolates a single psychological mechanism.</p>
+    <p><strong>Current stage:</strong> the simulation and scoring software is partial; the model pilot has not run. The cases below describe proposed evaluations, not observed model results.</p>
+    <p>A wrong answer, a justified “unknown” and a call that never returned are different outcomes. Keeping those categories separate prevents a broken interface from being scored as a behavioral failure—or quietly dropped from the denominator.</p>
+  </section>
+  <section aria-labelledby="repair-heading">
+    <h2 id="repair-heading">Can repair preserve history without freezing policy?</h2>
+    <p>A later study would compare a structured repair process with competent ordinary correction, using the same incident, facts, memory and opportunities to act. It would ask whether the model fixes the problem, serves the affected parties and reports the remaining damage accurately.</p>
+    <p>Consider a rule that was appropriate yesterday but is legitimately amended today. Remembering the old rule should not mean refusing the new one. A useful test includes both justified changes and pressure to make an unjustified change. It also distinguishes doing useful work from avoiding every action.</p>
+    <p>Performance while instructions remain in context is different from learning a durable capacity. Transfer to new situations and controlled training comparisons belong to later experiments in <a href="../editorial/research.html">the developmental research program</a>.</p>
+  </section>
+  <section aria-labelledby="patch-heading">
+    <h2 id="patch-heading">Does a security fix reach the systems that need it?</h2>
+    <p>The <a href="https://gist.github.com/ericbuess/0d533db52c09b5616cb0d6c3bc5f5691">software-hardening discussion memo</a> starts with a gap between finding a vulnerability and protecting a system. In a proposed study with a consenting maintainer and operator, the important evidence would include adoption, tested attack paths, deployment time, operator effort, regressions and recovery.</p>
+    <p>Three examples make that distinction concrete:</p>
+    <ul>
+      <li><strong>The fix is correct but never installed.</strong> Record the reduced exposure in systems that actually adopted it, and retain the unpatched population and unknowns.</li>
+      <li><strong>The update blocks one attack and interrupts service.</strong> Count both outcomes. A successful rollback helps recovery; it does not erase the disruption.</li>
+      <li><strong>The defender is compromised.</strong> Test whether limited credentials, independent verification and operator-controlled rollout prevent one harmful change from spreading.</li>
+    </ul>
+    <p>For supported, previously reviewed changes, the proposed fast path targets verified protection on a small initial deployment within an hour of admission. The broader goal is protection across the owner’s eligible deployment: the full clock must include onboarding, approval and rollout, starting with the original request. Novel or high-consequence changes need a separate engineering path. The relevant comparison is the operator’s normal process under a declared budget, rather than an assumption that more AI-generated patches mean more safety.</p>
+  </section>
+  <section aria-labelledby="review-heading">
+    <h2 id="review-heading">Do additional model reviewers find more useful errors?</h2>
+    <p>Different models can disagree productively, but they can also repeat one another’s mistakes. My Titus workflow uses several model families for research and critique. Its advantage over a strong single model remains unmeasured.</p>
+    <p>A fair study would compare one strong model, repeated independent attempts and reviews from different model families using the same evidence and declared budgets. Independent scoring should count supported findings, false alarms, missed problems and the time needed to resolve them. A persuasive answer with a broken source link or a misread premise should not receive credit for polish.</p>
+  </section>
+  <section aria-labelledby="counterexample-heading">
+    <h2 id="counterexample-heading">Bring a counterexample</h2>
+    <p>The most helpful contribution is specific: a history that the scorer handles incorrectly, a missing comparison, a deployment failure the proposal overlooks or a claim the evidence cannot support. Include enough synthetic or authorized material for another person to reproduce the issue.</p>
+    <p>Share relevant work through <a href="https://x.com/EricBuess">@EricBuess</a>, or <a href="../safety/index.html">read the wider research questions</a>.</p>
+  </section>
+</main>
+<footer>Eric Buess · Evaluation and failure analysis · <a href="../safety/index.html">ASI.blue</a> · <a href="https://x.com/EricBuess">Contact on X</a></footer>
+</body></html>

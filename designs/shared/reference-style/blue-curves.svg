@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" fill="none" aria-hidden="true">
+<!-- Decorative exploration curves only; no axes, values or empirical data. -->
+<g stroke="#a8cdff" stroke-width="1.1" opacity=".44">
+<path d="M280 710C210 160 710-120 1350 180"/><path d="M360 720C280 225 775-60 1320 250"/>
+<path d="M440 720C385 260 845 5 1330 325"/><path d="M520 720C465 345 895 80 1360 400"/>
+<path d="M605 740C590 400 960 190 1400 480"/><path d="M700 760C675 490 1075 285 1470 595"/>
+</g><path d="M460-80C910 105 830 420 1300 530" stroke="#c4ddff" stroke-width="1.5" opacity=".28"/>
+</svg>

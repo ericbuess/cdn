@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Website previews</title>
+<style>
+  :root { --ink:#1b1814; --paper:#f6f0e6; --rule:#d7cbb8; --accent:#7a2e1f; --mute:#5e574c; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font: 18px/1.6 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .preview { background: var(--ink); color: var(--paper); font: 700 11px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .1em; text-transform: uppercase; text-align: center; padding: 9px 12px; }
+  header { max-width: 62rem; margin: 0 auto; padding: 34px 20px 8px; }
+  .kicker { font: 700 11px/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(1.9rem, 7vw, 3rem); line-height: 1.05; margin: 10px 0 8px; letter-spacing: -.02em; }
+  header p { color: var(--mute); margin: 0 0 .8rem; max-width: 44rem; }
+  main { max-width: 62rem; margin: 0 auto; padding: 18px 20px 70px; }
+  .grid { display: grid; gap: 14px; }
+  @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .rec { border: 2px solid #0d0d0c; border-radius: 6px; background: #ffffff; padding: 18px; margin-bottom: 22px; box-shadow: 6px 6px 0 #17b06a; }
+  .rec .dir { font: 700 11px/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #0d7a49; margin-bottom: 10px; }
+  .rec h2 { font-size: 1.35rem; margin: 0 0 8px; line-height: 1.2; }
+  .rec p { margin: 0 0 12px; font-size: .95rem; color: var(--mute); max-width: 46rem; }
+  .rec .pair { display: grid; gap: 10px; }
+  @media (min-width: 720px) { .rec .pair { grid-template-columns: 1fr 1fr; } }
+  .rec .pair a { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 14px; border: 2px solid #0d0d0c; border-radius: 4px; color: #0d0d0c; text-decoration: none; font: 700 13px/1.3 -apple-system, BlinkMacSystemFont, sans-serif; }
+  .rec .pair a::after { content: "→"; color: #0d7a49; }
+  .rec .pair a:hover, .rec .pair a:focus-visible { box-shadow: 3px 3px 0 #17b06a; }
+  .rec .pair a small { display: block; font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--mute); letter-spacing: .04em; text-transform: uppercase; }
+  .alt-label { font: 700 11px/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin: 0 0 12px; }
+  .card { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--rule); background: #fffdf8; padding: 18px; color: var(--ink); text-decoration: none; }
+  .card:hover, .card:focus-visible { border-color: var(--accent); }
+  .card .dir { font: 700 11px/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .card h2 { font-size: 1.3rem; margin: 0; line-height: 1.2; }
+  .card .addr { font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--mute); }
+  .card p { margin: 0; font-size: .95rem; color: var(--mute); }
+  .card .go { font: 700 12px/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-top: auto; padding-top: 8px; }
+  .notes { margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 14px; font-size: .9rem; color: var(--mute); }
+  .notes h2 { font-size: 1.05rem; margin: 0 0 .5rem; color: var(--ink); }
+  .notes ul { margin: 0; padding-left: 1.2em; }
+  .notes li { margin-bottom: .4rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85em; }
+  footer { max-width: 62rem; margin: 0 auto; padding: 0 20px 40px; font-size: .82rem; color: var(--mute); }
+</style>
+<link rel="stylesheet" href="/cdn/designs/shared/page-audio.css">
+<script type="module" src="/cdn/designs/shared/speech.js"></script>
+</head>
+<body>
+<div class="preview">Private design review</div>
+<header>
+  <div class="kicker">Website previews</div>
+  <h1>Choose a website direction</h1>
+  <p>The <strong>recommended hybrid</strong> pairs a light ink-and-green personal direction (recovered Orbital B visual identity) with the quiet Editorial research page. Two full alternatives remain below for comparison: <strong>Editorial</strong>, a magazine-style serif pair, and <strong>Engineer / Opus</strong>, a denser instrument-panel pair.</p>
+  <p>Domain names shown are proposed destinations; this preview does not connect them.</p>
+</header>
+<main>
+  <section class="rec" aria-labelledby="rec-h">
+    <div class="dir">Recommended hybrid</div>
+    <h2 id="rec-h">Light personal pages + Editorial research brief</h2>
+    <p>The personal Home and Work pages use the recovered light Orbital B identity — white ground, dark ink, teal-green accent, bold headings — while research stays on the quieter editorial presentation.</p>
+    <div class="pair">
+      <a href="personal-light/index.html"><span>Eric Buess — Home<small>personal page · proposed destination: ericbuess.com</small></span></a>
+      <a href="editorial/research.html"><span>The Alignment Hypothesis — Research brief<small>proposed destination: thealignmenthypothesis.com</small></span></a>
+      <a href="safety/index.html"><span>AI safety — plain-language overview<small>proposed destination: asi.blue</small></span></a>
+    </div>
+  </section>
+
+  <p class="alt-label">Alternatives for comparison</p>
+  <div class="grid">
+    <a class="card" href="editorial/index.html">
+      <span class="dir">Editorial · personal</span>
+      <h2>Eric Buess — Editorial personal page</h2>
+      <span class="addr">proposed destination: ericbuess.com</span>
+      <p>Warm paper, serif masthead, confirmed experience, project status, professional-copy review and a contact invitation.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="editorial/research.html">
+      <span class="dir">Editorial · research</span>
+      <h2>The Alignment Hypothesis — Research brief</h2>
+      <span class="addr">proposed destination: thealignmenthypothesis.com</span>
+      <p>Essay-first structure: the question, the measurement candidate, evidence cards with honest status and the support request.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="engineer/index.html">
+      <span class="dir">Engineer / Opus · personal</span>
+      <h2>Eric Buess — Engineer personal page</h2>
+      <span class="addr">proposed destination: ericbuess.com</span>
+      <p>Mono kickers, numbered sections, status chips and a desktop contents rail. Same confirmed record, denser read.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="engineer/research.html">
+      <span class="dir">Engineer / Opus · research</span>
+      <h2>The Alignment Hypothesis — Research brief, dark</h2>
+      <span class="addr">proposed destination: thealignmenthypothesis.com</span>
+      <p>Dark instrument panel: question, artifacts, route-admission limits and the support request as a verifiable spec.</p>
+      <span class="go">Open →</span>
+    </a>
+  </div>
+
+  <div class="notes">
+    <h2>How to read these previews</h2>
+    <ul>
+      <li>Status chips distinguish built artifacts, prepared and proposed experiments, and missing outcomes; <code>[confirm]</code> marks facts still awaiting Eric's check.</li>
+      <li>The audio control on each page reads a short summary using the browser's own speech synthesis. It is synthesized speech, not a recording, and it reports an honest state where synthesis is unavailable.</li>
+      <li>Each page links to the project records its claims come from. Those records are private; opening them may require sign-in.</li>
+      <li>Keyboard: all navigation and controls are real links and buttons; Tab reaches everything.</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <p>Private design review · © 2026 Eric Buess</p>
+</footer>
+</body>
+</html>

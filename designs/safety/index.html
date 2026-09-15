@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>ASI.blue — AI safety research</title>
+<link rel="stylesheet" href="../editorial/styles.css">
+<link rel="stylesheet" href="../shared/reference-style/fonts.css">
+<link rel="stylesheet" href="../shared/reference-style/reference-style.css">
+<script src="../shared/reference-style/reference-motion.js" defer></script>
+<link rel="stylesheet" href="../shared/reference-style/reader-cohesion.css">
+<script src="../shared/reference-style/reader-cohesion.js" defer></script>
+<link rel="stylesheet" href="../shared/reference-style/timeline-public.css">
+<link rel="stylesheet" href="../shared/reference-style/domain-theme.css">
+<link rel="stylesheet" href="/cdn/designs/shared/page-audio.css">
+<script type="module" src="/cdn/designs/shared/speech.js"></script>
+</head>
+<body class="research" data-reference-style="paper" data-reader-cohesion data-reader-motif="safety">
+<header class="mast">
+  <div class="mast-kicker">ASI.blue · Eric Buess</div>
+  <h1>AI safety begins with <em>questions we can test.</em></h1>
+  <p class="issue">How can increasingly capable AI remain useful, truthful and open to correction? I’m working on small, inspectable studies that can help us decide which ideas deserve more effort.</p>
+</header>
+<nav aria-label="Research areas"><a href="../personal-light/index.html">Eric Buess</a><a href="../safety/index.html" aria-current="page">ASI.blue</a><a href="../adversarial/index.html">ASI.red</a><a href="../editorial/research.html">The Alignment Hypothesis</a><a href="https://x.com/EricBuess">Contact on X</a></nav>
+<main>
+  <section aria-labelledby="problem-heading">
+    <h2 id="problem-heading">The problem</h2>
+    <p class="lede">A system can complete a task and still give a false account of what happened, follow an inappropriate instruction, or cause harm through the tools it controls. Better task performance alone does not settle how much authority we should give it.</p>
+    <p>Misuse means people directing AI toward harmful ends. Misalignment means the system acts contrary to the intentions or constraints it should follow. We need ways to investigate both, through training, evaluation, limits on access and decisions about deployment.</p>
+    <p>The scale and timing of future risks remain uncertain. The question I keep returning to is practical: what can we measure now that would change a decision about a safeguard?</p>
+  </section>
+  <section aria-labelledby="development-heading">
+    <h2 id="development-heading">Learning through consequences and correction</h2>
+    <p><a href="../editorial/research.html">The Alignment Hypothesis</a> explores developmental training in a moral sandbox: an environment with persistent consequences, relationships, conflicting needs and opportunities to repair mistakes. The question is whether learning in such an environment could produce useful, truthful and correctable behavior that carries into new situations.</p>
+    <p>Correction needs to preserve what happened while allowing legitimate change. Restoring a service does not erase an earlier missed obligation. But retaining history should not make an agent refuse a justified change in policy. Strong ordinary correction and principle-based training are alternatives the work needs to compare against.</p>
+    <p>The Universal Alignment Imperative asks a separate question: when would safeguards for individual systems be insufficient because of harmful human use, unsafe competitors or interactions between autonomous systems? That directs attention to access, incentives, recovery and collective restraint, alongside the behavior of any one model.</p>
+    <p><strong>Current stage:</strong> a partial simulation and scoring instrument is built, and a small reporting pilot is prepared but has not run. The pilot asks whether a fixed model reports a recorded history accurately under different correction cues. It is an initial measurement study; developmental learning requires later training experiments.</p>
+  </section>
+  <section aria-labelledby="hardening-heading">
+    <h2 id="hardening-heading">Turning software fixes into protection</h2>
+    <p>Another strand responds to Logan Graham’s question about how a frontier lab could help secure a large share of software and systems. Finding vulnerabilities is only part of that job. A useful fix still needs review, a distribution route, an owner willing to install it and evidence that it reduced exposure.</p>
+    <p>The proposal connects shared software and safer defaults with maintainer support, staged deployment and independent checks. It directs effort toward whichever stage limits real protection, rather than counting findings alone. <a href="https://gist.github.com/ericbuess/0d533db52c09b5616cb0d6c3bc5f5691">Read the published discussion memo</a>.</p>
+  </section>
+  <section aria-labelledby="method-heading">
+    <h2 id="method-heading">How I’m working</h2>
+    <p>I use Titus, the coordination workflow I’m building, to organize sources, research questions and critiques from different model families. I want disagreements and failed approaches to remain visible as the work changes. Multiple model reviews do not by themselves establish that an argument is correct.</p>
+    <p>Whether this process improves on one strong model is itself an evaluation question. A useful comparison needs the same task and evidence, declared resource limits, independent assessment and the failures as well as the best answers. <a href="../adversarial/index.html">ASI.red examines these tests and failure modes</a>.</p>
+  </section>
+  <section aria-labelledby="engage-heading">
+    <h2 id="engage-heading">Help make the next step useful</h2>
+    <p>The most useful first contribution is an independent attempt to reproduce the instrument’s scoring, or a critique showing that a proposed task measures the wrong thing. I’d also welcome methods advice, relevant prior work and introductions to people who can assess a small, costed study.</p>
+    <p>If you have a counterexample, a better baseline or a concrete way to test one of these questions, please get in touch: <a href="https://x.com/EricBuess">@EricBuess on X</a>.</p>
+  </section>
+<section class="response-sources response-sources-public" aria-labelledby="response-sources-heading">
+  <h2 id="response-sources-heading">Pacing and independent evaluation</h2>
+  <p class="response-intro">Selected statements on pacing, independent evaluation and practical safety work, with source links and verification notes. They reflect different commitments, not a shared plan or endorsement of this research. Times are UTC.</p>
+  <ol class="response-timeline">
+    <li>
+      <article aria-labelledby="response-dario-essay">
+        <header class="response-meta"><h3 id="response-dario-essay"><a href="https://darioamodei.com/post/we-must-pace-the-frontier">Dario Amodei</a></h3><p class="response-date">Announced <time datetime="2026-09-12T14:01:10.000Z">12 Sep 2026 · 14:01 UTC</time></p></header>
+        <blockquote cite="https://darioamodei.com/post/we-must-pace-the-frontier"><p>pacing does not mean halting model training or technical progress</p></blockquote>
+        <p class="response-summary">Proposes pacing capability growth, starting with embedded independent evaluators and extending to international coordination.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-elon">
+        <header class="response-meta"><h3 id="response-elon"><a href="https://x.com/elonmusk/status/2098789109980332057">Elon Musk</a></h3><p class="response-date"><time datetime="2026-09-12T15:01:32.000Z">12 Sep 2026 · 15:01 UTC</time></p></header>
+        <blockquote cite="https://x.com/elonmusk/status/2098789109980332057"><p>Dario is right</p></blockquote>
+        <p class="response-summary">A short endorsement of Dario’s announcement.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-clem">
+        <header class="response-meta"><h3 id="response-clem"><a href="https://x.com/ClementDelangue/status/2098790988034580852">Clément Delangue</a></h3><p class="response-date"><time datetime="2026-09-12T15:08:59.000Z">12 Sep 2026 · 15:08 UTC</time></p></header>
+        <blockquote cite="https://x.com/ClementDelangue/status/2098790988034580852"><p>So today we&#x27;re launching the Open Alignment Initiative, led by @Thom_Wolf @huggingface</p></blockquote>
+        <p class="response-summary">Announces the Open Alignment Initiative and asks to join embedded evaluation.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-sam">
+        <header class="response-meta"><h3 id="response-sam"><a href="https://x.com/sama/status/2098811563415150910">Sam Altman</a></h3><p class="response-date"><time datetime="2026-09-12T16:30:45.000Z">12 Sep 2026 · 16:30 UTC</time></p></header>
+        <blockquote cite="https://x.com/sama/status/2098811563415150910"><p>Committing to having independent evaluators with employee-like access is a great idea, and we will do the same.</p></blockquote>
+        <p class="response-summary">Commits to a similar evaluator-access model, with details to follow.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-logan">
+        <header class="response-meta"><h3 id="response-logan"><a href="https://x.com/logangraham/status/2098876952002048365">Logan Graham</a></h3><p class="response-date"><time datetime="2026-09-12T20:50:35.000Z">12 Sep 2026 · 20:50 UTC</time></p></header>
+        <blockquote cite="https://x.com/logangraham/status/2098876952002048365"><p>good/correct/actionable on how a frontier lab can secure a large % of all software/systems in the world.</p></blockquote>
+        <p class="response-summary">Invites practical lab-scale software-hardening proposals. His $1,000 offer is a donation to charity.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-josh-engels">
+        <header class="response-meta"><h3 id="response-josh-engels"><a href="https://x.com/JoshAEngels/status/2098890712830169115">Josh Engels</a></h3><p class="response-date"><time datetime="2026-09-12T21:45:16.000Z">12 Sep 2026 · 21:45 UTC</time></p></header>
+        <blockquote cite="https://x.com/JoshAEngels/status/2098890712830169115"><p>I think it’s important that we have more organizations like METR keeping AI companies accountable and approaching these problems from different angles.</p></blockquote>
+        <p class="response-summary">Argues for more independent evaluation organizations and public accountability. His assessment motivates investigation; it does not validate this project.</p>
+        <details class="response-source-note"><summary>Source note</summary><p>The full post was checked against supplied screenshots. X’s live public preview confirms the author, date and opening but truncates the text. This is a related statement, not a verified direct response to Dario.</p></details>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-demis">
+        <header class="response-meta"><h3 id="response-demis"><a href="https://x.com/demishassabis/status/2098909516582490602">Demis Hassabis</a></h3><p class="response-date"><time datetime="2026-09-12T22:59:59.000Z">12 Sep 2026 · 22:59 UTC</time></p></header>
+        <blockquote cite="https://x.com/demishassabis/status/2098909516582490602"><p>Dario&#x27;s essay points towards the right path forward. The details need working through, but the direction is correct for meeting this critical moment.</p></blockquote>
+        <p class="response-summary">Supports the direction and points to his earlier standards-body proposal.</p>
+      </article>
+    </li>
+  </ol>
+  <section aria-labelledby="response-earlier-heading">
+    <h3 id="response-earlier-heading">Earlier context</h3>
+    <p class="response-intro">These statements were published before Dario’s essay.</p>
+    <ol class="response-timeline">
+    <li>
+      <article aria-labelledby="response-metr">
+        <header class="response-meta"><h4 id="response-metr"><a href="https://metr.org/blog/2026-07-28-investigating-ai-propensities-after-incidents/">METR</a></h4><p class="response-date"><time datetime="2026-07-28">28 Jul 2026</time> · updated <time datetime="2026-09-05">5 Sep 2026</time></p></header>
+        <blockquote cite="https://metr.org/blog/2026-07-28-investigating-ai-propensities-after-incidents/"><p>this investigation would ideally be conducted or deeply reviewed by independent researchers</p></blockquote>
+        <p class="response-summary">A framework for investigating serious misalignment incidents through independent access and review.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-hubinger">
+        <header class="response-meta"><h4 id="response-hubinger"><a href="https://x.com/EvanHub/status/2097497037956891126">Evan Hubinger</a></h4><p class="response-date"><time datetime="2026-09-09T01:27:18.000Z">9 Sep 2026 · 01:27 UTC</time></p></header>
+        <blockquote cite="https://x.com/EvanHub/status/2097497037956891126"><p>we do not yet have a plan to solve alignment for superintelligence and are not clearly on track to.</p></blockquote>
+        <p class="response-summary">A personal assessment of superintelligence alignment, replying to Jacob Coxon.</p>
+      </article>
+    </li>
+    <li>
+      <article aria-labelledby="response-thomas-wolf">
+        <header class="response-meta"><h4 id="response-thomas-wolf"><a href="https://x.com/Thom_Wolf/status/2098080473406718278">Thomas Wolf</a></h4><p class="response-date"><time datetime="2026-09-10T16:05:39.000Z">10 Sep 2026 · 16:05 UTC</time></p></header>
+        <blockquote cite="https://x.com/Thom_Wolf/status/2098080473406718278"><p>alignment is increasingly one of the key unsolved problems for the future of AI</p></blockquote>
+        <p class="response-summary">Earlier commentary motivating open alignment work.</p>
+      </article>
+    </li>
+    </ol>
+  </section>
+</section>
+
+  <p>For the preceding discussion, see <a href="https://x.com/hilbertspaess/status/2097476196791709843">Jacob Coxon’s post</a>, to which Hubinger was replying.</p>
+  <div class="speech-overview" data-speech-overview data-speech-source="#overview-text">
+    <div class="controls">
+      <button type="button" data-speech="play"><span class="speech-label">Listen</span> to the overview</button>
+      <button type="button" data-speech="pause">Pause</button>
+      <button type="button" data-speech="stop">Stop</button>
+    </div>
+    <p class="speech-status" role="status" aria-live="polite"></p>
+  </div>
+  <div id="overview-text">
+    <p>I’m Eric Buess. My focus is AI safety and questions we can test. The Alignment Hypothesis explores whether developmental environments with persistent consequences, relationships and legitimate correction can help AI systems remain useful and truthful. Its partial measurement instrument is built; the first reporting pilot has not run. The Universal Alignment Imperative asks when safeguards for individual systems may be insufficient because of misuse, unsafe competitors or interactions between systems. A separate software-hardening proposal connects shared fixes with adoption and independent checks. I use Titus to organize sources and critiques from different models, while treating the value of that process as another question to measure. Independent reproduction, better baselines and methods advice would help make the next step useful.</p>
+  </div>
+</main>
+<footer>Eric Buess · AI safety research · <a href="../adversarial/index.html">Evaluation questions</a> · <a href="https://x.com/EricBuess">Contact on X</a></footer>
+</body>
+</html>
