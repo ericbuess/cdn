@@ -17,7 +17,7 @@ Cutover is a table of forward changes only. Nothing here is linked from a live d
 | `ericbuess.com/the-argument/` | `sites/ericbuess.com/the-argument/` | https://ericbuess.github.io/cdn/sites/ericbuess.com/the-argument/ | Restyled; figures kept. |
 | `ericbuess.com/the-argument/labs/` | `sites/ericbuess.com/the-argument/labs/` | https://ericbuess.github.io/cdn/sites/ericbuess.com/the-argument/labs/ | Restyled; figures kept. |
 | `ericbuess.com/alignment-hypothesis/` | `sites/ericbuess.com/alignment-hypothesis/` | https://ericbuess.github.io/cdn/sites/ericbuess.com/alignment-hypothesis/ | **Staged draft, awaiting Eric's read.** thealignmenthypothesis.com does not resolve today. |
-| `asi.contractors/` | `sites/asi.contractors/` (its own page) | https://ericbuess.github.io/cdn/sites/asi.contractors/ | Gist content kept. |
+| `asi.contractors/` | `sites/asi.contractors/` (simple idea + coming soon) | https://ericbuess.github.io/cdn/sites/asi.contractors/ | Eric, 07:45 CDT. Previous full page kept unlinked at `sites/asi.contractors/proposal-draft.html`. |
 | `asi.blue/` | `sites/asi.blue/` (its own page) | https://ericbuess.github.io/cdn/sites/asi.blue/ | **Staged draft, awaiting Eric's read.** |
 | `asi.blue/risk-table/` | `sites/asi.blue/risk-table/` | https://ericbuess.github.io/cdn/sites/asi.blue/risk-table/ | **Staged draft, awaiting Eric's read.** |
 | `asi.red/` | `sites/asi.red/` (its own page) | https://ericbuess.github.io/cdn/sites/asi.red/ | **Staged draft, awaiting Eric's read.** |
@@ -30,6 +30,10 @@ Cutover is a table of forward changes only. Nothing here is linked from a live d
 Do not attach a custom domain to `ericbuess/cdn`. That repo already serves other public files (including `drafts/`). A custom domain on it would put the whole tree at the apex.
 
 ---
+
+## ASI.contractors simplified (2026-09-15, Cursor native `idem:cursor-contractors-simple-001`)
+
+Eric (07:45 CDT) asked for a simple idea and a coming soon, not a full page. Staged `asi.contractors/` is that one-screen page. The previous full page is kept unlinked at `sites/asi.contractors/proposal-draft.html`. No DNS change.
 
 ## Restyle (2026-09-15, Cursor native `idem:cursor-restyle-001`)
 
