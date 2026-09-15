@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Eric Buess — AI safety, research and practical tools</title>
+  <style>
+    :root { color-scheme: light dark; --ink: #17231d; --muted: #526159; --paper: #f6f7f3; --card: #fff; --line: #cdd7cf; --accent: #167345; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #edf4ee; --muted: #b8c7bd; --paper: #101712; --card: #172019; --line: #34463a; --accent: #74d79b; } }
+    * { box-sizing: border-box; } body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main, header, footer { width: min(100% - 2.5rem, 72rem); margin: auto; } header { padding: 5.5rem 0 3rem; border-bottom: 1px solid var(--line); } main { padding: 3rem 0 4rem; } footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+    .eyebrow { color: var(--accent); font-weight: 750; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; } h1 { max-width: 13ch; font-size: clamp(3rem, 9vw, 6.8rem); line-height: .95; letter-spacing: -.06em; margin: .35rem 0 1.25rem; } h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.05; letter-spacing: -.035em; margin: 0 0 1rem; } h3 { margin-bottom: .4rem; }
+    .lead { max-width: 48rem; font-size: clamp(1.2rem, 2.3vw, 1.6rem); line-height: 1.45; } .stage { color: var(--muted); max-width: 44rem; } section { margin-top: 4.5rem; } .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: .7rem; padding: 1.35rem; } .card p { margin: .4rem 0 0; color: var(--muted); } a { color: var(--accent); text-underline-offset: .17em; } a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">AI safety · research · practical tools</p>
+    <h1>Eric Buess</h1>
+    <p class="lead">I work on AI safety: how to evaluate increasingly capable systems, understand where safeguards fall short, and turn promising ideas into tests others can inspect and build on.</p>
+    <p>My current work includes the Alignment Hypothesis and proposals for independent evaluation. I’m also building Go Screenless and tools for coordinating AI agents, both to support this research and to make useful work easier to do by voice. I care about careful work, honest uncertainty, and leaving time for family and the things that matter.</p>
+    <p class="stage">Current work ranges from research proposals to working prototypes. Each project shows what has been built, what has been tested, and what remains to be done.</p>
+    <p><a href="https://github.com/ericbuess/alignment-hypothesis">Explore the research</a> · <a href="#work">See selected work</a></p>
+  </header>
+  <main>
+    <section aria-labelledby="work">
+      <p class="eyebrow">Current work</p><h2 id="work">Research and tools</h2>
+      <div class="grid">
+        <article class="card"><h3><a href="https://github.com/ericbuess/alignment-hypothesis">The Alignment Hypothesis</a></h3><p>Exploring how developmental environments, relationships and correction could contribute to AI alignment.</p><p>Initial tools · model pilot not run</p></article>
+        <article class="card"><h3>Go Screenless</h3><p>A phone and Watch app and a listening inbox, being connected into one voice workflow.</p><p>Prototype</p></article>
+        <article class="card"><h3>Titus</h3><p>Organizing research and critique across AI tools, with source-linked records that help work continue between sessions.</p><p>In use · still developing</p></article>
+      </div>
+    </section>
+    <section aria-labelledby="experience">
+      <p class="eyebrow">What I do</p><h2 id="experience">Experience that informs the work.</h2>
+      <div class="grid">
+        <article class="card"><h3>AI education</h3><p>I’ve mentored students in AI through Inspire, delivered talks and lectures, and joined podcasts to share practical ways of working with these tools.</p></article>
+        <article class="card"><h3>Applied AI help</h3><p>I’ve helped a small business adopt AI in day-to-day operations and a mayoral candidate apply it to campaign work.</p></article>
+        <article class="card"><h3>Research &amp; open source</h3><p>I build and share open-source tools, write about what I learn, and discuss AI workflows and safety on <a href="https://x.com/EricBuess">X</a>.</p></article>
+      </div>
+    </section>
+    <section aria-labelledby="method"><p class="eyebrow">How I work</p><h2 id="method">Capable systems, independent challenge, human judgment.</h2><div class="grid"><article class="card"><h3>Draft with multiple models.</h3><p>I use models from several providers to develop and challenge ideas, keeping the questions and source material available for review.</p></article><article class="card"><h3>Inspect and test the output.</h3><p>I compare claims with their sources and turn disagreements into questions that can be tested.</p></article><article class="card"><h3>Keep the decision human.</h3><p>I keep responsibility for consequential decisions and a record of what changed and why.</p></article></div></section>
+  </main>
+  <footer>Eric Buess · AI safety, research and practical tools · <a href="../asi.contractors/">ASI.contractors</a> · <a href="../asi.blue/">ASI.blue</a> · <a href="../asi.red/">ASI.red</a></footer>
+</body>
+</html>
