@@ -1,0 +1,99 @@
+/* Restyle extras for long-form, tables, Logan packet, domain pages.
+   Colors, type and spacing inherit from signal-base.css / styles.css. */
+body[data-signal-base] .draft-banner {
+  width: min(100% - 36px, 76rem);
+  margin: 0 auto;
+  padding: 12px 0 0;
+  font: 700 11px/1.4 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  border-bottom: 2px solid var(--ink);
+}
+body[data-signal-base] .draft-banner + .shell,
+body[data-signal-base] .draft-banner + header,
+body[data-signal-base] .draft-banner + main { margin-top: 0; }
+body[data-signal-base] footer { display: grid; gap: 10px; }
+body[data-signal-base] .footer-sites { display: block; }
+body[data-signal-base] .footer-sites a { margin-right: 0; }
+body[data-signal-base] .prose,
+body[data-signal-base] main > p,
+body[data-signal-base] main > ul,
+body[data-signal-base] main > ol { max-width: 48rem; }
+body[data-signal-base] main figure { margin: 2rem 0; max-width: 52rem; }
+body[data-signal-base] main figure img {
+  width: 100%; height: auto; display: block;
+  border: 2px solid var(--ink); background: var(--paper);
+}
+body[data-signal-base] main figcaption {
+  color: var(--ink-2); font: 500 13px/1.5 var(--mono); margin-top: .65rem;
+}
+body[data-signal-base] .table-wrap,
+body[data-signal-base] .table-scroll {
+  width: 100%; overflow-x: auto; margin: 1rem 0 1.6rem;
+}
+body[data-signal-base] table {
+  width: 100%; border-collapse: collapse; font-size: .92rem;
+  background: var(--paper);
+}
+body[data-signal-base] th,
+body[data-signal-base] td {
+  border: 1px solid var(--line); padding: .55rem .65rem;
+  vertical-align: top; text-align: left;
+}
+body[data-signal-base] th { font-weight: 650; background: var(--paper-2); }
+body[data-signal-base] .sources { font-size: .95rem; color: var(--ink-2); max-width: 52rem; }
+body[data-signal-base] .boundary {
+  padding: 16px 18px; border: 2px solid var(--ink);
+  border-left: 6px solid var(--green); background: var(--paper-2);
+  max-width: 52rem;
+}
+body[data-signal-base] .article-nav {
+  margin: 0 0 36px; padding: 16px 0;
+  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line);
+  font: 500 14px/1.6 var(--body);
+}
+body[data-signal-base] .article-nav strong {
+  display: block; margin-bottom: 8px;
+  font: 700 11px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green-deep);
+}
+body[data-signal-base] .article-nav a { display: inline-block; margin: 4px 16px 4px 0; min-height: 32px; }
+body[data-signal-base] .document-section {
+  margin-top: 48px; padding-top: 28px; border-top: 2px solid var(--ink);
+}
+body[data-signal-base] .document-section > h2:first-child { margin-top: 0; }
+body[data-signal-base] .document-section h2 { max-width: 22ch; }
+body[data-signal-base] .document-section h3 { margin: 32px 0 14px; }
+body[data-signal-base] .document-section h4 {
+  font: 600 1.15rem/1.25 var(--display); margin: 28px 0 12px;
+}
+body[data-signal-base] .document-section p { margin-bottom: 1.15rem; max-width: 48rem; }
+body[data-signal-base] .approval-note { max-width: 48rem; color: var(--ink-2); }
+body[data-signal-base] .illustrative-workflow { margin: 2.2rem 0; padding: 0; }
+body[data-signal-base] .illustrative-workflow > ol {
+  list-style: none; margin: 0; padding: 0; counter-reset: workflow;
+}
+body[data-signal-base] .illustrative-workflow > ol > li {
+  position: relative; margin: 0 0 1.4rem; padding: .8rem 1rem;
+  background: var(--green-soft); border-left: 2px solid var(--green-deep); line-height: 1.45;
+}
+body[data-signal-base] .illustrative-workflow > ol > li + li:before {
+  content: "↓"; position: absolute; top: -1.35rem; left: 1rem; color: var(--green-deep);
+}
+body[data-signal-base] .workflow-branches {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .8rem;
+}
+body[data-signal-base] .workflow-branches > span {
+  display: block; padding: .6rem .75rem; background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+body[data-signal-base] .workflow-branches b {
+  display: block; font: 600 .7em var(--mono); text-transform: uppercase;
+  letter-spacing: .08em; margin-bottom: .3rem;
+}
+body[data-signal-base] main section { margin: 0 0 48px; }
+body[data-signal-base] .link-list { margin-top: 22px; }
+@media (max-width: 480px) {
+  body[data-signal-base] .workflow-branches { grid-template-columns: 1fr; }
+}

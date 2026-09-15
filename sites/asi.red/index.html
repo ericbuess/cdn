@@ -1,4 +1,47 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>ASI.red — adversarial safety work</title><style>
-:root{color-scheme:light dark;--ink:#351717;--muted:#765656;--paper:#fcf6f5;--card:#fff;--line:#e4cccc;--accent:#a32222}@media(prefers-color-scheme:dark){:root{--ink:#ffecec;--muted:#e4bcbc;--paper:#211111;--card:#301818;--line:#613434;--accent:#ff8585}}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main,header,footer{width:min(100% - 2.5rem,68rem);margin:auto}header{padding:5.5rem 0 3rem;border-bottom:1px solid var(--line)}main{padding:3rem 0 4rem}footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}.eyebrow{color:var(--accent);font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}h1{max-width:13ch;font-size:clamp(3rem,9vw,6.8rem);line-height:.95;letter-spacing:-.06em;margin:.35rem 0 1.25rem}h2{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.05;letter-spacing:-.035em;margin:0 0 1rem}.lead{max-width:49rem;font-size:clamp(1.2rem,2.3vw,1.6rem);line-height:1.45}section{margin-top:4.5rem}.boundary{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:.7rem;padding:1.35rem;font-size:1.08rem}a{color:var(--accent);text-underline-offset:.17em}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
-</style></head><body><header><p class="eyebrow">Proposed red-team work</p><h1>ASI.red</h1><p class="lead">Adversarial safety work: alignment-failure hunting, defense verification, reproducing published safety results and finding where they break.</p></header><main><section><h2>Scope and boundary</h2><p class="boundary">The red team is adversarial safety work: alignment-failure hunting, defense verification, reproducing published safety results and finding where they break, on models and systems you are authorized to test, under coordinated disclosure, never against live third-party systems and never by publishing working exploits.</p></section><section><h2>How the work is checked</h2><p>The contractor board is how a contribution to ASI.red or <a href="https://asi.blue">ASI.blue</a> gets claimed, receipted and checked; the two sites are where the work will live.</p><p><a href="https://gist.github.com/ericbuess/71d359c702a4050ed691786e5c761a88">Read the ASI.contractors release</a>.</p></section></main><footer>ASI.red · proposed adversarial safety work</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>ASI.red — adversarial safety work</title>
+<link rel="stylesheet" href="../shared/signal-base.css">
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/site-pages.css">
+<script src="../shared/signal-base.js" defer></script>
+
+</head>
+<body data-signal-base="page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav aria-label="Primary">
+  <span class="mark"><i></i>ASI.RED</span>
+  <a href="../ericbuess.com/">Eric Buess</a>
+  <a href="../ericbuess.com/the-argument/">The argument</a>
+  <span class="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></span>
+</nav>
+<p class="draft-banner">Staged draft, awaiting Eric's read. Nothing publishes tonight; DNS does not change.</p>
+<div class="shell">
+<header class="page-head">
+<div class="wall" aria-hidden="true"><div class="col"><div class="stack"><span>RESEARCH</span><span>ALIGNMENT</span><span>SAFETY</span><span>HUMAN</span><span>JUDGMENT</span><span>RESEARCH</span><span>ALIGNMENT</span><span>SAFETY</span><span>RESEARCH</span><span>ALIGNMENT</span><span>SAFETY</span><span>HUMAN</span><span>JUDGMENT</span><span>RESEARCH</span><span>ALIGNMENT</span><span>SAFETY</span></div></div><div class="col"><div class="stack"><span>VOICE</span><span>SCREENLESS</span><span>TITUS</span><span>QUESTIONS</span><span>RESEARCH</span><span>VOICE</span><span>SCREENLESS</span><span>TITUS</span><span>VOICE</span><span>SCREENLESS</span><span>TITUS</span><span>QUESTIONS</span><span>RESEARCH</span><span>VOICE</span><span>SCREENLESS</span><span>TITUS</span></div></div></div>
+  <div class="eyebrow">Proposed red-team work</div>
+  <h1>ASI.<em>red.</em></h1>
+  <p class="lead">Adversarial safety work: alignment-failure hunting, defense verification, reproducing published safety results and finding where they break.</p>
+</header>
+<main id="main-content">
+<section><h2>Scope and boundary</h2><p class="boundary">The red team is adversarial safety work: alignment-failure hunting, defense verification, reproducing published safety results and finding where they break, on models and systems you are authorized to test, under coordinated disclosure, never against live third-party systems and never by publishing working exploits.</p></section><section><h2>How the work is checked</h2><p>The contractor board is how a contribution to ASI.red or <a href="https://asi.blue">ASI.blue</a> gets claimed, receipted and checked; the two sites are where the work will live.</p><p><a href="https://gist.github.com/ericbuess/71d359c702a4050ed691786e5c761a88">Read the ASI.contractors release</a>.</p></section>
+
+<section id="from-the-article" aria-labelledby="from-the-article-h">
+  <div class="section-head"><h2 id="from-the-article-h">From the <em>article.</em></h2>
+  <p>Adversarial safety work, and the authorization and disclosure boundary, verbatim.</p></div>
+  <p class="boundary">The red team is adversarial safety work: alignment-failure hunting, defense verification, reproducing published safety results and finding where they break, on models and systems you are authorized to test, under coordinated disclosure, never against live third-party systems and never by publishing working exploits.</p>
+  <p>The contractor board is how a contribution to ASI.red or ASI.blue gets claimed, receipted and checked; the two sites are where the work will live.</p>
+  <p><a href="../asi.contractors/">ASI.contractors board</a> · <a href="../ericbuess.com/the-argument/">The long-form article</a></p>
+</section>
+
+</main>
+</div>
+
+<footer>Eric Buess &middot; AI safety, research and practical tools. <a href="https://github.com/ericbuess">GitHub</a> &middot; <a href="https://x.com/EricBuess">Contact on X</a><span class="footer-sites"><a href="../ericbuess.com/the-argument/">The argument</a> &middot; <a href="../ericbuess.com/alignment-hypothesis/">Alignment Hypothesis</a> &middot; <a href="../asi.contractors/">ASI.contractors</a> &middot; <a href="../asi.blue/">ASI.blue</a> &middot; <a href="../asi.red/">ASI.red</a></span></footer>
+</body>
+</html>
