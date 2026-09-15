@@ -1,0 +1,265 @@
+/* ASI.red themed variant — self-contained. Staged, not approved.
+   Register: a serious security-research organisation (METR, Project Zero, Trail of
+   Bits, Redwood). Restrained dark neutral, one signal colour used only for the
+   scope-and-disclosure rule and for labels, monospace reserved for labels and
+   metadata. No shared personal-light CSS, no imagery, no JavaScript. */
+
+:root {
+  --bg: #0e1013;
+  --panel: #15181d;
+  --panel-2: #1a1e24;
+  --ink: #e8eaed;
+  --ink-dim: #c3c9cf;
+  --muted: #949ea7;
+  --rule: #262c33;
+  --rule-strong: #333b44;
+  --signal: #e2544a;
+  --link: #e8eaed;
+  --measure: 44rem;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 var(--sans);
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 20;
+}
+.skip-link:focus {
+  left: 0;
+  padding: .6rem 1rem;
+  background: var(--signal);
+  color: #12141a;
+  font: 600 .82rem/1 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ---------- masthead ---------- */
+
+nav[aria-label="Primary"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem 1.4rem;
+  padding: 1.1rem clamp(1.1rem, 5vw, 2.5rem);
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  font: 500 .8rem/1.4 var(--mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+nav[aria-label="Primary"] .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-right: auto;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+nav[aria-label="Primary"] .mark i {
+  width: .58rem;
+  height: .58rem;
+  background: var(--signal);
+  border-radius: 1px;
+}
+nav[aria-label="Primary"] a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+nav[aria-label="Primary"] a:hover { color: var(--ink); border-bottom-color: var(--signal); }
+nav[aria-label="Primary"] .progress { display: none; }
+
+/* ---------- staged-draft banner ---------- */
+
+.draft-banner {
+  margin: 0;
+  padding: .85rem clamp(1.1rem, 5vw, 2.5rem);
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+  border-left: 3px solid var(--signal);
+  color: var(--ink-dim);
+  font: 500 .84rem/1.55 var(--mono);
+}
+
+/* ---------- shell ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 5vw, 2.5rem);
+}
+
+/* ---------- header, above the fold ---------- */
+
+.page-head { padding: clamp(2.4rem, 8vw, 4.5rem) 0 0; }
+
+.page-head .wall { display: none; }
+
+.eyebrow {
+  margin: 0 0 1.1rem;
+  color: var(--signal);
+  font: 600 .78rem/1.4 var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.page-head h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2.5rem, 11vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+.page-head h1 em {
+  font-style: normal;
+  color: var(--signal);
+}
+
+.lead {
+  margin: 0 0 2rem;
+  color: var(--ink-dim);
+  font-size: clamp(1.05rem, 2.6vw, 1.22rem);
+  line-height: 1.6;
+}
+
+/* the scope-and-disclosure panel, above the fold */
+
+.scope-panel {
+  margin: 0 0 clamp(2.2rem, 7vw, 3.4rem);
+  padding: 1.4rem 1.4rem 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--rule-strong);
+  border-left: 3px solid var(--signal);
+}
+.scope-panel > h2 {
+  margin: 0 0 1rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--ink);
+  font: 600 .84rem/1.4 var(--mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.scope-panel > h2::before {
+  content: "Scope · ";
+  color: var(--signal);
+}
+.scope-panel p {
+  margin: 0 0 1rem;
+  color: var(--ink-dim);
+  font-size: .98rem;
+}
+.scope-panel p:last-child { margin-bottom: 0; }
+.scope-panel .boundary {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ---------- register of sections ---------- */
+
+main { padding-bottom: clamp(3rem, 9vw, 5rem); counter-reset: reg; }
+
+main > section {
+  padding: clamp(1.8rem, 5vw, 2.6rem) 0;
+  border-top: 1px solid var(--rule);
+}
+
+main > section > h2 {
+  margin: 0 0 1.1rem;
+  color: var(--ink);
+  font: 600 .84rem/1.4 var(--mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  counter-increment: reg;
+}
+main > section > h2::before {
+  content: counter(reg, decimal-leading-zero) " / ";
+  color: var(--signal);
+}
+
+main p {
+  margin: 0 0 1.05rem;
+  color: var(--ink-dim);
+}
+main p:last-child { margin-bottom: 0; }
+
+/* the finding-fields sentence, set as a register rather than running prose */
+
+.finding-fields {
+  margin: 0;
+  padding: 1.15rem 1.25rem;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  color: var(--ink-dim);
+  font-size: .98rem;
+}
+
+/* the routes paragraph, set as a rule of intake */
+
+.routes {
+  margin: 1.2rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px dashed var(--rule-strong);
+  font: 500 .86rem/2 var(--mono);
+}
+.routes a { margin-right: .2rem; }
+
+/* ---------- links ---------- */
+
+a { color: var(--link); text-decoration: underline; text-decoration-color: var(--signal); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { color: #fff; text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+/* ---------- footer ---------- */
+
+footer {
+  padding: clamp(2rem, 6vw, 3rem) clamp(1.1rem, 5vw, 2.5rem);
+  border-top: 1px solid var(--rule);
+  background: var(--panel);
+  color: var(--muted);
+  font: 400 .86rem/1.75 var(--mono);
+}
+footer .footer-sites {
+  display: block;
+  margin-top: .9rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--rule);
+}
+footer a { color: var(--ink-dim); }
+
+/* ---------- phone width ---------- */
+
+@media (max-width: 30rem) {
+  body { font-size: 16px; }
+  nav[aria-label="Primary"] { gap: .7rem 1rem; font-size: .74rem; }
+  .draft-banner { font-size: .78rem; }
+  .page-head { padding-top: 2rem; }
+  .scope-panel { padding: 1.1rem; }
+  .routes { line-height: 2.1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

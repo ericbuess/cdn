@@ -1,0 +1,449 @@
+/* ASI.blue themed variant — self-contained. Staged, not approved.
+   Register: an institutional defense body (UK AI Security Institute, CISA, and the
+   evidence-forward funnel of Anthropic's coordinated-disclosure dashboard). Light,
+   structured, ruled, evidence-forward; limits carry the same weight as claims.
+   No shared personal-light CSS, no JavaScript, no audio. */
+
+:root {
+  --paper: #f3f6f8;
+  --card: #ffffff;
+  --band: #eaeff3;
+  --ink: #16222c;
+  --ink-soft: #33454f;
+  --muted: #566673;
+  --rule: #d3dbe2;
+  --rule-soft: #e3e9ee;
+  --blue: #14507d;
+  --blue-deep: #10314f;
+  --blue-wash: #e7f0f7;
+  --measure: 46rem;
+  --wide: 62rem;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.68 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- skip link ---------- */
+
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 20; }
+.skip-link:focus {
+  left: 0;
+  padding: .6rem 1rem;
+  background: var(--blue);
+  color: #fff;
+  font: 600 .82rem/1 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ---------- masthead ---------- */
+
+nav[aria-label="Primary"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem 1.4rem;
+  padding: 1.05rem clamp(1.1rem, 5vw, 2.5rem);
+  background: var(--blue-deep);
+  color: #fff;
+  font: 500 .8rem/1.4 var(--mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+nav[aria-label="Primary"] .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-right: auto;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+nav[aria-label="Primary"] .mark i {
+  width: .58rem; height: .58rem;
+  background: #7fb2d8;
+  border-radius: 1px;
+}
+nav[aria-label="Primary"] a {
+  color: #cfe0ee;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+nav[aria-label="Primary"] a:hover { color: #fff; border-bottom-color: #7fb2d8; }
+nav[aria-label="Primary"] .progress { display: none; }
+
+/* ---------- staged-draft banner ---------- */
+
+.draft-banner {
+  margin: 0;
+  padding: .85rem clamp(1.1rem, 5vw, 2.5rem);
+  background: var(--band);
+  border-bottom: 1px solid var(--rule);
+  border-left: 3px solid var(--blue);
+  color: var(--ink-soft);
+  font: 500 .84rem/1.55 var(--mono);
+}
+
+/* ---------- shell ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 5vw, 2.5rem);
+}
+
+/* ---------- header, above the fold ---------- */
+
+.page-head {
+  padding: clamp(2.2rem, 7vw, 3.8rem) 0 clamp(1.6rem, 5vw, 2.4rem);
+  border-bottom: 2px solid var(--blue-deep);
+}
+.page-head .wall { display: none; }
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--blue);
+  font: 600 .78rem/1.4 var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.page-head h1 {
+  max-width: var(--measure);
+  margin: 0 0 1.3rem;
+  font-size: clamp(2rem, 6.6vw, 3.3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+.page-head h1 em { font-style: normal; color: var(--blue); }
+
+.page-head .lead {
+  max-width: var(--measure);
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.04rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+}
+.page-head .lead:first-of-type { font-weight: 500; color: var(--ink); }
+
+/* the hardening funnel, above the fold.
+   Stage labels are the page's own words from "Connect the whole path: inventory,
+   authorized changes, isolated testing, approval, canary deployment, verification
+   and recovery." Each stage links to the section carrying that sentence. */
+
+.funnel {
+  margin: 1.2rem 0 0;
+  padding: 1.15rem 1.2rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--blue);
+}
+.funnel > h2 {
+  margin: 0 0 .95rem;
+  color: var(--ink);
+  font: 600 .8rem/1.4 var(--mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.funnel ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: stage;
+}
+.funnel li {
+  flex: 1 1 9.5rem;
+  counter-increment: stage;
+}
+.funnel a {
+  display: block;
+  height: 100%;
+  padding: .6rem .7rem .65rem;
+  background: var(--blue-wash);
+  border-left: 3px solid var(--blue);
+  color: var(--ink);
+  font-size: .9rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.funnel a::before {
+  content: counter(stage, decimal-leading-zero);
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--blue);
+  font: 600 .7rem/1 var(--mono);
+  letter-spacing: .1em;
+}
+.funnel a:hover { background: #d9e8f4; }
+
+.head-links {
+  margin: 1.3rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-soft);
+  font: 500 .87rem/1.9 var(--mono);
+}
+
+/* ---------- sections ---------- */
+
+main { padding-bottom: clamp(3rem, 9vw, 5rem); }
+
+main > section {
+  max-width: var(--measure);
+  padding: clamp(1.9rem, 5vw, 2.7rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+main > section:last-child { border-bottom: 0; }
+
+main > section > h2,
+.section-head h2 {
+  margin: 0 0 1.1rem;
+  color: var(--blue-deep);
+  font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.2;
+}
+.section-head h2 em { font-style: normal; color: var(--blue); }
+.section-head { margin-bottom: 1.2rem; }
+.section-head p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+main p { margin: 0 0 1.05rem; color: var(--ink-soft); }
+main p:last-child { margin-bottom: 0; }
+main strong { color: var(--ink); font-weight: 700; }
+
+main ul, main ol { margin: 0 0 1.1rem; padding-left: 1.35rem; color: var(--ink-soft); }
+main li { margin: .5rem 0; }
+
+/* ---------- evidence cards ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  gap: .9rem;
+  margin: 1.2rem 0 0;
+}
+.card {
+  padding: 1.05rem 1.1rem 1.15rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--blue);
+}
+.card h3 {
+  margin: 0 0 .6rem;
+  color: var(--blue-deep);
+  font: 600 .82rem/1.4 var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.card p { margin: 0; font-size: .94rem; }
+
+/* ---------- Logan 1.4 document ---------- */
+
+#logan { max-width: var(--wide); }
+
+.approval-note {
+  margin: 0 0 1.3rem;
+  padding: 1rem 1.1rem;
+  background: var(--band);
+  border-left: 3px solid var(--blue);
+}
+.approval-note p { margin: 0 0 .6rem; color: var(--ink-soft); font-size: .92rem; }
+.approval-note p:last-child { margin-bottom: 0; }
+
+.article-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem 1.1rem;
+  margin: 0 0 1.6rem;
+  padding: .85rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  font: 500 .86rem/1.6 var(--mono);
+}
+.article-nav strong {
+  color: var(--blue-deep);
+  font: 600 .78rem/1.6 var(--mono);
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.document-section {
+  max-width: var(--measure);
+  margin: 0 0 2.2rem;
+  padding: clamp(1.4rem, 4vw, 2rem) 0 0;
+  border-top: 1px solid var(--rule);
+}
+.document-section > h2 {
+  margin: 0 0 .5rem;
+  color: var(--blue-deep);
+  font-size: clamp(1.3rem, 3.6vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+.document-section > h3 {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+.document-section h4 {
+  margin: 2rem 0 .9rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--rule-soft);
+  color: var(--ink);
+  font: 600 .86rem/1.45 var(--mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.document-section p { font-size: .99rem; }
+.document-section em { color: var(--muted); }
+
+/* ---------- tables ---------- */
+
+.table-scroll {
+  max-width: var(--wide);
+  margin: 1.2rem 0 1.6rem;
+  overflow-x: auto;
+  background: var(--card);
+  border: 1px solid var(--rule);
+}
+.table-scroll:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.table-scroll table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.table-scroll th,
+.table-scroll td {
+  padding: .7rem .8rem;
+  border-bottom: 1px solid var(--rule-soft);
+  text-align: left;
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+.table-scroll thead th {
+  position: sticky;
+  top: 0;
+  background: var(--blue-deep);
+  border-bottom: 0;
+  color: #fff;
+  font: 600 .74rem/1.4 var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.table-scroll tbody tr:nth-child(even) { background: #f7fafc; }
+.table-scroll tbody td:first-child { color: var(--ink); font-weight: 600; }
+
+/* ---------- illustrative workflow figure ---------- */
+
+.illustrative-workflow {
+  max-width: var(--measure);
+  margin: 1.3rem 0 1.6rem;
+  padding: 1.15rem 1.2rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--blue);
+}
+.illustrative-workflow ol {
+  margin: 0 0 .9rem;
+  padding-left: 1.5rem;
+  color: var(--ink-soft);
+}
+.illustrative-workflow li { margin: .45rem 0; font-size: .95rem; }
+.illustrative-workflow .decision-step { margin-top: .8rem; }
+.illustrative-workflow .decision-step > strong { color: var(--blue-deep); }
+.workflow-branches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: .55rem 0 .3rem;
+}
+.workflow-branches span {
+  flex: 1 1 11rem;
+  padding: .5rem .65rem;
+  background: var(--blue-wash);
+  border-left: 3px solid var(--blue);
+  font-size: .89rem;
+  color: var(--ink-soft);
+}
+.workflow-branches span b {
+  display: block;
+  color: var(--blue-deep);
+  font: 600 .7rem/1.5 var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.illustrative-workflow figcaption {
+  padding-top: .85rem;
+  border-top: 1px solid var(--rule-soft);
+  color: var(--muted);
+  font-size: .87rem;
+  line-height: 1.55;
+}
+
+/* ---------- links ---------- */
+
+a { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .19em; }
+a:hover { color: var(--blue-deep); text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+/* ---------- footer ---------- */
+
+footer {
+  padding: clamp(2rem, 6vw, 3rem) clamp(1.1rem, 5vw, 2.5rem);
+  background: var(--blue-deep);
+  color: #c8d9e6;
+  font: 400 .86rem/1.75 var(--mono);
+}
+footer .footer-sites {
+  display: block;
+  margin-top: .9rem;
+  padding-top: .9rem;
+  border-top: 1px solid #24506f;
+}
+footer a { color: #fff; }
+footer a:hover { color: #fff; }
+
+/* ---------- phone width ---------- */
+
+@media (max-width: 30rem) {
+  body { font-size: 16px; }
+  nav[aria-label="Primary"] { gap: .7rem 1rem; font-size: .74rem; }
+  .draft-banner { font-size: .78rem; }
+  /* keep the funnel and the risk-table link within the first screen on a phone:
+     two stages per row rather than seven stacked rows */
+  .page-head { padding-top: 1.6rem; }
+  .page-head h1 { margin-bottom: 1rem; }
+  .page-head .lead { margin-bottom: .8rem; }
+  .funnel { margin: 1.1rem 0 1rem; padding: 1rem 1rem 1.05rem; }
+  .funnel > h2 { margin-bottom: .75rem; }
+  .funnel ol { gap: .4rem; }
+  .funnel li { flex: 1 1 5.6rem; }
+  .funnel a { padding: .45rem .55rem .5rem; font-size: .82rem; }
+  .head-links { padding-top: .8rem; line-height: 1.9; }
+  .table-scroll table { min-width: 34rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
