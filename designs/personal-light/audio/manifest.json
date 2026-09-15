@@ -1,0 +1,94 @@
+{
+  "voice_id": "leo",
+  "language": "en",
+  "pages": {
+    "index.html": [
+      {
+        "hash": "908cbbab5072c296f2fc15c456139371875f6ad5657d50b6367fcfdd638c45aa",
+        "title": "Eric Buess",
+        "file": "908cbbab5072c296f2fc15c456139371875f6ad5657d50b6367fcfdd638c45aa.mp3",
+        "chars": 1069
+      },
+      {
+        "hash": "fc3512c4f3e4dc1a5c79cfddaa8dc9076dad09bea960a81c80873ad610ea7638",
+        "title": "Alignment starts with me.",
+        "file": "fc3512c4f3e4dc1a5c79cfddaa8dc9076dad09bea960a81c80873ad610ea7638.mp3",
+        "chars": 776
+      },
+      {
+        "hash": "c516b337b33530dd62541c417bb8bc3409ec88a96c842340150e11b1bedb33d2",
+        "title": "Titus: keeping the work connected.",
+        "file": "c516b337b33530dd62541c417bb8bc3409ec88a96c842340150e11b1bedb33d2.mp3",
+        "chars": 946
+      },
+      {
+        "hash": "20b28673b0f4299b516f836863a31ed79cca378893ea9eaed89e46b58ed0bf31",
+        "title": "Keep the thought. Put down the screen.",
+        "file": "20b28673b0f4299b516f836863a31ed79cca378893ea9eaed89e46b58ed0bf31.mp3",
+        "chars": 1054
+      },
+      {
+        "hash": "97b214699d18af4d1005acb78cac3a12d6924aa2800242a70139025590ae1393",
+        "title": "Keep the thought. Put down the screen.",
+        "file": "97b214699d18af4d1005acb78cac3a12d6924aa2800242a70139025590ae1393.mp3",
+        "chars": 185
+      },
+      {
+        "hash": "17c41d14b4d4ba45745ac743ec98cfeda92a37aab0e47bebb7ba68edd634a0d2",
+        "title": "What I do.",
+        "file": "17c41d14b4d4ba45745ac743ec98cfeda92a37aab0e47bebb7ba68edd634a0d2.mp3",
+        "chars": 519
+      },
+      {
+        "hash": "6b48a7be291f698e3f340e0f62126aa08380e682d2119e3591293bf1fa9977f2",
+        "title": "How I work.",
+        "file": "6b48a7be291f698e3f340e0f62126aa08380e682d2119e3591293bf1fa9977f2.mp3",
+        "chars": 983
+      },
+      {
+        "hash": "71e57c12306ed586cf4e43d887722a48aace84c3596ec8fa93f3ce79577be9b9",
+        "title": "Selected writing and conversations",
+        "file": "71e57c12306ed586cf4e43d887722a48aace84c3596ec8fa93f3ce79577be9b9.mp3",
+        "chars": 1165
+      },
+      {
+        "hash": "d67e0998b51e3b7a1436a40d844f8d2c59dc166f1f52cc4ad067c92a5f7a06c4",
+        "title": "Selected writing and conversations",
+        "file": "d67e0998b51e3b7a1436a40d844f8d2c59dc166f1f52cc4ad067c92a5f7a06c4.mp3",
+        "chars": 670
+      },
+      {
+        "hash": "049c2b8690a3fac8de789ae2457a74db07f5ff3d45692ed0e34ecb246605c747",
+        "title": "Get in touch.",
+        "file": "049c2b8690a3fac8de789ae2457a74db07f5ff3d45692ed0e34ecb246605c747.mp3",
+        "chars": 152
+      }
+    ],
+    "work.html": [
+      {
+        "hash": "201e87e3efb222f8d5e0f518b5349e030873d070550e8a869d9ab3f4be88e803",
+        "title": "Research and tools.",
+        "file": "201e87e3efb222f8d5e0f518b5349e030873d070550e8a869d9ab3f4be88e803.mp3",
+        "chars": 1124
+      },
+      {
+        "hash": "ef2b7f1790215b889255f9c8c3f38c56cbddefc1e0ee7aac6942d77b6fb788cf",
+        "title": "Research and tools.",
+        "file": "ef2b7f1790215b889255f9c8c3f38c56cbddefc1e0ee7aac6942d77b6fb788cf.mp3",
+        "chars": 439
+      },
+      {
+        "hash": "68e9937c73f606cb4c31e057d193feeb6dea024eb59d567386c2e602f30b27a3",
+        "title": "Why I call it Titus.",
+        "file": "68e9937c73f606cb4c31e057d193feeb6dea024eb59d567386c2e602f30b27a3.mp3",
+        "chars": 680
+      },
+      {
+        "hash": "744bbc43c343f23d48778277d4d6e76a5bf953a05b6a903acfd3c917e9f24ef1",
+        "title": "How to contribute.",
+        "file": "744bbc43c343f23d48778277d4d6e76a5bf953a05b6a903acfd3c917e9f24ef1.mp3",
+        "chars": 717
+      }
+    ]
+  }
+}
