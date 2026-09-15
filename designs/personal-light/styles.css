@@ -80,8 +80,9 @@ h1 { max-width: 12ch; margin: 8px 0 16px; font-size: clamp(2.6rem, 11vw, 6.8rem)
 
 /* sections */
 main, .band-inner { width: min(100% - 36px, 76rem); margin: 0 auto; }
-main { padding: 52px 0 84px; }
+main { padding: 52px 0 28px; }
 section { margin: 0 0 64px; }
+section:last-child { margin-bottom: 0; }
 .section-head { display: grid; gap: 10px; margin: 0 0 24px; }
 h2 { max-width: 20ch; font-size: clamp(1.8rem, 7.5vw, 3.4rem); line-height: 1.02; }
 h3 { font-size: 1.15rem; margin-bottom: 8px; }
@@ -132,7 +133,7 @@ h3 { font-size: 1.15rem; margin-bottom: 8px; }
 .source-notes p, .source-notes li { color: var(--ink-2); font-size: 14px; }
 .source-notes ul { padding-left: 20px; }
 
-footer { width: min(100% - 36px, 76rem); margin: 0 auto; padding: 22px 0 60px; border-top: 2px solid var(--ink); color: var(--ink-2); font: 500 12px/1.6 var(--mono); }
+footer { width: min(100% - 36px, 76rem); margin: 0 auto; padding: 22px 0 28px; border-top: 2px solid var(--ink); color: var(--ink-2); font: 500 12px/1.6 var(--mono); }
 footer a { color: inherit; }
 
 @media (min-width: 700px) {

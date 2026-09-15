@@ -62,9 +62,10 @@ body[data-signal-base] .ticker{overflow:hidden;border-block:2px solid var(--ink)
 body[data-signal-base] .ticker .track{display:inline-flex;padding:12px 0;transform:none}
 body[data-signal-base] .ticker span{display:inline-block;padding:0 22px;font:400 clamp(1.15rem,4.2vw,1.7rem)/1.1 var(--display);letter-spacing:.02em}
 body[data-signal-base] .ticker span::after{content:"◆";margin-left:22px;color:var(--green);font-size:.7em;vertical-align:.15em}
-body[data-signal-base] main{padding:52px 0 84px}
+body[data-signal-base] main{padding:52px 0 28px}
 body[data-signal-base]>.shell>main{width:100%}
 body[data-signal-base] section{margin:0 0 64px}
+body[data-signal-base] main>section:last-child{margin-bottom:0}
 body[data-signal-base] .section-head{display:grid;gap:10px;margin:0 0 24px}
 body[data-signal-base] h2{max-width:18ch;font-size:clamp(1.8rem,7.5vw,3.8rem);line-height:1.02;margin-bottom:12px}
 body[data-signal-base] h3{font-size:1.15rem;line-height:1.25;margin-bottom:12px}
@@ -88,15 +89,15 @@ body[data-signal-base] .page-head h1{max-width:12ch;font-size:clamp(2.2rem,10.5v
 body[data-signal-base] .link-list{display:grid;margin-top:22px;border-top:2px solid var(--ink)}
 body[data-signal-base] .link-list a{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
 body[data-signal-base] .link-list a::after{content:"↗";color:var(--green-deep)}
-body[data-signal-base] .contact{margin-top:52px}
-body[data-signal-base] footer{padding:22px 0 60px;border-top:2px solid var(--ink);color:var(--ink-2);font:500 12px/1.8 var(--mono)}
+body[data-signal-base] .contact{margin-top:52px;margin-bottom:0}
+body[data-signal-base] main>p:first-child{max-width:68ch;margin:0 0 40px}
+body[data-signal-base] footer{padding:22px 0 28px;border-top:2px solid var(--ink);color:var(--ink-2);font:500 12px/1.8 var(--mono)}
 body[data-signal-base] footer a{color:inherit;display:inline-block;min-height:32px}
 body[data-signal-base] .speech-controls{display:flex;flex-wrap:wrap;gap:10px}
 body[data-signal-base] .speech-controls button{min-height:44px;padding:10px 14px;border:1px solid var(--ink);border-radius:4px;background:white;color:var(--ink);font:600 12px/1.3 var(--mono);cursor:pointer}
 body[data-signal-base] .speech-controls button:first-child{background:var(--ink);color:white}
 body[data-signal-base] .speech-controls button:disabled{opacity:.45;cursor:default}
 body[data-signal-base] .speech-status{font-size:14px;color:var(--ink-2);margin:12px 0}
-body[data-signal-base] #overview-text{max-width:68ch}
 /* Media remains real content with unchanged links, players and dated X snapshots. */
 body[data-signal-base] .selected-media__intro{max-width:48rem;margin-bottom:40px}
 body[data-signal-base] .selected-media__intro h2{max-width:19ch}

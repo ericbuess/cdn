@@ -18,6 +18,7 @@ function hideExistingAudioControls() {
 
 if (!PAGE_AUDIO_ENABLED) {
  hideExistingAudioControls();
+ document.body?.style.removeProperty('--page-audio-height');
 } else {
  const icons = {
   play: '<path d="m9 5 11 7-11 7z"/>',

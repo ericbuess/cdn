@@ -1,5 +1,7 @@
-/* Shared compact player: native page typography and per-page theme colors. */
+/* Shared compact player: native page typography and per-page theme colors.
+ * Reserve bottom space only while the bar is actually shown. */
 body.has-page-audio { padding-bottom:calc(var(--page-audio-height,72px) + 20px) !important; }
+body:not(.has-page-audio) { --page-audio-height: 0px; }
 .page-audio { --audio-paper:var(--paper,#fff); --audio-ink:var(--ink,#102b23); --audio-accent:var(--accent,#147c58); --audio-line:var(--line,var(--rule,#d9ded2)); position:fixed; z-index:100; inset:auto 0 0; margin:0; color:var(--audio-ink); background:var(--audio-paper); border-top:1px solid var(--audio-line); box-shadow:0 -8px 28px #102b2310; padding-bottom:env(safe-area-inset-bottom,0px); font:400 14px/1.4 "Instrument Sans","IBM Plex Sans",sans-serif; }
 body[data-signal-base] .page-audio { --audio-paper:#fcfffd; --audio-ink:#0d3628; --audio-accent:#138359; --audio-line:#dce9e1; }
 .page-audio * { box-sizing:border-box; }
