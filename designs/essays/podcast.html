@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Podcast — Eric Buess</title>
+<link rel="stylesheet" href="../shared/reference-style/fonts.css">
+<link rel="stylesheet" href="../../sites/shared/styles.css">
+<link rel="stylesheet" href="../../sites/shared/signal-base.css">
+<link rel="stylesheet" href="essays.css">
+<link rel="stylesheet" href="../../sites/shared/page-audio.css">
+<script type="module" src="../../sites/shared/speech.js"></script>
+</head>
+<body class="essays" data-signal-base="essays">
+<div class="preview">Staged design variant &middot; not approved &middot; nothing here is live</div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav aria-label="Primary">
+  <span class="mark"><i></i>ERIC BUESS</span>
+  <a href="index.html">Index</a>
+  <a href="writing.html">Writing</a>
+  <a href="video.html">Video</a>
+  <a href="podcast.html" aria-current="page">Podcast</a>
+  <a href="notes.html">Notes</a>
+  <a href="about.html">About</a>
+</nav>
+
+<header class="essays-head">
+  <h1>Podcast</h1>
+  <p class="lede">Episodes and audio. Each entry plays with the browser&rsquo;s own audio element; filter by category.</p>
+</header>
+
+<main id="main-content">
+  <div data-essays-kind="podcast"><p class="essays-empty">Loading&hellip;</p></div>
+</main>
+
+<footer>Eric Buess &middot; AI safety, research and practical tools. <a href="https://github.com/ericbuess">GitHub</a> &middot; <a href="https://x.com/EricBuess">X</a></footer>
+
+<script type="module">
+  import { renderKind } from './essays.js';
+  renderKind(document.querySelector('[data-essays-kind]'), 'podcast');
+</script>
+</body>
+</html>

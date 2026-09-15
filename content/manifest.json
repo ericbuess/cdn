@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "updated": "2026-09-15",
+  "note": "One JSON edit adds content to the essays variant. Paths that are not absolute URLs are relative to the repository root. Rows with \"draft\": true render only on the staging host and only with ?drafts=1. See content/README.md.",
+  "taxonomy": [
+    { "id": "safety-argument", "label": "Safety argument" },
+    { "id": "hardening", "label": "Hardening" },
+    { "id": "adversarial-safety", "label": "Adversarial safety" },
+    { "id": "alignment-hypothesis", "label": "Alignment Hypothesis" },
+    { "id": "fleet-and-tools", "label": "Fleet & tools" },
+    { "id": "family-and-life", "label": "Family & life" },
+    { "id": "music", "label": "Music" },
+    { "id": "misc", "label": "Misc" }
+  ],
+  "entries": [
+    {
+      "id": "the-argument",
+      "kind": "writing",
+      "title": "The AI-safety argument I am still trying to answer",
+      "date": "2026-09-14",
+      "url": "sites/ericbuess.com/the-argument/",
+      "categories": ["safety-argument", "alignment-hypothesis"],
+      "summary": "The long-form article: the argument I keep running into, what would change my mind, and the on-ramps I think are worth taking.",
+      "source": "site"
+    },
+    {
+      "id": "alignment-hypothesis",
+      "kind": "writing",
+      "title": "The Alignment Hypothesis",
+      "date": "2026-09-15",
+      "url": "sites/ericbuess.com/alignment-hypothesis/",
+      "categories": ["alignment-hypothesis"],
+      "summary": "A working hypothesis, not a published result: whether developmental environments with persistent consequences and legitimate correction help a system stay correctable.",
+      "source": "site"
+    },
+    {
+      "id": "risk-table",
+      "kind": "writing",
+      "title": "Risk table",
+      "date": "2026-09-14",
+      "url": "sites/asi.blue/risk-table/",
+      "categories": ["hardening", "adversarial-safety"],
+      "summary": "The companion table: where the risk actually sits, what has been measured, and what is still only an estimate.",
+      "source": "site"
+    },
+    {
+      "id": "video-placeholder-1",
+      "kind": "video",
+      "title": "Placeholder — Advanced Claude Code, Tool Use ep 52",
+      "date": "2025-08-12",
+      "url": "https://www.youtube.com/watch?v=JU8BwMe_BWg",
+      "categories": ["fleet-and-tools"],
+      "summary": "Placeholder row, kept as a draft. The video is a real public appearance, used here only so the YouTube embed can be checked before Eric picks the real video list.",
+      "source": "youtube",
+      "draft": true
+    },
+    {
+      "id": "video-placeholder-2",
+      "kind": "video",
+      "title": "Placeholder — video slot with nothing attached yet",
+      "date": "2026-09-15",
+      "url": "",
+      "categories": [],
+      "summary": "Placeholder row with no media, kept as a draft. It shows how a row reads before its video exists.",
+      "source": "manual",
+      "draft": true
+    },
+    {
+      "id": "podcast-placeholder-1",
+      "kind": "podcast",
+      "title": "Placeholder — audio slot with a staged clip",
+      "date": "2026-09-15",
+      "url": "",
+      "categories": ["fleet-and-tools"],
+      "summary": "Placeholder row, not an episode. The file is a staged Leo narration clip of the homepage, included only so the plain audio element can be checked before real episodes exist.",
+      "source": "manual",
+      "audio": "sites/ericbuess.com/audio/908cbbab5072c296f2fc15c456139371875f6ad5657d50b6367fcfdd638c45aa.mp3",
+      "draft": true
+    },
+    {
+      "id": "podcast-placeholder-2",
+      "kind": "podcast",
+      "title": "Placeholder — podcast slot with nothing attached yet",
+      "date": "2026-09-15",
+      "url": "",
+      "categories": [],
+      "summary": "Placeholder row with no media, kept as a draft. It shows how a row reads before its episode exists.",
+      "source": "manual",
+      "draft": true
+    },
+    {
+      "id": "x-2040207443636973927",
+      "kind": "note",
+      "title": "A question about native tools",
+      "date": "2026-04-03",
+      "url": "https://x.com/EricBuess/status/2040207443636973927",
+      "categories": ["fleet-and-tools"],
+      "text": "@bcherny Subs can still be used for personal local tools that use or wrap the Claude harness like Claude Code and Claude Code headless and Agent SDK, right?",
+      "summary": "A historical policy question, already staged on the personal-light page.",
+      "source": "x"
+    },
+    {
+      "id": "x-2019469069649375730",
+      "kind": "note",
+      "title": "Following the development of agent teams",
+      "date": "2026-02-05",
+      "url": "https://x.com/EricBuess/status/2019469069649375730",
+      "categories": ["fleet-and-tools"],
+      "text": "Agent Teams on Claude Code! Spin up multiple agents that coordinate autonomously and work in parallel",
+      "summary": "An excerpt from my release-day post, already staged on the personal-light page.",
+      "source": "x"
+    }
+  ]
+}

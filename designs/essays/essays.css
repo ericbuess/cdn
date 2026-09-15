@@ -1,0 +1,164 @@
+/* Essays variant — structure only. Typography, colours and the green accent come from
+   sites/shared/styles.css and sites/shared/signal-base.css, which are linked unchanged.
+   This file narrows the column, drops the hero/wall/ticker chrome and adds the list,
+   filter and entry patterns an essay site needs. */
+
+body[data-signal-base="essays"] {
+  --essays-column: 46rem;
+}
+
+/* One narrow measure for every band, and a nav that lines up with it. The class is here
+   only to outrank signal-base.css's own 76rem width rule, which uses :is(). */
+body.essays[data-signal-base] > header,
+body.essays[data-signal-base] main,
+body.essays[data-signal-base] footer {
+  width: min(100% - 36px, var(--essays-column));
+  margin: 0 auto;
+}
+body[data-signal-base="essays"] nav {
+  padding-left: max(18px, calc((100vw - var(--essays-column)) / 2));
+  padding-right: max(18px, calc((100vw - var(--essays-column)) / 2));
+}
+
+body[data-signal-base="essays"] .essays-head {
+  padding: 44px 0 22px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+body[data-signal-base="essays"] h1 {
+  max-width: none;
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 6vw, 3.1rem);
+  line-height: 1.04;
+}
+body[data-signal-base="essays"] .essays-head .lede {
+  margin-bottom: 0;
+  font-size: clamp(1rem, 3.4vw, 1.15rem);
+}
+body[data-signal-base="essays"] main { padding: 26px 0 40px; }
+body[data-signal-base="essays"] main > section { margin-bottom: 0; }
+
+/* index: one dated line per entry */
+body[data-signal-base="essays"] .kind-group + .kind-group { margin-top: 34px; }
+body[data-signal-base="essays"] .group-head {
+  margin: 0 0 4px;
+  font: 700 11px/1.4 var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+body[data-signal-base="essays"] .group-head a { color: var(--green-deep); text-decoration: none; }
+body[data-signal-base="essays"] .group-head a:hover { color: var(--ink); }
+body[data-signal-base="essays"] .essays-list { list-style: none; margin: 0; padding: 0; }
+body[data-signal-base="essays"] .row {
+  display: grid;
+  gap: 2px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+body[data-signal-base="essays"] .row-date {
+  font: 500 11.5px/1.5 var(--mono);
+  letter-spacing: .04em;
+  color: var(--ink-3);
+}
+body[data-signal-base="essays"] .row-title { font-size: 1.02rem; line-height: 1.4; }
+body[data-signal-base="essays"] .row:hover .row-title { color: var(--green-deep); text-decoration: underline; }
+
+/* category filter */
+body[data-signal-base="essays"] .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+body[data-signal-base="essays"] .filter {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-2);
+  font: 600 11px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+body[data-signal-base="essays"] .filter:hover { border-color: var(--ink); color: var(--ink); }
+body[data-signal-base="essays"] .filter[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+body[data-signal-base="essays"] .filter-count {
+  margin: 0 0 18px;
+  font: 500 11px/1.5 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* entries on a kind page */
+body[data-signal-base="essays"] .entry { padding: 22px 0; }
+body[data-signal-base="essays"] .entry + .entry { border-top: 1px solid var(--line); }
+body[data-signal-base="essays"] .entry-meta {
+  margin: 0 0 6px;
+  font: 500 11px/1.5 var(--mono);
+  letter-spacing: .06em;
+  color: var(--ink-3);
+}
+body[data-signal-base="essays"] .entry h3 {
+  margin: 0 0 8px;
+  font: 600 1.15rem/1.35 var(--body);
+  letter-spacing: 0;
+}
+body[data-signal-base="essays"] .entry h3 a { color: var(--ink); text-decoration: none; }
+body[data-signal-base="essays"] .entry h3 a:hover { color: var(--green-deep); text-decoration: underline; }
+body[data-signal-base="essays"] .entry-summary { margin: 0 0 8px; max-width: 62ch; color: var(--ink-2); font-size: .96rem; }
+body[data-signal-base="essays"] .note-quote {
+  margin: 10px 0;
+  padding: 0 0 0 14px;
+  border-left: 2px solid var(--green);
+}
+body[data-signal-base="essays"] .note-quote p { margin: 0; }
+body[data-signal-base="essays"] .entry-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 14px 0;
+  border: 0;
+  background: var(--ink);
+}
+body[data-signal-base="essays"] .entry-audio { display: block; width: 100%; max-width: 34rem; margin: 12px 0; }
+body[data-signal-base="essays"] .entry-cats {
+  margin: 8px 0 0;
+  font: 600 10.5px/1.5 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+}
+body[data-signal-base="essays"] .entry-cats-empty { color: var(--ink-3); }
+body[data-signal-base="essays"] .entry-link { margin: 8px 0 0; font: 600 11.5px/1.5 var(--mono); letter-spacing: .06em; }
+body[data-signal-base="essays"] .draft-flag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--amber-soft);
+  color: #7a5306;
+  font: 700 9.5px/1.5 var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+body[data-signal-base="essays"] .essays-empty {
+  padding: 14px 0;
+  margin: 0;
+  font: 500 12px/1.6 var(--mono);
+  color: var(--ink-2);
+}
+body[data-signal-base="essays"] .essays-note { margin: 26px 0 0; color: var(--ink-2); font-size: .9rem; }
+body[data-signal-base="essays"] .about-body p { max-width: 66ch; }
+
+@media (min-width: 640px) {
+  body[data-signal-base="essays"] .row {
+    grid-template-columns: 7.5rem 1fr;
+    align-items: baseline;
+    gap: 0 14px;
+  }
+}

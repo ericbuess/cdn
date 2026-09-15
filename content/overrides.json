@@ -1,0 +1,8 @@
+{
+  "note": "Human-edited. Anything here wins over every automatic assignment in tools/x-categorize.py. Keys in \"posts\" are X post ids; values are category ids from content/CATEGORIES.md. Ids listed in \"skip\" are never published.",
+  "posts": {
+    "2040207443636973927": ["fleet-and-tools"],
+    "2019469069649375730": ["fleet-and-tools"]
+  },
+  "skip": []
+}
