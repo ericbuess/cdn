@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026-09-15 — AI-safety jobs (remote-friendly)</title>
+  <style>
+:root {
+  color-scheme: dark light;
+  --bg: #0f1115;
+  --fg: #e8eaed;
+  --muted: #9aa0a6;
+  --accent: #7aa2ff;
+  --card: #1a1d24;
+  --border: #2a2f3a;
+  --active: rgba(122, 162, 255, 0.14);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7f9;
+    --fg: #1a1d24;
+    --muted: #5f6368;
+    --accent: #2f5bff;
+    --card: #ffffff;
+    --border: #e2e5eb;
+    --active: rgba(47, 91, 255, 0.1);
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 17px/1.55 -apple-system, system-ui, Segoe UI, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.1rem 8.5rem; }
+.eyebrow { letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-size: 0.75rem; margin: 0; }
+h1 { font-size: 1.55rem; margin: 0.25rem 0 0.5rem; line-height: 1.25; }
+.lede { color: var(--muted); margin: 0 0 1.25rem; }
+.list { list-style: none; padding: 0; margin: 0; }
+.list a {
+  display: block;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.list a:hover { border-color: var(--accent); }
+.player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center;
+  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  max-width: 42rem;
+  margin-left: auto; margin-right: auto;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+}
+.player button, .player select {
+  font: inherit; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--fg); padding: 0.55rem 0.75rem; cursor: pointer;
+  min-height: 44px;
+}
+.player button.primary { background: var(--accent); color: #fff; border-color: transparent; }
+.player .status { flex: 1 1 100%; color: var(--muted); font-size: 0.85rem; }
+.player .seek-row {
+  flex: 1 1 100%;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.player input[type="range"] { flex: 1; min-width: 0; }
+.player .prog { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.85rem; min-width: 3.5rem; text-align: right; }
+article section {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  margin: 0.75rem 0;
+  background: var(--card);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+article section.active {
+  border-color: var(--accent);
+  background: var(--active);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+h2 { font-size: 1.1rem; margin: 0 0 0.35rem; }
+a { color: var(--accent); }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 1rem; }
+
+/* Center the fixed player on wide screens */
+@supports (padding: max(0px)) {
+  .player { padding-bottom: max(0.65rem, env(safe-area-inset-bottom)); }
+}
+
+/* Journal / tap-to-write answer boxes */
+.answer-block {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg) 72%, var(--card));
+}
+.answer-block label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.answer-block textarea {
+  display: block;
+  width: 100%;
+  min-height: 5.5rem;
+  font-size: 16px; /* iOS: avoid auto-zoom on focus */
+  line-height: 1.45;
+  font-family: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.7rem;
+  resize: vertical;
+}
+.answer-block textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.answer-saved {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.prayer-box {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border-radius: 0 8px 8px 0;
+}
+.prayer-box h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.prayer-box p { margin: 0; font-style: italic; }
+
+.scripture-niv {
+  margin: 0.65rem 0 0.25rem;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.scripture-niv .ref {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.scripture-niv .copy {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.niv-note { font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
+
+</style>
+  <style>
+    .role-meta { font-size: 0.92rem; opacity: 0.92; margin: 0.35rem 0 0.6rem; }
+    .role-meta span { display: inline-block; margin-right: 0.75rem; }
+    .tag { font-size: 0.8rem; border: 1px solid currentColor; border-radius: 999px; padding: 0.1rem 0.5rem; opacity: 0.85; }
+    ul.tight > li { margin: 0.25rem 0; }
+    .caveat { border-left: 3px solid #c47; padding-left: 0.75rem; margin: 0.6rem 0; }
+    a.post { word-break: break-all; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p><a href="https://titus-digest.pages.dev/">← Digests</a></p>
+    <header>
+      <p class="eyebrow">Titus digest</p>
+      <h1>Remote-friendly AI-safety jobs pack</h1>
+      <p class="lede">2026-09-15 · ranked for Eric Buess (America/Chicago, applied multi-agent eng, red-team/evals/control preference) · from Grok Bot</p>
+    </header>
+
+    <p class="hint">Voice picker uses whatever Safari exposes. Jamie Premium in iOS Spoken Content often does not appear here — that’s an Apple limit. If missing, pick another voice or use pre-recorded audio.</p>
+    <div class="player" role="group" aria-label="Text to speech">
+      <button class="primary" id="tts-play" type="button">Play</button>
+      <button id="tts-prev" type="button" aria-label="Previous section">⟵</button>
+      <button id="tts-next" type="button" aria-label="Next section">⟶</button>
+      <button id="tts-restart" type="button">Start</button>
+      <label>Voice
+        <select id="tts-voice">
+          <option value="">Loading voices…</option>
+        </select>
+      </label>
+      <label>Speed
+        <select id="tts-rate">
+          <option value="0.85">0.85×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.15">1.15×</option>
+          <option value="1.35">1.35×</option>
+          <option value="1.5">1.5×</option>
+        </select>
+      </label>
+      <div class="seek-row">
+        <input id="tts-progress" type="range" min="0" max="15" value="0" aria-label="Section progress" />
+        <span class="prog" id="tts-progress-label">1 / 16</span>
+      </div>
+      <div class="status" id="tts-status">Ready.</div>
+    </div>
+
+    <article>
+      <section data-speak="TLDR: Surveyed about forty openings across labs, evaluators, and boards on September fifteenth twenty twenty-six. Top remote-fit bets for Eric: METR Task Development Engineer; FAR AI Research Engineer or Jailbreaking Lead; NVIDIA AI Safety evaluation engineer if Texas remote is allowed; Epoch AI researcher; then Anthropic model-evals or red-team if you accept hybrid travel. Pure SF or London onsite and UK-only roles are listed lower or as caveats.">
+        <h2>TLDR</h2>
+        <p>Surveyed ~40 openings across article on-ramps + live boards (seen <strong>2026-09-15</strong>). Ranking weights: <strong>remote-US friendliness × applied eng / red-team / eval / control / shipping agents × safety-impact credibility × realistic odds for a non-PhD career switcher × comp + stability</strong>. Deprioritized: UK-only, pure research-scientist/PhD-pubs tracks, heavy onsite SF with no remote, unpaid unless strong on-ramp.</p>
+        <p><strong>Top 5 apply-now:</strong> (1) METR Task Development Engineer · (2) FAR.AI Research Engineer / Senior RE · (3) FAR.AI Jailbreaking Lead, Red Team · (4) NVIDIA Evaluation &amp; ML Systems Engineer (AI Safety &amp; Security) — confirm TX eligibility · (5) Epoch AI Researcher (esp. benchmarking).</p>
+        <p>Public profile used only: MS CS; years shipping applied AI; daily multi-agent eng across frontier + open models; Anthropic model-safety bounty enrolled with a harness built; builder/red-team/eval energy; family of seven in Tyler TX area; remote-US preferred.</p>
+      </section>
+
+      <section data-speak="Ranking criteria again: remote United States friendliness times fit to applied engineering, red team, evals, control, and shipping agents; times credibility of safety impact; times realistic odds without a PhD publication track; times compensation and stability. Pay figures are marked Posted versus Estimate. Never treat Estimates as offers.">
+        <h2>How this list was ranked</h2>
+        <ul class="tight">
+          <li><strong>Remote-US / timezone:</strong> America/Chicago preferred; rare travel OK; “SF or nothing” only if exceptional fit+pay.</li>
+          <li><strong>Fit:</strong> harnesses, agent evals, red-team/disclosure, control/monitoring, shipping — not pure mech-interp theory.</li>
+          <li><strong>Impact credibility:</strong> independent evaluators &amp; frontier safety eng ahead of vague “AI ethics” titles.</li>
+          <li><strong>Odds:</strong> eng-adjacent &gt; PhD-pubs research scientist roles.</li>
+          <li><strong>Comp/stability:</strong> posted bands preferred; ESTIMATEs cited to Levels.fyi / 80k Hours / Glassdoor-class sources carefully.</li>
+        </ul>
+        <p class="caveat">Honesty: several lab career pages are JS-heavy; some titles come via Greenhouse/Lever/Ashby/80,000 Hours mirrors checked today. Closed/expired flagged when known. <strong>Do not invent precision on pay.</strong></p>
+      </section>
+
+      <section data-speak="Rank one. METR Task Development Engineer. Remote worldwide. Build hard agent evaluation tasks for Time Horizons. Perfect match for shipping harnesses and agent evals from Texas. Careers page lists remote contractor one hundred fifty to three hundred dollars per hour; Lever posting also shows full-time pay around two hundred sixty to three hundred eighty-five thousand with Bay Area benefits — confirm which track when you apply.">
+        <h2>#1 · Task Development Engineer · METR</h2>
+        <p class="role-meta"><span class="tag">remote worldwide</span> <span class="tag">evals / agents</span> <span class="tag">top fit</span></p>
+        <p><strong>Why for Eric:</strong> Closest FTE/contract match to daily multi-agent harness + eval work. METR’s Time Horizons / agent capability evals are high-credibility independent safety measurement — and they hire remote with Pacific overlap (Chicago mornings work).</p>
+        <p><strong>Requirements (public):</strong> Several years complex software eng; experience building hard (ideally agent-based) AI evals (RE-Bench, HCAST, SWE-bench Verified, Cybench, GPQA); Inspect preferred; Hawk / Time Horizons nice-to-have; high attention to detail.</p>
+        <p><strong>Logistics:</strong> Remote worldwide; ~1–4h overlap with Pacific workday; 20–40h/wk flexible on contractor framing. America/Chicago is fine for overlap.</p>
+        <p><strong>Travel:</strong> Not required for remote contractor framing; FTE path mentions Berkeley office culture / work trials — confirm.</p>
+        <p><strong>Pay:</strong> <em>Posted (careers / 80k Hours):</em> <strong>$150–$300/hour</strong> contractor. <em>Also seen on Lever (2026):</em> FTE band <strong>$260,937–$385,490/year</strong> with Bay benefits/relocation language. <strong>Reconcile at apply time</strong> — page text recently shifted toward FTE-by-default while careers card still says remote contractor.</p>
+        <p><strong>Day-to-day:</strong> Design novel hard tasks as model horizons grow; QA solvability; baseline/score; improve task-dev infrastructure.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://metr.org/careers">metr.org/careers</a> · <a class="post" href="https://jobs.lever.co/metr/b4812bf4-c259-406b-8ffa-4a463fff34f7">Lever posting</a></p>
+        <p class="caveat"><strong>Caveats:</strong> Competitive; eval portfolio helps more than titles. Contract vs FTE ambiguity. Not a “lab insider” seat — independent evaluator impact.</p>
+      </section>
+
+      <section data-speak="Rank two. FAR A I Research Engineer or Senior Research Engineer. Remote global. Evals and red-teaming of frontier models, adversarial robustness, deception work. Strong builder path without requiring a PhD. Senior band posted about one hundred fifty to two hundred fifty thousand on eighty thousand Hours.">
+        <h2>#2 · Research Engineer / Senior Research Engineer · FAR.AI</h2>
+        <p class="role-meta"><span class="tag">remote global</span> <span class="tag">evals + red-team</span></p>
+        <p><strong>Why for Eric:</strong> Explicitly ships pre/post-release adversarial evals of frontier models, novel attacks, robustness — builder/shipper safety without PhD-first framing. Remote + Berkeley optional.</p>
+        <p><strong>Requirements (public, Research Engineer page historically):</strong> Implement ML algorithms, run experiments, analyze results; evals/red-teaming; open-source ML stack familiarity (PyTorch/HF). Senior bar = more ownership/scope.</p>
+        <p><strong>Logistics:</strong> Remote and in-person Berkeley possible; hire remotely in most countries (80k Hours: Remote, global).</p>
+        <p><strong>Travel:</strong> Work-related travel/equipment covered per older posting language; not “SF or nothing.”</p>
+        <p><strong>Pay:</strong> <em>Posted via 80,000 Hours (seen 2026-09-15):</em> Senior Research Engineer <strong>$150–$250k</strong>. Research Engineer band not always listed on the card — treat as <strong>unknown / ask</strong> (older FAR page cited wide location-dependent ranges; do not invent).</p>
+        <p><strong>Day-to-day:</strong> Frontier model adversarial evals; attack development; experiments on deception/robustness; code + paper co-authorship as MTS-style eng.</p>
+        <p><strong>Links:</strong> <a class="post" href="https://www.far.ai/careers">far.ai/careers</a> · RE Ashby <a class="post" href="https://jobs.ashbyhq.com/far.ai/52e76732-999b-402f-a908-c4e8b3e7714b">52e76732…</a> · Senior RE <a class="post" href="https://jobs.ashbyhq.com/far.ai/4f6fece8-5ed9-41f4-aed8-902d52dc42ef">4f6fece8…</a></p>
+        <p class="caveat"><strong>Caveats:</strong> Nonprofit/research org scale vs frontier-lab cash; Ashby pages are JS shells — read full JD in-browser. Competition still real among alignment-adjacent engineers.</p>
+      </section>
+
+      <section data-speak="Rank three. FAR A I Jailbreaking Lead, Red Team. Remote global. Lead jailbreak and adversarial robustness work. Pay posted about one hundred seventy to two hundred fifty thousand. Natural extension of Anthropic bounty harness work if you want red-team leadership.">
+        <h2>#3 · Jailbreaking Lead, Red Team · FAR.AI</h2>
+        <p class="role-meta"><span class="tag">remote global</span> <span class="tag">red-team lead</span></p>
+        <p><strong>Why for Eric:</strong> Direct line from enrolled Anthropic model-safety bounty + harness building into a paid red-team leadership seat at an org whose red team publishes jailbreak/finetune attack research affecting Claude/ChatGPT/Gemini safeguards.</p>
+        <p><strong>Requirements:</strong> Mid (5–9y) experience per 80k Hours card; deep adversarial / jailbreak / eval execution (confirm full JD on Ashby).</p>
+        <p><strong>Logistics:</strong> Remote, global.</p>
+        <p><strong>Travel:</strong> Unknown beyond normal research org trips — assume low vs lab hybrid.</p>
+        <p><strong>Pay:</strong> <em>Posted (80k Hours):</em> <strong>$170–$250k</strong>.</p>
+        <p><strong>Day-to-day:</strong> Lead jailbreak/red-team technical strategy; evaluate frontier systems; turn findings into research + safeguard improvements.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://jobs.ashbyhq.com/far.ai/9b4eded1-8b20-4238-9259-549bea94607c">Ashby Jailbreaking Lead</a> · board mirror <a class="post" href="https://jobs.80000hours.org/organisations/far-ai">80k Hours · FAR AI</a></p>
+        <p class="caveat"><strong>Caveats:</strong> “Lead” title may expect prior published attacks or team lead proof — portfolio of authorized red-team results matters. Not the same as product pentest-only background.</p>
+      </section>
+
+      <section data-speak="Rank four. NVIDIA Evaluation and M L Systems Engineer on the A I Safety and Security Engineering team. United States remote in listed states. Own benchmarks and reproducibility for A I tooling that finds and patches vulnerabilities. Posted base one hundred fifty-two to two hundred forty-one point five thousand. Confirm whether Texas is an eligible remote state before counting on it — some sibling NVIDIA safety roles list Texas remote, this posting’s mirrors often listed California, North Carolina, New York, Tennessee, Florida.">
+        <h2>#4 · Evaluation &amp; ML Systems Engineer · NVIDIA (AI Safety &amp; Security)</h2>
+        <p class="role-meta"><span class="tag">US remote (state list)</span> <span class="tag">evals / security tooling</span></p>
+        <p><strong>Why for Eric:</strong> Evidence-first eval infrastructure for AI-powered vuln find/validate/patch — maps to shipping harnesses, metrics skepticism, agent measurement. Big-company stability + safety-adjacent cyber.</p>
+        <p><strong>Requirements (public):</strong> Bachelor’s or equivalent + 5+ years ML eng/evaluation; designing benchmarks/metrics; solid Python for shared infra; experiment tracking/data pipelines. Preferred: security evaluation, agent/LLM behavior measurement, public benchmarks.</p>
+        <p><strong>Logistics:</strong> US remote in <em>listed</em> locations (mirrors commonly: Santa Clara + remote CA/NC/NY/TN/FL). <strong>Texas not consistently listed on this exact JD</strong> — verify on jobs.nvidia.com before prioritizing.</p>
+        <p><strong>Travel:</strong> Unknown; typical corp remote.</p>
+        <p><strong>Pay:</strong> <em>Posted base:</em> <strong>$152,000–$241,500</strong>. <em>ESTIMATE total comp:</em> NVIDIA ML Eng Levels.fyi US medians often ~$200k–$330k+ TC depending on level (stock-heavy) — <strong>not this JD’s offer</strong>.</p>
+        <p><strong>Day-to-day:</strong> Build benchmarking/reproducibility systems; define metrics/protocols; map every result to code+runs; keep conclusions reviewable.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://jobs.nvidia.com/careers/job/893396714449">NVIDIA job 893396714449</a></p>
+        <p class="caveat"><strong>Caveats:</strong> State eligibility may block Tyler TX; applications may already be past “accept until July 30, 2026” language on some mirrors — confirm still open. Impact is AI-for-security tooling more than frontier alignment theory.</p>
+      </section>
+
+      <section data-speak="Rank five. Epoch A I Researcher, including Benchmarking Reviews. Fully remote organization. Track capabilities, critique benchmarks, inform policy audiences. Pay bands seen from about one hundred to three hundred thousand depending on team and seniority. Less red-team day-to-day than METR or FAR, but excellent remote logistics for a family in Texas.">
+        <h2>#5 · Researcher / Senior Researcher · Epoch AI</h2>
+        <p class="role-meta"><span class="tag">fully remote</span> <span class="tag">benchmarks / measurement</span></p>
+        <p><strong>Why for Eric:</strong> Fully remote with PT–CET hiring; measurement/critique of AI progress fits “make numbers mean something.” Lower day-to-day red-team than #1–#3, but family-logistics excellent and credibility high.</p>
+        <p><strong>Requirements:</strong> Open to varied backgrounds; researcher roles across multiple teams (incl. Benchmarking Reviews producing critiques of AI benchmarks). Prefer overlap with PT and UTC; can travel to ~3 retreats/year.</p>
+        <p><strong>Logistics:</strong> Fully remote; many countries PT→CET. America/Chicago OK.</p>
+        <p><strong>Travel:</strong> Prefer candidates who can attend ~3 staff retreats/year.</p>
+        <p><strong>Pay:</strong> <em>Posted examples:</em> Researcher/Senior across teams often cited in wide bands (e.g. Benchmarking Reviews mirrors <strong>$100k–$200k</strong>); broader researcher postings sometimes higher — <strong>confirm per team</strong>. Do not assume top of range.</p>
+        <p><strong>Day-to-day:</strong> Research trends/capabilities; write reviews/critiques; publish for policymakers and industry.</p>
+        <p><strong>Links:</strong> <a class="post" href="https://jobs.lever.co/epoch-ai/de7b4c71-ece2-454a-be70-e7b75c5f3b23">Epoch Lever researcher</a> · epoch.ai careers</p>
+        <p class="caveat"><strong>Caveats:</strong> More research writing than agent harness shipping; retreat travel; not adversarial red-team primary.</p>
+      </section>
+
+      <section data-speak="Rank six. Anthropic Research Engineer, Model Evaluations. Remote-friendly with travel required and at least twenty-five percent office time in San Francisco or New York. Posted annual salary five hundred to eight hundred fifty thousand. Extremely strong skill fit for eval platforms and agentic measurements — only take if hybrid travel is truly workable for the family.">
+        <h2>#6 · Research Engineer, Model Evaluations · Anthropic</h2>
+        <p class="role-meta"><span class="tag">remote-friendly + travel</span> <span class="tag">25%+ office</span> <span class="tag">exceptional pay</span></p>
+        <p><strong>Why for Eric:</strong> Design/run capability + safety evals; harden distributed eval platforms against training checkpoints; dashboards under time pressure — almost a job description of “ship eval harnesses.” Lab-scale impact.</p>
+        <p><strong>Requirements:</strong> Strong Python; distributed systems/data pipelines; clear communication; on-call comfort during training runs. Preferred: LLM scaffolding, dashboards, eval metrics, stats, ML infra.</p>
+        <p><strong>Logistics:</strong> SF or NYC; <strong>hybrid ≥25% in office</strong>; labeled Remote-Friendly (Travel-Required).</p>
+        <p><strong>Travel:</strong> Material — plan regular SF/NY presence from Texas.</p>
+        <p><strong>Pay:</strong> <em>Posted:</em> <strong>$500,000–$850,000</strong> annual salary (Greenhouse).</p>
+        <p><strong>Day-to-day:</strong> New evals (reasoning, agents, safety); distributed eval execution; mid-run debugging; researcher partnership.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://job-boards.greenhouse.io/anthropic/jobs/5198255008">Greenhouse 5198255008</a></p>
+        <p class="caveat"><strong>Caveats:</strong> Family travel cost is the real filter. Extremely competitive. Visa sponsorship possible but not guaranteed for every candidate.</p>
+      </section>
+
+      <section data-speak="Rank seven. Anthropic Red Team Engineer, Safeguards. Remote-friendly with travel and hybrid office expectation. Adversarial testing across product surfaces, jailbreaks, agentic workflows. Strong fit to bounty work. Pay not clearly posted on the card — treat as unknown and ask; Anthropic eng bands are generally high.">
+        <h2>#7 · Red Team Engineer, Safeguards · Anthropic</h2>
+        <p class="role-meta"><span class="tag">remote-friendly + travel</span> <span class="tag">product red-team</span></p>
+        <p><strong>Why for Eric:</strong> Jailbreaks, agentic prompt-injection, automated testing frameworks — closest lab red-team title to bounty harness work.</p>
+        <p><strong>Requirements:</strong> Pentest/red-team/appsec experience; model jailbreaking; agentic workflow testing; AI/ML security preferred; API/authz abuse, T&amp;S backgrounds helpful.</p>
+        <p><strong>Logistics:</strong> SF; Remote-Friendly (Travel Required); ≥25% office policy.</p>
+        <p><strong>Travel:</strong> Yes — hybrid expectation.</p>
+        <p><strong>Pay:</strong> <em>Not clearly listed on the public card fetched today</em> → <strong>unknown (ask)</strong>. Sibling Anthropic RE roles post very high bands; do not invent a number.</p>
+        <p><strong>Day-to-day:</strong> Creative multi-step attacks on product surfaces; systematic methodologies; automated LLM testing frameworks.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://job-boards.greenhouse.io/anthropic/jobs/5320469008">Greenhouse 5320469008</a></p>
+        <p class="caveat"><strong>Caveats:</strong> Hybrid travel; may prefer classical security pedigrees alongside LLM jailbreak skill. Competition high.</p>
+      </section>
+
+      <section data-speak="Rank eight. FAR A I Engineering Manager, Red Team. Remote. Posted one hundred seventy to two hundred fifty thousand. Only pursue if you want to lead people and delivery systems rather than stay pure I C builder. Still remote-friendly.">
+        <h2>#8 · Engineering Manager, Red Team · FAR.AI</h2>
+        <p class="role-meta"><span class="tag">remote</span> <span class="tag">manager</span></p>
+        <p><strong>Why for Eric:</strong> If multi-agent fleet coordination / Board-style review generalizes to leading a red-team eng org — remote path into FAR red-team. Skip if you want IC-only.</p>
+        <p><strong>Requirements:</strong> Mid experience managing eng delivery (confirm Ashby JD).</p>
+        <p><strong>Logistics / travel:</strong> Remote; travel unknown.</p>
+        <p><strong>Pay:</strong> <em>Posted (80k Hours):</em> <strong>$170–$250k</strong>.</p>
+        <p><strong>Day-to-day:</strong> People/project systems enabling red-team research velocity.</p>
+        <p><strong>Link:</strong> <a class="post" href="https://jobs.ashbyhq.com/far.ai/58838b2c-927e-4532-b263-c43e68c14ec7">Ashby EM Red Team</a></p>
+        <p class="caveat"><strong>Caveats:</strong> Manager ≠ IC red-teamer; hiring committees weight management receipts.</p>
+      </section>
+
+      <section data-speak="Rank nine. Safer A I Research Engineer on Frontier A I Risk Management. Preference for Paris or London but remote possible for strong candidates. Help companies operationalize risk frameworks, evals, and mitigations. Pay unknown from public page.">
+        <h2>#9 · Research Engineer, Frontier AI Risk Management · SaferAI</h2>
+        <p class="role-meta"><span class="tag">remote considered</span> <span class="tag">EU preference</span></p>
+        <p><strong>Why for Eric:</strong> Translate risk commitments into concrete evals/mitigations/red-teams of mitigations — eng-adjacent assurance work.</p>
+        <p><strong>Requirements:</strong> Technical RE skills for evals/mitigations; async remote collaboration; strong writing.</p>
+        <p><strong>Logistics:</strong> Team mostly Paris/London; <strong>remote for particularly strong candidates</strong>.</p>
+        <p><strong>Travel / pay:</strong> Unknown. <strong>Pay: unknown (not posted on page fetched).</strong></p>
+        <p><strong>Link:</strong> safer-ai.org jobs (FAIRM Research Engineer) — verify live; some mirrors 404’d on fetch.</p>
+        <p class="caveat"><strong>Caveats:</strong> EU timezone bias; page may close when filled; weaker US remote guarantee than METR/FAR/Epoch.</p>
+      </section>
+
+      <section data-speak="Rank ten. Cohere Member of Technical Staff, Safety for Agents. Remote-friendly with about fifty percent overlap with U K or E U time. Post-training and evaluation for tool-using agents. Compensation cited on third-party mirrors in Canadian dollars — verify on Cohere’s own posting; treat third-party figures as estimates only.">
+        <h2>#10 · MTS, Safety for Agents · Cohere</h2>
+        <p class="role-meta"><span class="tag">remote-friendly</span> <span class="tag">~50% UK/EU overlap</span></p>
+        <p><strong>Why for Eric:</strong> Safety for agents that take actions — data gen, post-training, evals. Multi-agent shipping experience is relevant.</p>
+        <p><strong>Requirements:</strong> Strong SE + stats/experimental design; data collection with annotators; Python/ML frameworks.</p>
+        <p><strong>Logistics:</strong> Remote-friendly across NA/Europe/etc.; ~50% working-day overlap with UK/EU (US East fine; Chicago is early mornings).</p>
+        <p><strong>Pay:</strong> Third-party mirrors have cited CAD bands — <strong>treat as ESTIMATE / unverified here; confirm on Cohere careers</strong>.</p>
+        <p><strong>Day-to-day:</strong> Safety post-training + eval methods for tool-using models; cross-functional with product/policy.</p>
+        <p class="caveat"><strong>Caveats:</strong> Timezone tax from Texas; confirm role still open.</p>
+      </section>
+
+      <section data-speak="Honorable mentions with logistics penalties. Apollo A I Red Team Engineer is an excellent skill fit but in-person London or San Francisco. Redwood Member of Technical Staff is control research heaven but Berkeley onsite. Anthropic Cyber Evaluations Engineer is SF or D C hybrid. Open A I Preparedness and x A I safety roles are San Francisco or Palo Alto heavy. METR Berkeley M T S seats pay very well but onsite or hybrid. NIST C A I S I requires U S citizenship and in-person D C or San Francisco.">
+        <h2>Honorable mentions (logistics hard)</h2>
+        <ul class="tight">
+          <li><strong>Apollo Research — AI Red Team Engineer:</strong> Superb scheming/control/monitor red-team fit (Watcher). <em>In-person London or SF</em> with flexible WFH. Posted SF <strong>$182k–$238k</strong> / London £122–160k. <a href="https://jobs.lever.co/apolloresearch/459b83bf-4e7d-41c5-b93e-c589c6b71bfe">Lever</a></li>
+          <li><strong>Redwood Research — Member of Technical Staff:</strong> AI control, alignment-faking, safety cases. <em>Berkeley onsite.</em> Posted <strong>$350k–$850k</strong>. <a href="https://redwoodresearch.org/careers">careers</a></li>
+          <li><strong>Anthropic — Cyber Evaluations Engineer:</strong> Cyber capability + safeguard robustness evals; SF | DC; hybrid policy. <a href="https://job-boards.greenhouse.io/anthropic/jobs/5406367008">Greenhouse</a></li>
+          <li><strong>OpenAI Preparedness</strong> (Automated Red Teaming, Threat Modeler, etc.): high fit, <em>San Francisco</em>. ART example posted ~$295k–$445k.</li>
+          <li><strong>xAI / SpaceX AI safety eng:</strong> Palo Alto / office-heavy (e.g. Imagine Safety; Safety Security).</li>
+          <li><strong>METR MTS</strong> (Eval Execution, Embedded Assessments, Security Eng, Cyberforensics): Berkeley onsite/hybrid; posted roughly <strong>$328k–$687k</strong> depending on seat.</li>
+          <li><strong>NIST CAISI:</strong> US citizenship; in-person DC &amp; SF; Research Engineer/Scientist and MTS hiring — not remote-first. <a href="https://www.nist.gov/caisi/careers-caisi">nist.gov/caisi</a></li>
+          <li><strong>UK AISI:</strong> Strong red-team/control openings (£65–145k bands) — <em>London / UK</em>, visa. Closes noted on some RE roles ~30 Sep 2026.</li>
+        </ul>
+      </section>
+
+      <section data-speak="On-ramps that are not full-time jobs. BlueDot Technical A I Safety course. MATS fellowships. ARENA bootcamps. Anthropic Fellows Program with remote United States option and about three thousand eight hundred fifty dollars per week for four months. Anthropic model safety bug bounty and red.anthropic.com coordinated disclosure. Eighty thousand Hours A I career map and job board. METR general expression of interest.">
+        <h2>On-ramps / not FTE jobs</h2>
+        <ul class="tight">
+          <li><strong>BlueDot Impact — Technical AI Safety</strong> (free course): <a href="https://bluedot.org/courses/technical-ai-safety">bluedot.org</a></li>
+          <li><strong>MATS</strong> research fellowships: <a href="https://matsprogram.org">matsprogram.org</a></li>
+          <li><strong>ARENA</strong> technical bootcamps: <a href="https://arena.education">arena.education</a></li>
+          <li><strong>Anthropic Fellows (AI Safety / AI Security):</strong> 4 months FT; remote-friendly US/UK/Canada with work auth; stipend <strong>$3,850/week</strong> USD (+ ~$15k/mo compute). On-ramp with historically strong conversion to Anthropic safety FTE. <a href="https://job-boards.greenhouse.io/anthropic/jobs/5183044008">Fellows Greenhouse</a></li>
+          <li><strong>Anthropic model safety bug bounty</strong> + <a href="https://red.anthropic.com">red.anthropic.com</a> — already enrolled; finish a clean claim.</li>
+          <li><strong>xAI/SpaceX HackerOne</strong> (authorized only): hackerone.com/x</li>
+          <li><strong>80,000 Hours</strong> map + board: <a href="https://80000hours.org/ai">80000hours.org/ai</a> · <a href="https://jobs.80000hours.org">jobs.80000hours.org</a></li>
+          <li><strong>METR General Expression of Interest</strong> (flexible): metr.org/careers</li>
+          <li><strong>Hawk</strong> open eval stack: <a href="https://hawk.metr.org">hawk.metr.org</a> — practice Inspect-like task work publicly.</li>
+        </ul>
+      </section>
+
+      <section data-speak="Suggested application order for a Texas-based family schedule. First, METR task development and FAR research engineer or jailbreaking lead. Second, Epoch and NVIDIA if Texas eligible. Third, Anthropic fellows or model-evals slash red-team only if hybrid travel is acceptable. Parallel: finish one authorized bounty claim and a public eval reproduction write-up to raise odds everywhere.">
+        <h2>Suggested apply order (family-aware)</h2>
+        <ol>
+          <li>METR Task Development Engineer + FAR RE / Jailbreaking Lead (true remote).</li>
+          <li>Epoch researcher + NVIDIA eval eng <em>if</em> TX (or relocate-state) eligibility clears.</li>
+          <li>Anthropic Fellows (time-boxed on-ramp) <em>or</em> Anthropic Model Evals / Safeguards Red Team if hybrid math works.</li>
+          <li>Keep Apollo/Redwood/OpenAI/xAI/CAISI as stretch only if relocation or rare-travel exceptions appear.</li>
+        </ol>
+        <p><strong>Parallel portfolio (1–2 weeks):</strong> one authorized bounty submission; one public reproduction of a METR/Inspect-style eval with a clean negative-or-partial result write-up; link Hawk familiarity.</p>
+      </section>
+
+      <section data-speak="Sources and honesty notes. Primary sources checked September fifteenth twenty twenty-six: METR careers and Lever; FAR A I via Ashby and eighty thousand Hours; Anthropic Greenhouse; NVIDIA careers mirrors; Epoch Lever; Apollo Lever; Redwood careers; NIST C A I S I; UK A I S I Greenhouse; article on-ramps in eric-jobs labs and long text. Pay estimates from Levels.fyi are labeled Estimate. Some career pages timed out or returned thin JavaScript shells — those roles may still exist; missing fetch is not proof of closure.">
+        <h2>Sources &amp; honesty</h2>
+        <p>Checked <strong>2026-09-15</strong> (UTC) via WebFetch/WebSearch/curl: metr.org/careers + Lever; far.ai / Ashby / jobs.80000hours.org; Anthropic Greenhouse; NVIDIA job page mirrors; Epoch Lever; Apollo Lever + careers FAQ; Redwood careers; NIST CAISI; UK AISI EOIs; OpenAI/xAI search results; article on-ramps in <code>/workspace/eric-jobs/labs.txt</code> &amp; <code>long.txt</code>.</p>
+        <p>Machine-readable summary: <code>/workspace/eric-jobs/ranked-jobs.json</code>.</p>
+        <p>No secrets. No fabricated private résumé bullets. If a posting closed between research and your click, trust the live page.</p>
+      </section>
+    </article>
+  </main>
+  <script src="https://titus-digest.pages.dev/player.js"></script>
+</body>
+</html>
