@@ -11,6 +11,7 @@ import hashlib
 import html as html_lib
 import json
 import os
+import shutil
 import sys
 import urllib.error
 import urllib.request
@@ -276,6 +277,18 @@ def audio_dir_for(html_path: Path) -> Path:
     return html_path.parent / "audio"
 
 
+def index_audio_clips(repo: Path) -> dict[str, Path]:
+    """Map chunk sha256 -> first existing MP3 in any audio/ folder."""
+    found: dict[str, Path] = {}
+    for mp3 in sorted(repo.rglob("*.mp3")):
+        if mp3.parent.name != "audio":
+            continue
+        digest = mp3.stem.lower()
+        if len(digest) == 64 and all(char in "0123456789abcdef" for char in digest):
+            found.setdefault(digest, mp3.resolve())
+    return found
+
+
 def load_manifest(path: Path) -> dict:
     if not path.is_file():
         return {"voice_id": VOICE_ID, "language": LANGUAGE, "pages": {}}
@@ -385,55 +398,71 @@ def confirm_leo(key: str) -> None:
         raise SystemExit("GET /v1/tts/voices succeeded but Leo was not listed.")
 
 
-def build_page(html_path: Path, chunks: list[dict], dry_run: bool, key: str | None) -> dict:
+def clip_entry(chunk: dict) -> dict:
+    digest = chunk["hash"]
+    return {
+        "hash": digest,
+        "title": chunk["title"],
+        "file": f"{digest}.mp3",
+        "chars": chunk["chars"],
+    }
+
+
+def build_page(
+    html_path: Path,
+    chunks: list[dict],
+    dry_run: bool,
+    key: str | None,
+    clip_index: dict[str, Path],
+) -> dict:
     out_dir = audio_dir_for(html_path)
     manifest_path = out_dir / "manifest.json"
     manifest = load_manifest(manifest_path)
     page = page_key(html_path)
-    existing = {clip.get("hash"): clip for clip in clips_from_page_entry(manifest["pages"].get(page))}
     wanted_hashes = [chunk["hash"] for chunk in chunks]
     page_clips = []
     generated = 0
     reused = 0
+    copied = 0
     chars_sent = 0
     for chunk in chunks:
         digest = chunk["hash"]
         filename = f"{digest}.mp3"
         dest = out_dir / filename
-        prior = existing.get(digest)
-        if prior and dest.is_file():
-            page_clips.append(
-                {
-                    "hash": digest,
-                    "title": chunk["title"],
-                    "file": filename,
-                    "chars": chunk["chars"],
-                }
-            )
-            reused += 1
+        source = None
+        if dest.is_file():
+            source = dest.resolve()
+        elif digest in clip_index:
+            source = clip_index[digest]
+        if source is not None:
+            page_clips.append(clip_entry(chunk))
+            dest_exists = dest.is_file()
+            same_file = dest_exists and source == dest.resolve()
+            if same_file:
+                reused += 1
+            else:
+                copied += 1
+                if not dry_run:
+                    out_dir.mkdir(parents=True, exist_ok=True)
+                    if not dest_exists or dest.resolve() != source:
+                        shutil.copy2(source, dest)
+                    print(
+                        f"COPY {page} hash={digest[:12]} from={source} chars={chunk['chars']} title={chunk['title']!r}",
+                        flush=True,
+                    )
+                    clip_index.setdefault(digest, dest.resolve())
             continue
         if dry_run:
-            page_clips.append(
-                {
-                    "hash": digest,
-                    "title": chunk["title"],
-                    "file": filename,
-                    "chars": chunk["chars"],
-                }
-            )
+            page_clips.append(clip_entry(chunk))
             continue
+        if key is None:
+            raise SystemExit(f"Missing clip {digest[:12]} for {page} and XAI_API_KEY was not loaded.")
         out_dir.mkdir(parents=True, exist_ok=True)
         print(f"TTS {page} hash={digest[:12]} chars={chunk['chars']} title={chunk['title']!r}", flush=True)
         audio = synthesize(chunk["text"], key)
         dest.write_bytes(audio)
-        page_clips.append(
-            {
-                "hash": digest,
-                "title": chunk["title"],
-                "file": filename,
-                "chars": chunk["chars"],
-            }
-        )
+        clip_index[digest] = dest.resolve()
+        page_clips.append(clip_entry(chunk))
         generated += 1
         chars_sent += chunk["chars"]
     manifest["voice_id"] = VOICE_ID
@@ -454,6 +483,7 @@ def build_page(html_path: Path, chunks: list[dict], dry_run: bool, key: str | No
         "chars": sum(chunk["chars"] for chunk in chunks),
         "generated": generated,
         "reused": reused,
+        "copied": copied,
         "chars_sent": chars_sent,
         "wanted_hashes": wanted_hashes,
     }
@@ -499,21 +529,39 @@ def main(argv=None):
     if total_chars > args.limit:
         raise SystemExit(f"TOTAL_CHARS {total_chars} exceeds limit {args.limit}. Stopped before TTS.")
 
+    clip_index = index_audio_clips(repo)
+    missing = []
+    for path, chunks, _chars in extracted:
+        out_dir = audio_dir_for(path)
+        for chunk in chunks:
+            dest = out_dir / f"{chunk['hash']}.mp3"
+            if dest.is_file() or chunk["hash"] in clip_index:
+                continue
+            missing.append((path, chunk))
+    print(f"CLIP_INDEX {len(clip_index)} MISSING {len(missing)}", flush=True)
+
     key = None
-    if not args.dry_run:
+    if not args.dry_run and missing:
         key = api_key()
-        confirm_leo(key)
+        # Key is used only for POST /v1/tts. Skip GET /v1/tts/voices on reuse-only runs.
 
     summaries = []
     sent = 0
+    copied = 0
+    reused = 0
+    generated = 0
     for path, chunks, _chars in extracted:
-        summary = build_page(path, chunks, dry_run=args.dry_run, key=key)
+        summary = build_page(path, chunks, dry_run=args.dry_run, key=key, clip_index=clip_index)
         summaries.append(summary)
         sent += summary["chars_sent"]
+        copied += summary["copied"]
+        reused += summary["reused"]
+        generated += summary["generated"]
         print(
-            f"DONE {summary['page']} generated={summary['generated']} reused={summary['reused']} chars_sent={summary['chars_sent']}",
+            f"DONE {summary['page']} generated={summary['generated']} reused={summary['reused']} copied={summary['copied']} chars_sent={summary['chars_sent']}",
             flush=True,
         )
+    print(f"GENERATED {generated} REUSED {reused} COPIED {copied} CHARS_SENT {sent}", flush=True)
     print(f"CHARS_SENT {sent}", flush=True)
     return 0
 

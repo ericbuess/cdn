@@ -33,7 +33,7 @@ Do not attach a custom domain to `ericbuess/cdn`. That repo already serves other
 
 ## Restyle (2026-09-15, Cursor native `idem:cursor-restyle-001`)
 
-Eric chose personal-light as the house style. Each domain now lands on its own page in that design system. Shared CSS lives in `sites/shared/`; `ericbuess.com` also carries a standalone copy of the CSS/JS. asi.blue, asi.red and alignment-hypothesis are **staged drafts, awaiting Eric's read**. Zero Listen-to controls and zero audio players on any `sites/` page. No DNS change.
+Eric chose personal-light as the house style. Each domain now lands on its own page in that design system. Shared CSS lives in `sites/shared/`; `ericbuess.com` also carries a standalone copy of the CSS/JS. asi.blue, asi.red and alignment-hypothesis are **staged drafts, awaiting Eric's read**. Zero Listen-to controls on any `sites/` page. The homepage and work.html load a manifest-gated Leo player (`idem:cursor-tts-leo-002`); draft pages have no manifest and no player. No DNS change.
 
 ## Current observed state (read-only, 2026-09-15T02:29Z–02:33Z)
 

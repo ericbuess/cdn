@@ -1,6 +1,6 @@
 # Leo page audio
 
-Repo tooling, not a daemon. `tools/tts-build.py` extracts readable sections from a page, hashes each chunk, and calls the xAI speech endpoint only for hashes missing from that page directory’s `audio/manifest.json`.
+Repo tooling, not a daemon. `tools/tts-build.py` extracts readable sections from a page, hashes each chunk, and calls the xAI speech endpoint only for hashes that have no MP3 in any `audio/` folder in the repo. If the same chunk hash already exists (for example under `designs/personal-light/audio/`), the script copies that clip into the page directory and does not call the API.
 
 The key must already be in the environment as `XAI_API_KEY`. Use it only for this speech endpoint. Do not print it, write it to a file, or commit it. Do not use it for chat or search.
 
@@ -12,7 +12,13 @@ From the `cdn` repo root:
 python3 tools/tts-build.py designs/personal-light/index.html designs/personal-light/work.html
 ```
 
-That is the approved pair. Re-running it regenerates only changed chunks and drops orphan MP3s that no remaining page in that directory still lists.
+That is the approved design-preview pair. Re-running it regenerates only changed chunks, copies identical hashes from other `audio/` folders, and drops orphan MP3s that no remaining page in that directory still lists.
+
+The domain copy that ericbuess.com will serve after cutover:
+
+```
+python3 tools/tts-build.py sites/ericbuess.com/index.html sites/ericbuess.com/work.html
+```
 
 ## Later pages (one command, after Eric has read them)
 
