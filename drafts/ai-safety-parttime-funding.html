@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026-09-15 — AI-safety part-time &amp; funding</title>
+  <style>
+:root {
+  color-scheme: dark light;
+  --bg: #0f1115;
+  --fg: #e8eaed;
+  --muted: #9aa0a6;
+  --accent: #7aa2ff;
+  --card: #1a1d24;
+  --border: #2a2f3a;
+  --active: rgba(122, 162, 255, 0.14);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7f9;
+    --fg: #1a1d24;
+    --muted: #5f6368;
+    --accent: #2f5bff;
+    --card: #ffffff;
+    --border: #e2e5eb;
+    --active: rgba(47, 91, 255, 0.1);
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 17px/1.55 -apple-system, system-ui, Segoe UI, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.1rem 8.5rem; }
+.eyebrow { letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-size: 0.75rem; margin: 0; }
+h1 { font-size: 1.55rem; margin: 0.25rem 0 0.5rem; line-height: 1.25; }
+.lede { color: var(--muted); margin: 0 0 1.25rem; }
+.list { list-style: none; padding: 0; margin: 0; }
+.list a {
+  display: block;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.list a:hover { border-color: var(--accent); }
+.player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center;
+  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  max-width: 42rem;
+  margin-left: auto; margin-right: auto;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+}
+.player button, .player select {
+  font: inherit; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--fg); padding: 0.55rem 0.75rem; cursor: pointer;
+  min-height: 44px;
+}
+.player button.primary { background: var(--accent); color: #fff; border-color: transparent; }
+.player .status { flex: 1 1 100%; color: var(--muted); font-size: 0.85rem; }
+.player .seek-row {
+  flex: 1 1 100%;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.player input[type="range"] { flex: 1; min-width: 0; }
+.player .prog { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.85rem; min-width: 3.5rem; text-align: right; }
+article section {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  margin: 0.75rem 0;
+  background: var(--card);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+article section.active {
+  border-color: var(--accent);
+  background: var(--active);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+h2 { font-size: 1.1rem; margin: 0 0 0.35rem; }
+a { color: var(--accent); }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 1rem; }
+
+/* Center the fixed player on wide screens */
+@supports (padding: max(0px)) {
+  .player { padding-bottom: max(0.65rem, env(safe-area-inset-bottom)); }
+}
+
+/* Journal / tap-to-write answer boxes */
+.answer-block {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg) 72%, var(--card));
+}
+.answer-block label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.answer-block textarea {
+  display: block;
+  width: 100%;
+  min-height: 5.5rem;
+  font-size: 16px; /* iOS: avoid auto-zoom on focus */
+  line-height: 1.45;
+  font-family: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.7rem;
+  resize: vertical;
+}
+.answer-block textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.answer-saved {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.prayer-box {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border-radius: 0 8px 8px 0;
+}
+.prayer-box h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.prayer-box p { margin: 0; font-style: italic; }
+
+.scripture-niv {
+  margin: 0.65rem 0 0.25rem;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.scripture-niv .ref {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.scripture-niv .copy {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.niv-note { font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
+
+
+    .role-meta { font-size: 0.92rem; opacity: 0.92; margin: 0.35rem 0 0.6rem; }
+    .role-meta span { display: inline-block; margin-right: 0.75rem; }
+    .tag { font-size: 0.8rem; border: 1px solid currentColor; border-radius: 999px; padding: 0.1rem 0.5rem; opacity: 0.85; }
+    ul.tight > li { margin: 0.25rem 0; }
+    .caveat { border-left: 3px solid #c47; padding-left: 0.75rem; margin: 0.6rem 0; }
+    a.post { word-break: break-all; }
+    .status-open { color: #6dcf8a; }
+    .status-closed { color: #e07a7a; }
+    .status-unk { color: #e0c06d; }
+
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p><a href="https://titus-digest.pages.dev/">← Digests</a></p>
+    <header>
+      <p class="eyebrow">Titus digest</p>
+      <h1>AI-safety part-time paths &amp; independent funding</h1>
+      <p class="lede">2026-09-15 · for Eric Buess (Tyler TX / WFH) · PT or no-RT seats + grants/credits for private testable proposals · from Grok Bot</p>
+    </header>
+
+    <p class="hint">Voice picker uses whatever Safari exposes. Jamie Premium in iOS Spoken Content often does not appear here — that’s an Apple limit. If missing, pick another voice or use pre-recorded audio.</p>
+    <div class="player" role="group" aria-label="Text to speech">
+      <button class="primary" id="tts-play" type="button">Play</button>
+      <button id="tts-prev" type="button" aria-label="Previous section">⟵</button>
+      <button id="tts-next" type="button" aria-label="Next section">⟶</button>
+      <button id="tts-restart" type="button">Start</button>
+      <label>Voice
+        <select id="tts-voice">
+          <option value="">Loading voices…</option>
+        </select>
+      </label>
+      <label>Speed
+        <select id="tts-rate">
+          <option value="0.85">0.85×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.15">1.15×</option>
+          <option value="1.35">1.35×</option>
+          <option value="1.5">1.5×</option>
+        </select>
+      </label>
+      <div class="seek-row">
+        <input id="tts-progress" type="range" min="0" max="6" value="0" aria-label="Section progress" />
+        <span class="prog" id="tts-progress-label">1 / 7</span>
+      </div>
+      <div class="status" id="tts-status">Ready.</div>
+    </div>
+
+
+    <article>
+      <section data-speak="TLDR for Eric. Verified September fifteenth twenty twenty six. Best part-time seat still live: METR Task Development Engineer, remote contractor, twenty to forty flexible hours, one fifty to three hundred dollars per hour, Pacific overlap. Best measurement slash no-red-team seat: Epoch researcher or benchmarking engineer, full-time but little red-team required; Epoch also has a part-time data scientist contractor at thirty to forty dollars per hour. Skip FAR Jailbreaking Lead for the no-red-team path. For private proposal work: Transformative A I Fund is the LTFF successor — fund page says always open, apply page says closed, so verify; Manifund open call; SFF rolling Speculation Grants; BlueDot Rapid Grants up to ten K; Anthropic External Researcher Access about one K A P I credits. Ship one bounty claim this month.">
+        <h2>TLDR</h2>
+        <p>Survey date <strong>2026-09-15</strong> (America/Chicago). Focus: <strong>part-time / flexible</strong> OR <strong>no prior red-team experience</strong>, plus <strong>grants/credits</strong> for private testable AI-safety proposals. Profile: Tyler TX WFH; MS CS + applied AI; Anthropic model-safety bounty harness built (no claim yet); AI-assisted proposal generation; no pubs.</p>
+        <ul class="tight">
+          <li><strong>Best PT paid seat (verified live):</strong> METR Task Development Engineer — remote contractor, <strong>20–40h/wk flexible</strong>, <strong>$150–$300/hr</strong> posted, ≥1h Pacific overlap. <a class="post" href="https://jobs.lever.co/metr/b4812bf4-c259-406b-8ffa-4a463fff34f7">Lever</a> · <a class="post" href="https://metr.org/careers">careers</a></li>
+          <li><strong>Best no-RT research path:</strong> Epoch AI Researcher / SE Benchmarking (FTE, remote; measurement &amp; write-ups, not jailbreaks) · Epoch PT Data Scientist contract ($30–$40/hr, 10–30h) if you want hours while proposing.</li>
+          <li><strong>Flag NOT for no-RT:</strong> FAR Jailbreaking Lead (needs red-team depth).</li>
+          <li><strong>Funding stack for private proposals:</strong> EA Funds Transformative AI Fund (LTFF closed) · Manifund open call · SFF Speculation Grants (rolling) · BlueDot Rapid Grants ($50–$10k) · Anthropic External Researcher Access (~$1k API credits).</li>
+          <li><strong>This month:</strong> file one bounty claim + apply METR Task Dev + METR EOI + Anthropic credits + one Manifund/TAIF-shaped proposal write-up.</li>
+        </ul>
+      </section>
+
+      <section data-speak="Part-time and flexible from the current list. METR Task Development Engineer is the clear keeper: verified live as contract freelance, twenty to forty hours, flexible schedule, one fifty to three hundred per hour. Epoch Data Scientist contract is true part-time at ten to thirty hours and thirty to forty dollars per hour — measurement work, not red-team. FAR Research Engineer and Senior are full-time forty hours. Apollo Evaluations is full-time London or San Francisco in-person. NVIDIA eval eng is FTE with Texas eligibility gate. Hugging Face open-source M L eng is FTE remote, not safety-eval focused.">
+        <h2>Part-time / flexible (current list + nearby)</h2>
+        <p class="role-meta"><span class="tag status-open">PT verified</span> <span class="tag">contract</span></p>
+        <ul class="tight">
+          <li><strong>METR — Task Development Engineer</strong> <span class="status-open">OPEN · PT/contract VERIFIED 2026-09-15</span><br>
+            Remote worldwide · <strong>20–40h/wk</strong> (you set schedule) · ≥1h (ideally 4h) Pacific overlap · Contract/freelance · Posted <strong>$150–$300/hr</strong> (top for exceptional).<br>
+            Work: novel hard agent eval tasks for Time Horizons; QA solvability; score completions; improve task-dev infra. SE + ideally agent-eval / Inspect experience.<br>
+            <a class="post" href="https://jobs.lever.co/metr/b4812bf4-c259-406b-8ffa-4a463fff34f7">jobs.lever.co/metr/…</a> · <a class="post" href="https://metr.org/careers">metr.org/careers</a></li>
+          <li><strong>Epoch AI — Data Scientist (Contract)</strong> <span class="status-open">OPEN · PT</span><br>
+            Fully remote · default <strong>~10–30h/wk</strong> flexible (more possible) · occasional Pacific meetings · Posted <strong>$30–$40/hr</strong>.<br>
+            Work: lit review, benchmark tracking, infra/company data — <em>not</em> red-team. Lower bar / lower pay than METR task-dev; useful bridge hours.<br>
+            <a class="post" href="https://jobs.lever.co/epoch-ai/ab88ba6e-6a92-44cc-8830-a2dafca31f1a">Lever Data Scientist</a></li>
+          <li><strong>METR — General Expression of Interest</strong> <span class="status-open">OPEN · flexible roster</span><br>
+            Not an active hire; long-term candidate roster including contractors. Apply to open roles for active consideration.<br>
+            <a class="post" href="https://jobs.lever.co/metr/f3a6db11-7fd1-48e4-af42-20aad1ded72d">EOI Lever</a></li>
+          <li><strong>FAR.AI — RE / Senior RE</strong> <span class="status-unk">FTE only (seen)</span> — Ashby posts say <strong>Full-time 40h/wk</strong>. Outside US/Singapore may be EOR/contractor framing but still full-time hours. No public PT listing found 2026-09-15.<br>
+            <a class="post" href="https://jobs.ashbyhq.com/far.ai/52e76732-999b-402f-a908-c4e8b3e7714b">RE</a> · <a class="post" href="https://jobs.ashbyhq.com/far.ai/4f6fece8-5ed9-41f4-aed8-902d52dc42ef">Senior RE</a></li>
+          <li><strong>Apollo Research — RS/E Evaluations</strong> <span class="status-closed">not PT</span> — Full-time; London or SF <strong>in-person</strong> (flexible hours / some WFH). Poor fit for Tyler WFH / little travel.<br>
+            <a class="post" href="https://www.apolloresearch.ai/careers">apolloresearch.ai/careers</a></li>
+          <li><strong>NVIDIA eval eng (AI Safety &amp; Security)</strong> — FTE; confirm TX on remote-state list before counting on it.</li>
+          <li><strong>Hugging Face</strong> — open-source ML eng roles are FTE remote; not AI-safety-eval seats. No PT safety role found today.</li>
+          <li><strong>Open Phil / Coefficient job board</strong> — use <a href="https://jobs.80000hours.org">jobs.80000hours.org</a> filters for “part-time” / “contract”; org boards change weekly.</li>
+          <li><strong>Nearby PT (data-labeling adjacent, not research grant path):</strong> OpenTrain “AI Safety Model Evaluator” contractor listings (~$60–$70/hr, 20+ h/wk) — judgment/policy labeling; different from METR/Epoch research eng.</li>
+        </ul>
+        <p class="caveat"><strong>Honesty:</strong> Only METR Task Dev + Epoch DS Contract are clearly advertised as flexible part-time among the keeper orgs today. Do not assume FAR/Apollo/NVIDIA offer PT without asking.</p>
+      </section>
+
+      <section data-speak="No-red-team-required paths. Eval task authoring at METR is about hard tasks and scoring, not jailbreak leadership. Epoch researcher and benchmarking software engineer are measurement and technical writing heavy. FAR Research Engineer can include adversarial work but does not require a prior red-team title the way Jailbreaking Lead does. Fellows and BlueDot train on the job. Flag FAR Jailbreaking Lead as not for the no-red-team path.">
+        <h2>No-red-team-required paths</h2>
+        <ul class="tight">
+          <li><strong>Eval task authoring / measurement eng — METR Task Dev</strong><br>
+            Needs strong SE + ability to build hard (ideally agent) evals. Prior <em>red-team / jailbreak portfolio</em> is <strong>not</strong> the JD’s center of gravity. Harness + agent-eval samples help more than attack papers.</li>
+          <li><strong>Epoch AI — Researcher / Senior Researcher</strong> <span class="status-open">rolling FTE</span><br>
+            Capabilities trajectories, benchmarks, forecasting, careful write-ups. Posted Researcher <strong>$115k–$185k</strong>; Senior <strong>$168k–$300k</strong> (location/seniority). Remote; prefer Pacific↔UTC overlap; ~3 retreats/year travel.<br>
+            Little/no red-team requirement vs FAR jailbreak track.<br>
+            <a class="post" href="https://jobs.lever.co/epoch-ai/de7b4c71-ece2-454a-be70-e7b75c5f3b23">Researcher Lever</a></li>
+          <li><strong>Epoch — Software Engineer, Benchmarking</strong><br>
+            Run/maintain benchmarks; design new ones; provider integrations. Posted <strong>$125k–$275k</strong>. Eng-first, measurement-first.<br>
+            <a class="post" href="https://jobs.lever.co/epoch-ai/d172645e-a11f-44a0-88d0-7a989e0a28f6">SE Benchmarking</a></li>
+          <li><strong>FAR.AI Research Engineer</strong> — SE/ML experiment execution; may touch adversarial evals but JD does not require “Jailbreaking Lead”-level prior RT depth. Still FTE.</li>
+          <li><strong>FAR.AI Jailbreaking Lead</strong> <span class="status-closed">NOT for no-RT path</span> — flag and skip if you want a path without red-team depth.</li>
+          <li><strong>Fellows / courses (train on the job):</strong>
+            <ul>
+              <li><strong>BlueDot Technical AI Safety</strong> — free / pay-what-you-want: <a href="https://bluedot.org/courses/technical-ai-safety">bluedot.org/courses/technical-ai-safety</a></li>
+              <li><strong>Anthropic Fellows</strong> — Nov 2026 cohort apps closed Jul 26; stipend posted <strong>$3,850/week</strong> USD + ~$15k/mo compute; 4 mo FT; US/UK/CA work auth. Watch next cohort: <a href="https://alignment.anthropic.com/2025/anthropic-fellows-program-2026/">alignment.anthropic.com</a></li>
+              <li><strong>MATS Autumn 2026</strong> — apps closed Jun 7; stipend reported <strong>$5k/mo</strong> + <strong>$8k/mo</strong> compute (Berkeley/London). Watch next round: <a href="https://matsprogram.org">matsprogram.org</a></li>
+            </ul>
+          </li>
+          <li><strong>Contractors who learn on the job:</strong> METR Task Dev application explicitly asks about Inspect / prior eval experience — weak prior is not an auto-reject if SE + attention-to-detail are strong; portfolio tasks beat titles.</li>
+        </ul>
+      </section>
+
+      <section data-speak="Grants and funds. LTFF is closed. Successor is Transformative A I Fund at EA Funds — fund page says always open to individuals with typical grants ten to one hundred fifty K; the generic apply page currently says this fund is not accepting applications — verify before investing hours. Manifund open call lets anyone post a public proposal. SFF Speculation Grants via rolling application. Coefficient Giving formerly Open Phil technical A I safety R F P is closed; email between rounds. Lightspeed Grants inactive since twenty twenty three. Nonlinear funding invitation-only. BlueDot Rapid Grants fifty to ten K for concrete costs. BlueDot Career Transition Grants for full-time pivot. Do not invent open R F Ps.">
+        <h2>Grants &amp; funds (independent / proposal work)</h2>
+        <ul class="tight">
+          <li><strong>LTFF (Long-Term Future Fund)</strong> — <span class="status-closed">CLOSED</span>. Replaced by Transformative AI Fund. Legacy: <a href="https://funds.effectivealtruism.org/funds/far-future">funds…/far-future</a></li>
+          <li><strong>Transformative AI Fund (EA Funds)</strong> — LTFF successor. Fund page (seen today): early-stage grants to <strong>individuals</strong> / new orgs; typically <strong>$10k–$150k</strong>, rarely &gt;$300k; “always open to applications.” Contact: transformativeai[at]effectivealtruismfunds.org.<br>
+            <span class="status-unk">CONFLICT:</span> <a href="https://funds.effectivealtruism.org/apply-for-funding">apply-for-funding</a> page currently says TAIF “isn’t accepting applications.” <strong>Verify live status + email before drafting a full proposal.</strong><br>
+            Fund page: <a class="post" href="https://funds.effectivealtruism.org/funds/transformative-ai">…/transformative-ai</a> · Launch post: <a href="https://forum.effectivealtruism.org/posts/dYuNi5Rh68o9YKstg/ea-funds-is-launching-the-transformative-ai-fund">EA Forum</a></li>
+          <li><strong>Manifund</strong> — open call: anyone can <a href="https://manifund.org/create">create a public proposal</a>; regrantors + donors fund individuals; typical regrant seeds often discussed in <strong>$5k–$50k</strong> range (regrantor budgets $100k+). How-to: <a href="https://manifund.org/about/open-call">manifund.org/about/open-call</a> · Regranting: <a href="https://manifund.org/about/regranting">regranting</a></li>
+          <li><strong>SFF / Survival and Flourishing</strong> — Rolling <strong>Speculation Grants</strong> + next S-Process via one application. 2026 main/theme deadlines (Apr–Jul) have passed; rolling app still valid for future rounds / expedited speculation. <a href="https://survivalandflourishing.fund/speculation-grants.html">Speculation Grants</a> · <a href="https://survivalandflourishing.fund/s-process">S-Process</a></li>
+          <li><strong>Coefficient Giving (formerly Open Philanthropy) — Technical AI Safety RFP</strong> — <span class="status-closed">no open opportunities</span> on Navigating Transformative AI page (seen today). Between RFPs: technicalaisafety@coefficientgiving.org (esp. founding new research orgs). Prior 2025 RFP closed. <a href="https://coefficientgiving.org/funds/navigating-transformative-ai/">coefficientgiving.org/…</a></li>
+          <li><strong>Lightspeed Grants</strong> — <span class="status-closed">inactive since 2023 round</span> (aisafety.com / lightspeedgrants.org).</li>
+          <li><strong>Nonlinear</strong> — funding currently <span class="status-closed">invitation-only</span>: <a href="https://www.nonlinear.org/funding.html">nonlinear.org/funding.html</a>. Network last public round ~2024.</li>
+          <li><strong>BlueDot Rapid Grants</strong> — <span class="status-open">rolling</span> · typically <strong>$50–$10,000</strong> for concrete costs (compute, tooling, research access, events). Fast decisions (~5 working days targeted). Higher odds if BlueDot community, but page says everyone can apply. <a href="https://bluedot.org/grants/rapid">bluedot.org/grants/rapid</a></li>
+          <li><strong>BlueDot Career Transition Grants</strong> — funding for a <strong>full-time</strong> personal transition period (not a discrete compute invoice). Rolling. <a href="https://bluedot.org/grants/career-transition">career-transition</a></li>
+          <li><strong>Also listed on aisafety.com/funding (verify each before applying):</strong> Lightcone Commons; Leo Gao experimental microgrants (~$10k, minimal app); IFP Launch Sequence ($10k honorarium + matchmaking); AI Risk Mitigation Fund; CLR Fund (s-risk); Paradigm / Iliad / AIAF — statuses change; treat as leads not confirmed open RFPs.</li>
+        </ul>
+        <p class="caveat"><strong>Do not fabricate amounts or open RFPs.</strong> Ranges above are from fund pages / announcements seen 2026-09-15. Closed/unknown marked.</p>
+      </section>
+
+      <section data-speak="Credits and compute. Anthropic External Researcher Access: about one thousand dollars A P I credits for A I safety alignment research, reviewed first Monday monthly. Open A I Researcher Access: up to one thousand dollars A P I, quarterly review, affiliation to academic or research org or nonprofit research preferred. Anthropic A I for Science up to twenty K is academia nonprofit biology-leaning, poor fit. A W S and G C P research credits require institutional affiliation — usually not for unaffiliated independents. Bug bounty is income plus free test alias when accepted. Fellows closed for current cohorts. BlueDot course is free. No generic SaaS discount advice.">
+        <h2>Credits &amp; compute / subscriptions that matter</h2>
+        <ul class="tight">
+          <li><strong>Anthropic External Researcher Access Program</strong> — free API credits for high-priority AI safety/alignment research. Successful awards: <strong>$1,000</strong> API credits (rare higher). Reviewed <strong>first Monday each month</strong>. Credits ≠ Claude web app. Not Usage-Policy exempt for jailbreaking — bounty program is the authorized jailbreak path.<br>
+            <a class="post" href="https://support.anthropic.com/en/articles/9125743-what-is-the-external-researcher-access-program">Help Center</a></li>
+          <li><strong>Anthropic AI for Science</strong> — up to <strong>$20k</strong> API / 6 mo for academia &amp; nonprofit scientific research (bio/life-sciences lean). Poor fit for unaffiliated safety proposal work. <a href="https://support.anthropic.com/en/articles/11199177-anthropic-s-ai-for-science-program">AI for Science</a></li>
+          <li><strong>OpenAI Researcher Access Program</strong> — up to <strong>$1,000</strong> API credits / 12 months; reviews Mar/Jun/Sep/Dec. Eligibility: affiliation to academic institution or research org / nonprofit research activities. <a href="https://openai.com/form/researcher-access-program/">Apply form</a> · <a href="https://help.openai.com/en/articles/10139500-researcher-access-program-faq">FAQ</a></li>
+          <li><strong>AWS Cloud Credit for Research</strong> — faculty/staff/grad students at accredited institutions. Students up to <strong>$5,000</strong>; faculty/staff uncapped (proposal-based). <strong>Not for unaffiliated independents</strong> per eligibility. <a href="https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/">AWS</a></li>
+          <li><strong>Google Cloud Research Credits</strong> — faculty / PhD / postdoc / eligible nonprofit research institutions. Reported ceilings often up to <strong>$5k</strong> faculty/postdoc, <strong>$1k</strong>/yr PhD — confirm on form. <a href="https://edu.google.com/intl/ALL_us/programs/credits/research/">Google for Education</a></li>
+          <li><strong>Azure Academic Research</strong> — inquiry-form credits for academic researchers; not a clear unaffiliated-individual program. <a href="https://www.microsoft.com/en-us/azure-academic-research/">Microsoft</a></li>
+          <li><strong>Anthropic Model Safety Bug Bounty</strong> — ongoing via HackerOne; up to <strong>$35,000</strong> per novel universal jailbreak (grading rubric). Accepted participants get a <strong>free testing model alias</strong> for authorized RT. Already enrolled — income + compute-like access if you ship a claim. <a href="https://support.claude.com/en/articles/12119250-model-safety-bug-bounty-program">Help Center</a></li>
+          <li><strong>MATS / Anthropic Fellows compute</strong> — stipend+compute only while enrolled; current Autumn/Nov cohorts’ app windows closed. Watch next cycles.</li>
+          <li><strong>BlueDot course</strong> — free / pay-what-you-want (not a compute grant).</li>
+        </ul>
+        <p class="caveat">No generic Claude Pro / ChatGPT Plus “discount tips” — only real credit programs listed.</p>
+      </section>
+
+      <section data-speak="What to do this month given bounty harness and proposals. One: file one clean Anthropic model-safety bounty claim from the harness — credibility without pubs. Two: apply METR Task Development Engineer and METR general E O I. Three: apply Anthropic External Researcher Access with a one-page testable proposal. Four: post a Manifund proposal or draft a Transformative A I Fund E O I once application status is confirmed. Five: BlueDot Rapid Grant for concrete A P I or tooling costs if community-eligible. Six: Epoch researcher or benchmarking if you want FTE measurement without red-team. Skip Jailbreaking Lead for now.">
+        <h2>What to do this month</h2>
+        <ol>
+          <li><strong>Ship one Anthropic model-safety bounty claim</strong> from the existing harness — highest-leverage credibility upgrade with no pubs. Authorized path; free alias already in play if accepted.</li>
+          <li><strong>Apply METR Task Development Engineer</strong> (PT/contract, $150–$300/hr posted) + <strong>METR EOI</strong> in parallel. Attach agent-eval / harness samples; mention Inspect practice if any.</li>
+          <li><strong>Apply Anthropic External Researcher Access</strong> (~$1k API) with a crisp 1-page description of a <em>testable</em> safety proposal (hypothesis, method, success metric, compute need).</li>
+          <li><strong>Funding write-ups:</strong> (a) Manifund public proposal for a bounded experiment; (b) email/check TAIF live apply status — if open, short early-stage individual application; (c) optional SFF rolling Speculation Grant if the proposal is speculative/high-variance.</li>
+          <li><strong>BlueDot:</strong> start Technical AI Safety if not done; submit Rapid Grant for concrete API/tooling once a proposal is underway. Career Transition only if ready for a funded full-time pivot block.</li>
+          <li><strong>FTE measurement track (optional parallel):</strong> Epoch Researcher or SE Benchmarking — no RT portfolio required; accept retreat travel.</li>
+          <li><strong>Skip for now:</strong> FAR Jailbreaking Lead (RT-depth); Apollo London/SF onsite; NVIDIA until TX remote confirmed.</li>
+        </ol>
+      </section>
+
+      <section data-speak="Honesty and sources. Survey date September fifteenth twenty twenty six. Part-time language for METR verified on Lever and metr.org careers. Grant amounts only from fund pages or announcements — never invented. Transformative A I Fund open versus closed conflict flagged. Lightspeed inactive. Coefficient technical R F P closed. Fellows and MATS current cohorts closed. Confirm every link live before investing hours.">
+        <h2>Honesty / sources</h2>
+        <p>Research date <strong>2026-09-15</strong>. Methods: WebSearch + WebFetch of org career pages, Lever/Ashby, EA Funds, Manifund, SFF, Coefficient Giving, Anthropic/OpenAI help centers, BlueDot grant pages, aisafety.com/funding.</p>
+        <ul class="tight">
+          <li>METR PT language verified live on Lever + metr.org/careers card.</li>
+          <li>Dollar figures only when posted on primary sources; closed/unknown marked; <strong>no invented RFPs or amounts</strong>.</li>
+          <li>TAIF open-status conflict between fund page and apply-for-funding page — flagged, not resolved.</li>
+          <li>FAR Jailbreaking Lead explicitly flagged off the no-RT path.</li>
+          <li>Prior filtered keepers (NVIDIA TX gate, FAR FTE, Epoch FTE) carried forward with PT/RT re-check today.</li>
+        </ul>
+        <p>Primary URLs: <a href="https://metr.org/careers">metr.org/careers</a> · <a href="https://jobs.lever.co/metr/b4812bf4-c259-406b-8ffa-4a463fff34f7">METR Lever</a> · <a href="https://jobs.lever.co/epoch-ai/ab88ba6e-6a92-44cc-8830-a2dafca31f1a">Epoch DS</a> · <a href="https://funds.effectivealtruism.org/funds/transformative-ai">TAIF</a> · <a href="https://manifund.org/about/open-call">Manifund open call</a> · <a href="https://survivalandflourishing.fund/speculation-grants.html">SFF Speculation</a> · <a href="https://bluedot.org/grants/rapid">BlueDot Rapid</a> · <a href="https://support.anthropic.com/en/articles/9125743-what-is-the-external-researcher-access-program">Anthropic researcher credits</a> · <a href="https://aisafety.com/funding">aisafety.com/funding</a></p>
+      </section>
+    </article>
+
+  </main>
+  <script>
+(function () {
+  const sections = [...document.querySelectorAll("article section[data-speak]")];
+  if (!sections.length) return;
+
+  const status = document.getElementById("tts-status");
+  const rateSel = document.getElementById("tts-rate");
+  const voiceSel = document.getElementById("tts-voice");
+  const playBtn = document.getElementById("tts-play");
+  const progress = document.getElementById("tts-progress");
+  const progressLabel = document.getElementById("tts-progress-label");
+  const posKey = "titus-digest-pos:" + location.pathname;
+  const modeKey = "titus-digest-mode:" + location.pathname;
+
+  let i = 0;
+  let playing = false;
+  let paused = false;
+  let audio = null; // reuse one element for iOS reliability
+  let advanceTimer = null;
+  let lastTap = { n: -1, t: 0 };
+
+  try {
+    const saved = parseInt(localStorage.getItem(posKey) || "0", 10);
+    if (!Number.isNaN(saved) && saved >= 0 && saved < sections.length) i = saved;
+  } catch (_) {}
+
+  function setStatus(t) { if (status) status.textContent = t; }
+  function savePos() { try { localStorage.setItem(posKey, String(i)); } catch (_) {} }
+  function rate() { return parseFloat(rateSel?.value || "1") || 1; }
+  function hasLeoClip(idx) {
+    const a = sections[idx]?.getAttribute("data-audio");
+    return !!(a && a.trim());
+  }
+  function preferLeo() {
+    if (voiceSel && voiceSel.value === "safari") return false;
+    return true;
+  }
+
+  function updateChrome() {
+    sections.forEach((s, n) => {
+      s.classList.toggle("active", n === i);
+      s.setAttribute("aria-current", n === i ? "true" : "false");
+    });
+    if (progress) {
+      progress.max = Math.max(sections.length - 1, 1);
+      progress.value = i;
+    }
+    if (progressLabel) progressLabel.textContent = (i + 1) + " / " + sections.length;
+    if (playBtn) {
+      playBtn.textContent = playing && !paused ? "Pause" : "Play";
+      playBtn.classList.toggle("primary", !(playing && !paused));
+    }
+    savePos();
+  }
+
+  function clearAdvanceTimer() {
+    if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
+  }
+
+  function ensureAudio() {
+    if (audio) return audio;
+    audio = new Audio();
+    audio.preload = "auto";
+    audio.addEventListener("ended", onAudioEnded);
+    audio.addEventListener("error", () => {
+      if (!playing) return;
+      setStatus("Audio error — advancing…");
+      scheduleAdvance(400);
+    });
+    // Backup: if ended doesn't fire (iOS quirk), catch near-end
+    audio.addEventListener("timeupdate", () => {
+      if (!playing || paused || !audio.duration || !isFinite(audio.duration)) return;
+      if (audio.duration - audio.currentTime < 0.35 && audio.currentTime > 0.5) {
+        // don't double-fire; ended usually handles it
+      }
+    });
+    return audio;
+  }
+
+  function onAudioEnded() {
+    if (!playing || paused) return;
+    scheduleAdvance(50);
+  }
+
+  function scheduleAdvance(ms) {
+    clearAdvanceTimer();
+    advanceTimer = setTimeout(() => {
+      advanceTimer = null;
+      if (!playing || paused) return;
+      if (i + 1 >= sections.length) {
+        playing = false;
+        paused = false;
+        setStatus("Done.");
+        updateChrome();
+        return;
+      }
+      playIndex(i + 1, { fromAdvance: true });
+    }, ms);
+  }
+
+  function stopSafari() {
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (_) {}
+  }
+
+  function pausePlayback() {
+    paused = true;
+    playing = false;
+    clearAdvanceTimer();
+    if (audio && !audio.paused) {
+      try { audio.pause(); } catch (_) {}
+    }
+    stopSafari();
+    setStatus("Paused at section " + (i + 1) + ". Tap Play or the paragraph to resume.");
+    updateChrome();
+  }
+
+  function resumeLeo() {
+    const a = ensureAudio();
+    if (!a.src) { playIndex(i); return; }
+    paused = false;
+    playing = true;
+    a.playbackRate = rate();
+    setStatus("Leo · " + (i + 1) + "/" + sections.length);
+    updateChrome();
+    a.play().catch(() => {
+      setStatus("Tap Play again (autoplay blocked).");
+      playing = false;
+      updateChrome();
+    });
+  }
+
+  function speakSafari(idx) {
+    if (!window.speechSynthesis) {
+      setStatus("Speech not available.");
+      return;
+    }
+    if (idx < 0 || idx >= sections.length) {
+      playing = false; paused = false; setStatus("Done."); updateChrome(); return;
+    }
+    i = idx;
+    clearAdvanceTimer();
+    stopSafari();
+    if (audio) { try { audio.pause(); } catch (_) {} }
+    const sec = sections[i];
+    sec.scrollIntoView({ behavior: "smooth", block: "center" });
+    const text = (sec.getAttribute("data-speak") || sec.innerText || "").trim();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = rate();
+    u.lang = "en-US";
+    u.onstart = () => { playing = true; paused = false; setStatus("Safari · " + (i + 1) + "/" + sections.length); updateChrome(); };
+    u.onend = () => { if (!playing || paused) return; scheduleAdvance(50); };
+    u.onerror = () => { if (paused) return; playing = false; setStatus("Interrupted — tap Play."); updateChrome(); };
+    playing = true; paused = false; updateChrome();
+    window.speechSynthesis.speak(u);
+  }
+
+  function playLeo(idx) {
+    if (idx < 0 || idx >= sections.length) {
+      playing = false; paused = false; setStatus("Done."); updateChrome(); return;
+    }
+    const src = sections[idx].getAttribute("data-audio");
+    if (!src) {
+      setStatus("No Leo clip — Safari fallback.");
+      speakSafari(idx);
+      return;
+    }
+    i = idx;
+    clearAdvanceTimer();
+    stopSafari();
+    const a = ensureAudio();
+    const abs = new URL(src, location.href).href;
+    // Only reset src when changing clip (resume keeps position)
+    const changing = !a.src || a.src !== abs;
+    if (changing) {
+      a.src = src;
+      try { a.currentTime = 0; } catch (_) {}
+    }
+    a.playbackRate = rate();
+    sections[i].scrollIntoView({ behavior: "smooth", block: "center" });
+    playing = true;
+    paused = false;
+    setStatus("Leo · " + (i + 1) + "/" + sections.length);
+    updateChrome();
+    a.play().catch(() => {
+      setStatus("Tap Play again (autoplay blocked).");
+      playing = false;
+      updateChrome();
+    });
+  }
+
+  function playIndex(idx) {
+    if (preferLeo() && hasLeoClip(idx)) playLeo(idx);
+    else speakSafari(idx);
+  }
+
+  function togglePlay() {
+    if (playing && !paused) {
+      pausePlayback();
+      return;
+    }
+    if (paused && preferLeo() && audio && audio.src && hasLeoClip(i)) {
+      resumeLeo();
+      return;
+    }
+    playIndex(i);
+  }
+
+  playBtn?.addEventListener("click", (e) => { e.stopPropagation(); togglePlay(); });
+  document.getElementById("tts-prev")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    paused = false;
+    playIndex(Math.max(0, i - 1));
+  });
+  document.getElementById("tts-next")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    paused = false;
+    playIndex(Math.min(sections.length - 1, i + 1));
+  });
+  document.getElementById("tts-restart")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    paused = false;
+    if (audio) { try { audio.currentTime = 0; } catch (_) {} }
+    playIndex(0);
+  });
+  rateSel?.addEventListener("change", () => {
+    if (audio && playing) audio.playbackRate = rate();
+    else if (playing && !paused && preferLeo() === false) playIndex(i);
+  });
+  voiceSel?.addEventListener("change", () => {
+    try { localStorage.setItem(modeKey, voiceSel.value); } catch (_) {}
+    if (playing && !paused) playIndex(i);
+  });
+  progress?.addEventListener("input", () => {
+    const v = parseInt(progress.value, 10);
+    if (!Number.isNaN(v)) { paused = false; playIndex(v); }
+  });
+
+  // Paragraph tap: same section while playing → pause; same while paused → resume; other → play from start
+  sections.forEach((sec, n) => {
+    sec.style.cursor = "pointer";
+    sec.title = "Tap to play / pause";
+    sec.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      const now = Date.now();
+      // ignore double-fire within 280ms on same section
+      if (lastTap.n === n && now - lastTap.t < 280) return;
+      lastTap = { n, t: now };
+
+      if (n === i) {
+        if (playing && !paused) {
+          pausePlayback();
+          return;
+        }
+        if (paused) {
+          if (preferLeo() && hasLeoClip(i) && audio && audio.src) resumeLeo();
+          else playIndex(i);
+          return;
+        }
+        playIndex(i);
+        return;
+      }
+      // different paragraph → play from beginning
+      paused = false;
+      if (audio) { try { audio.currentTime = 0; } catch (_) {} }
+      playIndex(n);
+    });
+  });
+
+  // Keep going when screen locks / tab backgrounds if possible
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && playing && !paused && audio && audio.paused) {
+      audio.play().catch(() => {});
+    }
+  });
+
+  try {
+    const m = localStorage.getItem(modeKey);
+    if (m && voiceSel) voiceSel.value = m;
+  } catch (_) {}
+
+  updateChrome();
+  const leoReady = sections.filter((_, n) => hasLeoClip(n)).length;
+  setStatus(leoReady ? ("Leo ready · " + leoReady + " clips · controls at bottom") : "Ready — tap Play");
+})();
+
+  </script>
+</body>
+</html>
