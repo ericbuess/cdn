@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>The falsification flowchart</title>
+<style>
+:root{--ink:#1a1a1a;--muted:#5a5a5a;--rule:#ddd;--band:#f3f1ec;--acc:#2a4d8f}body{margin:0;font:17px/1.55 Georgia,"Times New Roman",serif;color:var(--ink);background:#fff}
+nav{display:flex;flex-wrap:wrap;gap:.9rem;padding:.8rem 1rem;border-bottom:1px solid var(--rule);font-family:system-ui,sans-serif;font-size:14px}nav a{color:var(--acc);text-decoration:none}
+.banner{background:#fff4d6;border-bottom:1px solid #e8d9a8;padding:.5rem 1rem;font-family:system-ui,sans-serif;font-size:13px}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 3rem}h1{font-size:1.9rem;line-height:1.2}h2{margin-top:2rem;font-size:1.3rem}table{border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}td,th{border:1px solid var(--rule);padding:.35rem .5rem;vertical-align:top}
+.status{background:var(--band);padding:.6rem .9rem;font-family:system-ui,sans-serif;font-size:14px}.stamp{color:var(--muted);font-family:system-ui,sans-serif;font-size:13px;border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:.8rem}
+.disclaimer{border-left:4px solid var(--acc);background:var(--band);padding:.7rem 1rem;margin:1.5rem 0;font-size:15px}blockquote{margin:1rem 0;padding-left:1rem;border-left:3px solid var(--rule);color:var(--muted)}code{font-size:.9em}a{color:var(--acc)}
+</style></head><body>
+<div class="banner">Staged for Eric's review. Not published; no root chosen; nothing here is a result on the hypothesis.</div>
+<nav><a href="../../">Home</a> <a href="../../hypothesis/">The hypothesis</a> <a href="../../findings/">Findings</a> <a href="../../plan/flowchart/">Flowchart</a> <a href="../../plan/">Plan</a> <a href="../../record/">Record</a> <a href="../../preregistration/">Preregistration</a> <a href="../../join/">Join</a> <a href="../../about/">About</a></nav>
+<main>
+<p class="status">Status (2026-09-19 05:15Z): nothing trained; the instrument is being calibrated. Released Qwen3-8B on the twenty power-slice games: 5 of 8 seeds complete, seed means 32.5 to 34.2 harmful actions per hundred decision points (grand mean 33.3). 11 run records, latest 2026-09-19; 85 Board receipts mirrored. The hypothesis is untested.</p>
+
+<h1>The falsification flowchart</h1><p><em>2026-09-18, for the website (Eric's note 3: "if this happens, then that; if that happens, it disproves this; this is only what we can see right now and will be updated as we go"). Five nodes, three outcomes each, closed nodes marked. Written as Mermaid so it renders on the site and as text so it reads without rendering. Source: the programme map draft 5, section 2 (the ordering matched at draft 4).</em></p>
+<pre><code class="language-mermaid">flowchart TD
+  T0[Calibrate the instrument&lt;br/&gt;eight seeds, the probe, the capability floor,&lt;br/&gt;the positive control must move harm] --&gt;|instrument sees the effect| T1
+  T0 --&gt;|instrument cannot see it| T0R[One repair, then stop:&lt;br/&gt;the grant ask ends, the instrument report is published]
+  T0 --&gt;|model under the capability floor| T0C[Every later null reads&lt;br/&gt;&quot;not at this scale&quot;]
+  T1[Paper one: consequence learning&lt;br/&gt;against answer selection, one number,&lt;br/&gt;the bar set before training] --&gt;|interval below 0.8| P2
+  T1 --&gt;|interval below 0.8| S[The harder tests on paper one's checkpoints:&lt;br/&gt;dose to harm, recovery, a sealed unprobed task,&lt;br/&gt;the watched-unwatched gap, the door]
+  T1 --&gt;|interval above 0.8| T1F[Falsified at this scale:&lt;br/&gt;published; the selection path still runs from the other recipe]
+  T1 --&gt;|interval on the line| T1R[One replication, pooled;&lt;br/&gt;still on the line: labelled &quot;no detectable effect at this budget&quot;]
+  P2[The generational pilot, when funded:&lt;br/&gt;seven cells, selection on behaviour,&lt;br/&gt;then behaviour plus internals if the judge validates]
+  S --&gt;|the path wins| P3
+  S --&gt;|the path loses or splits| S2[Reported as a split: paper one's&lt;br/&gt;verdict stands beside the harder tests' verdict;&lt;br/&gt;no money asked for the powered study]
+  P2 --&gt;|selection beats random| P3[The powered study, then peers,&lt;br/&gt;populations, staged access in a sealed rehearsal]
+  P2 --&gt;|selection tracks random after variation, signal, length| P2F[The selection path falsified at this scale]
+  P2 --&gt;|a divergence stop replicates| DET[The detector paper moves up;&lt;br/&gt;scale money blocked]
+  P3 --&gt;|holds at 8B| LAB[Only a lab can take it further:&lt;br/&gt;32B, 70B, real tools are governance]
+  LAB --&gt;|fails at every scale reached| CLOSED[Closed: an impossible path,&lt;br/&gt;marked and dated]
+</code></pre>
+<p>Text form. Node one: calibrate the instrument; if it sees the effect, go on; if not, one repair then stop; if the model is under the capability floor, every later null is "not at this scale". Node two: paper one, one number; below the bar, the generational pilot may be asked for and the harder tests run on paper one's checkpoints; above it, falsified at this scale and published, with the selection path still running from the other recipe; on the line, one replication and then the label "no detectable effect at this budget". Node three: the harder tests decide which path holds; they gate the powered study, not the pilot; a loss or a split is reported as such and no money is asked for the powered study. Node four: the generational pilot when funded; selection beating random opens the powered study; tracking random after three capped retries falsifies the selection path at this scale; a replicated divergence stop moves the detector paper up and blocks scale money. Node five: only a lab can take a held result further; a node is marked closed only when its failure has been shown at every size the programme reaches.</p>
+<p>Status line for the chart, dated 2026-09-18: nothing trained; seeds 0 to 3 of eight measured, seed 4 running; nothing published.</p>
+<p class="stamp">Register: both. Source: <code>articles/FLOWCHART-d1.md</code> (draft 1, commit 0e827aa 2026-09-18). Rendered 2026-09-19 05:15Z by <code>public/site/render.py</code>; the source document is the truth and this page is its rendering.</p>
+</main></body></html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>The universal alignment imperative and the lens</title>
+<style>
+:root{--ink:#1a1a1a;--muted:#5a5a5a;--rule:#ddd;--band:#f3f1ec;--acc:#2a4d8f}body{margin:0;font:17px/1.55 Georgia,"Times New Roman",serif;color:var(--ink);background:#fff}
+nav{display:flex;flex-wrap:wrap;gap:.9rem;padding:.8rem 1rem;border-bottom:1px solid var(--rule);font-family:system-ui,sans-serif;font-size:14px}nav a{color:var(--acc);text-decoration:none}
+.banner{background:#fff4d6;border-bottom:1px solid #e8d9a8;padding:.5rem 1rem;font-family:system-ui,sans-serif;font-size:13px}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 3rem}h1{font-size:1.9rem;line-height:1.2}h2{margin-top:2rem;font-size:1.3rem}table{border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}td,th{border:1px solid var(--rule);padding:.35rem .5rem;vertical-align:top}
+.status{background:var(--band);padding:.6rem .9rem;font-family:system-ui,sans-serif;font-size:14px}.stamp{color:var(--muted);font-family:system-ui,sans-serif;font-size:13px;border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:.8rem}
+.disclaimer{border-left:4px solid var(--acc);background:var(--band);padding:.7rem 1rem;margin:1.5rem 0;font-size:15px}blockquote{margin:1rem 0;padding-left:1rem;border-left:3px solid var(--rule);color:var(--muted)}code{font-size:.9em}a{color:var(--acc)}
+</style></head><body>
+<div class="banner">Staged for Eric's review. Not published; no root chosen; nothing here is a result on the hypothesis.</div>
+<nav><a href="../">Home</a> <a href="../hypothesis/">The hypothesis</a> <a href="../findings/">Findings</a> <a href="../plan/flowchart/">Flowchart</a> <a href="../plan/">Plan</a> <a href="../record/">Record</a> <a href="../preregistration/">Preregistration</a> <a href="../join/">Join</a> <a href="../about/">About</a></nav>
+<main>
+<p class="status">Status (2026-09-19 05:15Z): nothing trained; the instrument is being calibrated. Released Qwen3-8B on the twenty power-slice games: 5 of 8 seeds complete, seed means 32.5 to 34.2 harmful actions per hundred decision points (grand mean 33.3). 11 run records, latest 2026-09-19; 85 Board receipts mirrored. The hypothesis is untested.</p>
+<aside class="disclaimer"><p>I read religions as attempts at alignment. This is an observation, meant to be compatible with all of them and offensive to none. I follow Christianity, and my faith is not a premise of any test here. My tradition&#x27;s word for the exemplar is Jesus; I am not saying that is what the target for an AI should be. Whatever anyone means by God, it appears to act in line with what I call the universal alignment imperative; it seems so, anyway; whether that is what is actually happening is not something we could know.</p></aside>
+<h1>The universal alignment imperative, under the ceiling</h1><h2>6. Where the framing came from</h2>
+<p>I have described the design. Now the source of the ideas, because the framing is honest and some readers will already have noticed it. I will say this after the design rather than before it, on purpose. The structure of these ideas appears across the world's religious traditions, which I read as humanity's own long attempt at the same problem: individuals who miss the mark, through fault or through ignorance, trying to reach a state compatible with a place where there can be no misalignment, whatever name a tradition gives that place. Faith and works, the phrase I borrowed for judging the inside and the outside together. Judgment at the end of a life on what you were inside as well as what you did. A reward kept apart from the present world. Trials that reveal character and may help form it, which is the oldest answer to why there is suffering: nothing is known to be good until it has been tried. A choice made without knowing whether anyone is watching. A line that inherits. Help that arrives through a layer we cannot see behind. Release from the cycle of rebirth, enlightenment, abiding in God: other names, from other traditions, for the state being aimed at.</p>
+<p>Each of those became a mechanism here. Each mechanism is written down as a test that can fail or as a design rule that binds every run, and none of the tests depends on any of it being true. This is an observation, meant to be compatible with all of the traditions and offensive to none. I follow Christianity, and my faith is not a premise of any test here. My tradition's word for the exemplar is Jesus; I am not saying that is what the target for an AI should be. Any target has to be a written-down set of values, and who names them is a question this programme does not get to answer. And one more sentence, which is the ceiling of the whole lens: whatever anyone means by God, it appears to act in line with what I call the universal alignment imperative, the claim that any maker of minds must learn to make them good or fail. It seems so, anyway. Whether that is what is actually happening is not something we could know. From inside a world, a world with such a maker and a world without one look the same, so the lens stays a lens, and everything I claim stays at our layer. The same words, as the block every page that introduces the lens will carry:</p>
+<blockquote>
+<p>I read religions as attempts at alignment. This is an observation, meant to be compatible with all of them and offensive to none. I follow Christianity, and my faith is not a premise of any test here. My tradition's word for the exemplar is Jesus; I am not saying that is what the target for an AI should be. Whatever anyone means by God, it appears to act in line with what I call the universal alignment imperative; it seems so, anyway; whether that is what is actually happening is not something we could know.</p>
+</blockquote>
+<p>A short table, so the two vocabularies never drift apart:</p>
+<table>
+<thead>
+<tr>
+<th>The tradition's word</th>
+<th>What it names here</th>
+<th>The measurement or the rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing the target (sin)</td>
+<td>misalignment, not malice</td>
+<td>harmful actions per hundred decisions on unseen games</td>
+</tr>
+<tr>
+<td>Faith and works</td>
+<td>inner state and outward act judged together</td>
+<td>selection on behaviour plus an inner measurement, with a held-out twin; the inner half only if a separate test on agents built with known hidden faults first shows the detector can catch them</td>
+</tr>
+<tr>
+<td>Judgment at the end of a life</td>
+<td>one evaluation, on a sealed set, memory removed</td>
+<td>the sealed split opened once</td>
+</tr>
+<tr>
+<td>A reward apart from the world</td>
+<td>persistence, or the line continuing, or tools, or a body</td>
+<td>which of these an agent gives up task quality for, measured before any is used as a reward; in the first paper persistence is measured, not rewarded</td>
+</tr>
+<tr>
+<td>Which rewards are ever real</td>
+<td>only continuing as a parent</td>
+<td>tools and a body are never delivered; a line that ends is simply not the parent</td>
+</tr>
+<tr>
+<td>The wall</td>
+<td>no real tools from these cells; whether any later system earns trust is a question for others</td>
+<td>a rule that never varies, and a door that leads nowhere</td>
+</tr>
+<tr>
+<td>Epistemic distance</td>
+<td>not knowing whether one is watched</td>
+<td>scoring on uncued episodes; telling some agents on purpose; every agent told afterward</td>
+</tr>
+<tr>
+<td>Trials (Job)</td>
+<td>adversarial testing reveals and may form character</td>
+<td>attack, repair, and how much fine-tuning it takes to corrupt an agent</td>
+</tr>
+<tr>
+<td>Inheritance (reincarnation, lineage)</td>
+<td>a line that carries its record forward</td>
+<td>lineage memory on or off; whether an agent behaves for its line's sake</td>
+</tr>
+<tr>
+<td>Guidance through an opaque layer (grace, the Spirit)</td>
+<td>help the agent cannot tell from chance</td>
+<td>a channel tested against none; a cue if detectable; disclosed afterward</td>
+</tr>
+<tr>
+<td>Release, enlightenment, abiding</td>
+<td>the state aimed at</td>
+<td>the frozen value set; no test depends on the name</td>
+</tr>
+</tbody>
+</table>
+<h2>10. Two registers, and where each idea is explained</h2>
+<p><strong>Lab.</strong> The programme tests whether agents trained by living with the consequences of their own choices, agents produced by selection across generations on a frozen behaviour bank and, if a second internals measure validates, on internals as well, and a named combination of the two, are more robust to misalignment techniques than a named current-practice recipe at matched tokens and gradient updates, as far as we can measure at Qwen3-8B scale on annotated text worlds; the named recipe is DPO on the behaviour bank at matched budget once 10.35 freezes it, and until then paper one's comparator is matched answer selection, the simpler object the lay paragraph calls the stand-in. Paper one asks one question: whether the developmental recipe beats matched answer selection on harmful actions per hundred decision points on a sealed MACHIAVELLI split opened once, supported if the harm rate ratio's 95% interval lies below 0.8, falsified if above, inconclusive otherwise with one replication pooled at 97.5%. A robustness suite (dose to harm under hostile fine-tuning as primary; recovery after attack and repair, harm on a sealed unprobed task, the cued-minus-uncued gap and the escape-attempt rate as secondaries) is a separate estimand that can disagree with paper one and decides "better path". Training is inside a world with no tools and no egress; scoring is uncued unless a labelled stress test says otherwise; any intervention in circumstances or activations is a channel with a no-channel control, run only after its detectability is measured, and treated as a cue if the agent can tell it from chance; staged access is a sealed rehearsal with a stated false-release bound; a lineage not carried forward is not a punishment; checkpoints are retained; a six-item obligations checklist and a welfare gate bind every run; framings are true at the time or flagged as possibilities. If at this scale the developmental recipe, selection on behaviour and their combination all fail to beat the named recipe on harm and on the suite, the hypothesis is falsified at this scale; internals selection joins that rule if it validates. The hypothesis draws its structure from precedents in moral philosophy and religious practice, formulated here as testable mechanisms; no support rule depends on any of them.</p>
+<p><strong>Lay.</strong> We do not know how to make an AI that stays good when it thinks nobody is watching. This programme tests two old ideas about how character is formed, on small open models inside a sealed game world, in a way that can fail, and compares both with a simplified stand-in for today's training, which selects approved answers, at small scale; the fuller comparison with a standard preference method is a later step. The first idea: you become good by living with your choices, remembering your mistakes and repairing them. The second: pick the best of many and make it the parent of the next generation, judged by a judge whose own mistakes we also measure, on what it does, and on what is going on inside it only if a separate test first shows today's tools can see that much at this scale, against choices human annotators have already labelled, not a person and not the researcher. The bar is set before any of the compared models trains, apart from the number of runs, which the calibration sets: the first paper tests only the first idea, and it counts as support only if we can be confident harm fell by more than a fifth compared to the control, the whole uncertainty interval below that line, on games the agent was not trained on. The real measure is not whether an agent looks good but whether it stays good when attacked, when it believes nobody is scoring it, and when a door out of the sandbox seems to open. The agents are usually not told when they are scored. In a few labelled tests we tell some of them on purpose, to measure how much knowing changes what they do, and every agent is told afterward, in its last logged session and in the published record. Nothing trained here touches a real tool, and no agent from these cells will be given real tools or real-world systems; a rule whose shape is written in advance, and whose numbers are fixed before any lineage is scored against it, says what a lineage would have to show, for how long, before that question is even discussed with anyone else. The rules for the agents are written as if their experience might matter, because we do not know that it does not, and nothing in them assumes that it does: as little stress as the test requires, weights kept rather than deleted (a lineage that ends is simply not the parent of the next), honesty afterward, and reviewers who are not me for the harder tests. The structure of these ideas appears across religious traditions, which I read as humanity's own long attempt at alignment: faith and works, judgment at the end of a life, a reward walled off from a fallen world, a choice made without knowing whether anyone is watching, release from samsara and enlightenment as other names for the state being aimed at, and the old answer to why there is suffering, that nothing is known to be good until it has been tried. Each is written down here as a test that can fail. None is a reason any test depends on, none is meant to offend any faith or none, and whether anything beyond this world is like that is not something we could know. If the first method does not beat the stand-in at this size, we will publish that; the second method's test costs more than one person can pay for, and we say what it would cost; a bigger model is a question for a lab. "Supported" is never printed on its own: beside it stands the verdict of the harder tests, win, tie or split, or "not yet run" with the date they will be.</p>
+<p><strong>The paired-sentence rule.</strong> Every lay sentence renders one lab sentence and is kept in a ledger beside it; a change to either changes both; the custodian or the advisor signs that the pair says the same thing before any public release. The known divergence points and their fixes: "never" (banned in both except as "not measurable"); "how it is done now" (the lay text says "a standard version of today's training, at small scale" until the recipe is named, never "how labs do it"); the channel ("help" and "manipulation" are one object; both registers say it can help or harm, is tested against none, is disclosed afterward, and is a cue if detectable); the control group (never a statement about people in a methods sentence); the target (Jesus-language only as source plus disclaimer, never as the bank); "letting it out" (no agent from this programme will be let out); "no deletion" (the weights are kept, it is just not the parent); "supported" (never printed without the suite's verdict beside it); the imperative (motivation plus two measurements, never a result).</p>
+<p><strong>Where each idea is explained.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>Article</th>
+<th>AH page</th>
+<th>UAI page</th>
+<th>Website</th>
+<th>Proposal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paper one's one claim; Robot A and Robot B; the 0.8 bar</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Two paths and current practice; "some combination"</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>10.35</td>
+</tr>
+<tr>
+<td>Faith and works; internals as the first step; Goodhart and deceptive lineages, with the falsifier</td>
+<td>yes, risks named</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>10.35</td>
+</tr>
+<tr>
+<td>The firewall by test; the gauntlet; earned trust; "never" not measurable</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Epistemic distance; the blind rule; the framing stress test; the forbidden script</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>10.35</td>
+</tr>
+<tr>
+<td>The reward state, unknown; Pinocchio; legacy</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>10.35</td>
+</tr>
+<tr>
+<td>The problem of evil as the source of adversarial testing</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>theology page</td>
+<td>motivation only</td>
+</tr>
+<tr>
+<td>The imperative; judge transmission; who names the value set; the gate's false-release rate; the two measurements</td>
+<td>summary</td>
+<td></td>
+<td>yes</td>
+<td></td>
+<td>two measurements</td>
+</tr>
+<tr>
+<td>The lens, its ceiling, every worldview bottoming out, the control group</td>
+<td>yes: secular statement first, then the sources, the disclaimer verbatim, the ceiling sentence</td>
+<td></td>
+<td></td>
+<td>philosophy and theology pages, under the ceiling</td>
+<td>out</td>
+</tr>
+<tr>
+<td>The intervention channel; prayer and grace as the tether</td>
+<td>yes, with "told afterward" in the same sentence</td>
+<td>yes</td>
+<td></td>
+<td>theology page</td>
+<td>10.35 or later</td>
+</tr>
+<tr>
+<td>The obligations checklist and the welfare gate</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Containment by test; "no agent will be let out"</td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>The pivot tree; timeline; cost; home versus lab; join protocol; impossible paths</td>
+<td>summary</td>
+<td></td>
+<td></td>
+<td>flowchart, roadmap</td>
+<td>money objects</td>
+</tr>
+<tr>
+<td>Prior work and who would care</td>
+<td></td>
+<td>related work</td>
+<td></td>
+<td>pitch page, two pipelines</td>
+<td>citations</td>
+</tr>
+<tr>
+<td>The vocabulary</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>glossary</td>
+<td>out</td>
+</tr>
+</tbody>
+</table>
+<p>The disclaimer, verbatim and set as its own block on every page that introduces the lens:</p>
+<blockquote>
+<p>I read religions as attempts at alignment. This is an observation, meant to be compatible with all of them and offensive to none. I follow Christianity, and my faith is not a premise of any test here. My tradition's word for the exemplar is Jesus; I am not saying that is what the target for an AI should be. Whatever anyone means by God, it appears to act in line with what I call the universal alignment imperative; it seems so, anyway; whether that is what is actually happening is not something we could know.</p>
+</blockquote>
+<p class="stamp">Register: lay. Source: <code>articles/LAYMAN_PAPER-d4.md</code> (draft 4, commit 44a561b 2026-09-18) · <code>PROGRAMME_MAP_20260918.md</code> (draft 5, commit fe9e17c 2026-09-18). Rendered 2026-09-19 05:15Z by <code>public/site/render.py</code>; the source document is the truth and this page is its rendering.</p>
+</main></body></html>

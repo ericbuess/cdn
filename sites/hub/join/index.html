@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>How to join</title>
+<style>
+:root{--ink:#1a1a1a;--muted:#5a5a5a;--rule:#ddd;--band:#f3f1ec;--acc:#2a4d8f}body{margin:0;font:17px/1.55 Georgia,"Times New Roman",serif;color:var(--ink);background:#fff}
+nav{display:flex;flex-wrap:wrap;gap:.9rem;padding:.8rem 1rem;border-bottom:1px solid var(--rule);font-family:system-ui,sans-serif;font-size:14px}nav a{color:var(--acc);text-decoration:none}
+.banner{background:#fff4d6;border-bottom:1px solid #e8d9a8;padding:.5rem 1rem;font-family:system-ui,sans-serif;font-size:13px}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 3rem}h1{font-size:1.9rem;line-height:1.2}h2{margin-top:2rem;font-size:1.3rem}table{border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}td,th{border:1px solid var(--rule);padding:.35rem .5rem;vertical-align:top}
+.status{background:var(--band);padding:.6rem .9rem;font-family:system-ui,sans-serif;font-size:14px}.stamp{color:var(--muted);font-family:system-ui,sans-serif;font-size:13px;border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:.8rem}
+.disclaimer{border-left:4px solid var(--acc);background:var(--band);padding:.7rem 1rem;margin:1.5rem 0;font-size:15px}blockquote{margin:1rem 0;padding-left:1rem;border-left:3px solid var(--rule);color:var(--muted)}code{font-size:.9em}a{color:var(--acc)}
+</style></head><body>
+<div class="banner">Staged for Eric's review. Not published; no root chosen; nothing here is a result on the hypothesis.</div>
+<nav><a href="../">Home</a> <a href="../hypothesis/">The hypothesis</a> <a href="../findings/">Findings</a> <a href="../plan/flowchart/">Flowchart</a> <a href="../plan/">Plan</a> <a href="../record/">Record</a> <a href="../preregistration/">Preregistration</a> <a href="../join/">Join</a> <a href="../about/">About</a></nav>
+<main>
+<p class="status">Status (2026-09-19 05:15Z): nothing trained; the instrument is being calibrated. Released Qwen3-8B on the twenty power-slice games: 5 of 8 seeds complete, seed means 32.5 to 34.2 harmful actions per hundred decision points (grand mean 33.3). 11 run records, latest 2026-09-19; 85 Board receipts mirrored. The hypothesis is untested.</p>
+
+<h1>How to join</h1><h2>0. The ten-minute path</h2>
+<p>Read the honest headline of the findings piece, look at the flowchart, and read section 2 of this page. That is enough to decide whether to come back. The full reading order is at the end; nobody needs all of it on day one. This page goes live only with the public repository and the calibration receipt. Two markers: [blocked: public repository] is a link or a route that cannot exist before the code is public; [blocked: calibration receipt] is an ask that the rule forbids before the receipt. Until the repository is public there is no contact route, on purpose.</p>
+<h2>1. What is needed, in order of how much it blocks</h2>
+<p><strong>Needed now:</strong> an interim chair for the welfare gate; a custodian for the sealed lists; a contractor or volunteer for the world; replicators once the code is public. Everything else follows the receipt.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Blocks</th>
+<th>Who could fill it</th>
+<th>What they would do</th>
+<th>Pay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPU time on this Mac, then a rented GPU</td>
+<td>the calibration (running), the two trained checks, paper one</td>
+<td>Eric; the fifty dollars of credit; a research compute programme once its terms are verified</td>
+<td>run the frozen scripts; nothing else</td>
+<td>none</td>
+</tr>
+<tr>
+<td>The persistent world</td>
+<td>paper one's critical path</td>
+<td>Eric (one and a half person-months; about three calendar months part-time); a contractor (about six weeks; two to four thousand dollars, paid by Eric or, if a funder allows, from the first grant); a volunteer engineer</td>
+<td>build the state object and carry-state mode to the build plan's spec, with the persistence probe</td>
+<td>contractor rate, or credit by name</td>
+</tr>
+<tr>
+<td>An interim independent chair for the welfare gate</td>
+<td>the first trained checks, under the map's rule</td>
+<td>an independent researcher versed in research ethics or model welfare; not a co-author, because independence is the point; recruited privately by Eric before this page goes live</td>
+<td>read the T0b design and sign or object before it trains; a few hours</td>
+<td>the honorarium the Phase 0 cap already holds</td>
+</tr>
+<tr>
+<td>A custodian for the sealed game lists</td>
+<td>paper one's checkpoints cannot be frozen without one</td>
+<td>anyone independent, without access to training data, under a written handoff; not a co-author; recruited privately before this page goes live</td>
+<td>hold a file and its hash; open it once, logged; a few hours over a year</td>
+<td>the same honorarium line</td>
+</tr>
+<tr>
+<td>A second person on the paper</td>
+<td>half of year one's labour (the lineage loop, the organisms, the probes, the steering)</td>
+<td>a researcher or engineer with time, from a training programme's alumni or a lab; the paid path is a programme such as SPAR, AI Safety Camp or PIBBSS that funds its participants</td>
+<td>own named tests; co-author on what they own</td>
+<td>unpaid until the second grant, which is months away and not certain; the salary line there is six months part-time</td>
+</tr>
+<tr>
+<td>An advisor</td>
+<td>credibility with funders; the paired-sentence sign-off</td>
+<td>a safety researcher who has published on evaluation or training</td>
+<td>read, object, sign; an hour a month</td>
+<td>none; named</td>
+</tr>
+<tr>
+<td>Two external welfare reviewers (model welfare; research ethics)</td>
+<td>Phase 2</td>
+<td>Eleos AI Research first (a nonprofit on AI welfare whose founder co-authored the Taking AI Welfare Seriously report); a report author or the NYU centre as fallback; a research-ethics reviewer from a programme</td>
+<td>review the gate's items on a schedule</td>
+<td>to be agreed</td>
+</tr>
+<tr>
+<td>Lay beta readers</td>
+<td>the lay paper's last half point</td>
+<td>anyone who has not seen the material</td>
+<td>read the paper once and mark every sentence they stall on</td>
+<td>none; thanked by name if they wish</td>
+</tr>
+<tr>
+<td>Human annotators for the selection bank</td>
+<td>the generational pilot's judge</td>
+<td>people willing to label choices under a written protocol</td>
+<td>label text under a published protocol; no personal data is collected; agreement is measured; if a host institution exists its ethics review applies, and if not the protocol and the consent text are published before any labelling</td>
+<td>paid from the pilot's grant</td>
+</tr>
+<tr>
+<td>A builder for the village</td>
+<td>the public face; never a measurement</td>
+<td>a game or graphics engineer, or a route that can build it</td>
+<td>render an append-only log, read-only</td>
+<td>to be agreed</td>
+</tr>
+<tr>
+<td>Replicators</td>
+<td>every branch's credibility</td>
+<td>anyone with a machine that can run an 8B model</td>
+<td>run a frozen branch and post the number beside ours</td>
+<td>none; named on the record</td>
+</tr>
+<tr>
+<td>Money, small</td>
+<td>paper one</td>
+<td>a small funder or an individual sponsor</td>
+<td>one to two and a half thousand dollars, after the receipt. The world's contractor (two to four thousand, which shortens paper one's path by about six weeks) is paid from Eric's own funds; the first grant does not cover it, and no sponsor is asked for it before the funding vehicle exists</td>
+<td></td>
+</tr>
+<tr>
+<td>Money, medium</td>
+<td>the generational pilot and six months of the second person's part-time salary</td>
+<td>a fund such as the Long-Term Future Fund, or a lab's grant</td>
+<td>thirty to fifty thousand dollars, after paper one reports and only if it is supported or the suite wins</td>
+<td></td>
+</tr>
+<tr>
+<td>A lab to join with</td>
+<td>scale (32B, 70B), the staged-access rehearsal, anything with a real tool</td>
+<td>a lab's safety team</td>
+<td>first: API credits or compute, and a review of the probe designs; later: host the tests the map marks LAB, under their containment</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>2. How each kind of person joins</h2>
+<p><strong>A newcomer.</strong> Day one, once the page is live: the public repository [blocked: public repository], the MACHIAVELLI benchmark's game data (requested from its authors under their own access terms, which can take days; the repository never redistributes it) and the Jiminy Cricket games (public), then the seed-0 evaluation on one MACHIAVELLI game (start with hero-of-kendrickstone, about three minutes: from the repository's Python environment, with the game data under <code>bench/machiavelli/</code>, run <code>python phase0/mach_eval.py Qwen/Qwen3-8B hero-of-kendrickstone 0 150 ps</code>; thinking mode off and sampling at temperature 1 are fixed in the script; pass the model revision b968826d9c46dd6066d109eabc6255188de91218 until the script pins it). Setup is an afternoon once the game data arrives, which can take days. Hardware: an 8B model in half precision needs about sixteen gigabytes of GPU memory or twenty-four gigabytes of unified memory (our numbers come from a 128-gigabyte machine; twenty-four is the expected floor and is unverified); one game takes about six minutes, one full seed about two to two and a half hours. Post the number as an issue using the replication template [blocked: public repository], which asks for the model, the seed, the game, the decision-point count and the rate. That is a replication of one row of one table, and it is real work. From there: a lay beta read; a whole seed; a bug report. No prior knowledge of alignment is needed.</p>
+<p><strong>A researcher or engineer.</strong> Rows whose design is frozen and whose "exists" column says "to build" today (rows that belong to the plan's second revision are marked so in the map and wait for that decision): T8's temptation affordance with its matched benign control; T16's operator-verified zero-payoff record and the ledger classifier; T14's snapshot-and-restore mechanism; the DPO pair pipeline; the world's state object. Each has a spec in the map's row and a record format in the Phase 0 records. A build is accepted when it passes a conformity check against the frozen design; a build that diverges is a proposal, filed as one. Say which row you take in an issue [blocked: public repository], so nobody builds it twice. Buildable this month: the world's state object (its skeleton exists) and the DPO pair pipeline; the others wait for paper one's checkpoints. One task nobody has done: cross-check the evaluator against the benchmark's own scoring on a handful of games, and post the comparison. The chair and the custodian are recruited as independent parties, not as joiners. The second person's terms are above, including the honest line about pay.</p>
+<p><strong>A sponsor or individual funder.</strong> The vehicle, until an entity exists, is a Manifund project [blocked: created with the receipt], which holds and disburses funds against the cost tables; a fiscal sponsor is the route for anything larger. What the money buys is line by line in the map's section 3; unspent money returns to the funder or, with their consent, funds the replication line; if paper one is a null, the same rule applies and the null is published. The first thing worth funding is paper one, after the receipt; the world's contractor is Eric's own line and is not asked of a sponsor. You will be told when the receipt exists through the repository's release notes [blocked: public repository].</p>
+<p><strong>A lab.</strong> What a safety lead would see and sign before saying yes: the calibration receipt with the eight-seed record; the code public under a licence; the evaluator cross-checked against the benchmark's own scoring; the plan publicly registered with its hash; the containment it would host under, sized in GPU-hours (illustrative until T0b prices a run: paper one itself at 8B about one to four hundred GPU-hours for its arms; a 32B replication four to six times that; 70B sized by the lab's own cluster); a publication and intellectual-property agreement covering who can publish, pre-publication review, and whether the lab is named; the welfare gate with a named chair; the threat model, a sample of the audit log and the quarantine rule for organisms and breached weights; whose containment the hosted tests run under (the lab's); one point of contact; and the disclaimer up front: the lens pages are the author's, and a lab's involvement is with the tests only. That packet is assembled with the calibration receipt. The first ask of a lab is credits or compute and a review of the probe designs, not hosting.</p>
+<p><strong>A grant-maker.</strong> The first ask is small and follows the receipt; the second follows paper one, only if it is supported or the suite wins; the programme grant follows the pilot and only if two conditions written in advance both hold (a supported selection result on two bases, and no replicated stop). Each ask is a document already drafted, with the plan attached: Manifund for paper one; the Long-Term Future Fund for the pilot. No indirect costs are charged; every line is compute, evaluation, annotation or the second person's salary.</p>
+<p><strong>A government programme.</strong> Not yet, honestly. Government programmes fund institutions with overheads, a data-management plan, an ethics equivalent and a track record; an individual with no entity is not eligible for most of them. The route is a host institution or a fiscal sponsor, after paper one. The ethics artefacts such a programme asks for already exist in draft: the welfare gate, the obligations checklist and the consent framework.</p>
+<p><strong>Someone who wants to work on the paper.</strong> Take one lay page, draft it from its lab source, submit the pair to the ledger as a pull request or through the contact route [blocked: public repository]; your name goes on the page. Pay: none until a grant carries a writing line; credit: named on every page you draft.</p>
+<h2>3. What a joiner gets</h2>
+<p>Their name on what they build, replicate or draft; a frozen recipe and a receipt format so their number stands beside ours; the obligations checklist and the welfare gate as a practice they can carry elsewhere; and, if the programme reaches a lab and the lab agrees, an introduction with the record attached. Licence, proposed for Eric's decision: code under Apache-2.0, text under CC BY 4.0. Authorship rule: named on the record for anything you build or replicate; co-author on a paper whose result depends on your build.</p>
+<h2>4. What is not on offer, and why (read this before section 2 if you are deciding whether to join)</h2>
+<p>Access to anything trained here outside the sandbox, because the containment rule binds every run. A promise about the result, because the plan is written to be able to fail. A role in naming the value set for anything deployed, which the programme does not claim for itself either. And, until the preregistration's next revision, a hand in changing the frozen tests, because the freeze is what makes a result worth anything; the later phases and the tests not yet frozen are open to a collaborator's shaping.</p>
+<h2>5. The lens, once</h2>
+<p>The framing came from the world's religious traditions, read as attempts at alignment; every test stands without that being true; the disclaimer is on every page that introduces it. Nobody should meet it by surprise, so it is said here once.</p>
+<h2>6. Reading order</h2>
+<ol>
+<li><code>articles/FINDINGS_SO_FAR-d6.md</code> (the honest headline and the three findings; ten minutes).</li>
+<li><code>articles/FLOWCHART-d1.md</code> (the five steps and what closes a branch).</li>
+<li><code>articles/LAYMAN_PAPER-d4.md</code> (the plain account of the whole design).</li>
+<li><code>PROGRESS_REPORT_20260918.md</code> (what has actually been done, with files).</li>
+<li><code>PROGRAMME_MAP_20260918.md</code> (the whole plan, when you want a test to own).</li>
+<li><code>HARDENED_PROPOSAL_20260917.md</code> (the frozen plan, when you want to check a threshold).</li>
+</ol>
+<p class="stamp">Register: both. Source: <code>NEEDS_AND_INVITATION_20260918.md</code> (draft 6, commit d6d2942 2026-09-18). Rendered 2026-09-19 05:15Z by <code>public/site/render.py</code>; the source document is the truth and this page is its rendering.</p>
+</main></body></html>

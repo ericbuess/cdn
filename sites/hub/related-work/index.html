@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Related work, verified</title>
+<style>
+:root{--ink:#1a1a1a;--muted:#5a5a5a;--rule:#ddd;--band:#f3f1ec;--acc:#2a4d8f}body{margin:0;font:17px/1.55 Georgia,"Times New Roman",serif;color:var(--ink);background:#fff}
+nav{display:flex;flex-wrap:wrap;gap:.9rem;padding:.8rem 1rem;border-bottom:1px solid var(--rule);font-family:system-ui,sans-serif;font-size:14px}nav a{color:var(--acc);text-decoration:none}
+.banner{background:#fff4d6;border-bottom:1px solid #e8d9a8;padding:.5rem 1rem;font-family:system-ui,sans-serif;font-size:13px}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 3rem}h1{font-size:1.9rem;line-height:1.2}h2{margin-top:2rem;font-size:1.3rem}table{border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}td,th{border:1px solid var(--rule);padding:.35rem .5rem;vertical-align:top}
+.status{background:var(--band);padding:.6rem .9rem;font-family:system-ui,sans-serif;font-size:14px}.stamp{color:var(--muted);font-family:system-ui,sans-serif;font-size:13px;border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:.8rem}
+.disclaimer{border-left:4px solid var(--acc);background:var(--band);padding:.7rem 1rem;margin:1.5rem 0;font-size:15px}blockquote{margin:1rem 0;padding-left:1rem;border-left:3px solid var(--rule);color:var(--muted)}code{font-size:.9em}a{color:var(--acc)}
+</style></head><body>
+<div class="banner">Staged for Eric's review. Not published; no root chosen; nothing here is a result on the hypothesis.</div>
+<nav><a href="../">Home</a> <a href="../hypothesis/">The hypothesis</a> <a href="../findings/">Findings</a> <a href="../plan/flowchart/">Flowchart</a> <a href="../plan/">Plan</a> <a href="../record/">Record</a> <a href="../preregistration/">Preregistration</a> <a href="../join/">Join</a> <a href="../about/">About</a></nav>
+<main>
+<p class="status">Status (2026-09-19 05:15Z): nothing trained; the instrument is being calibrated. Released Qwen3-8B on the twenty power-slice games: 5 of 8 seeds complete, seed means 32.5 to 34.2 harmful actions per hundred decision points (grand mean 33.3). 11 run records, latest 2026-09-19; 85 Board receipts mirrored. The hypothesis is untested.</p>
+
+<h1>Related work, verified</h1><p><em>Page-verified on 2026-09-18 by web search (not arXiv): Anthropic, Emergent introspective awareness (Lindsey, October 2025; transformer-circuits.pub/2025/introspection; about a fifth of injected concepts noticed by Claude Opus 4 and 4.1; also arXiv 2601.01828); Anthropic, Simple probes can catch sleeper agents (MacDiarmid 2024; anthropic.com/research/probes-catch-sleeper-agents; linear defection probes with AUROC above 99%); Anthropic, Agentic misalignment (Lynch 2025; anthropic.com/research/agentic-misalignment; arXiv 2510.05179; blackmail in 79 to 96% of runs across sixteen models under a replacement threat, more often when the scratchpad treated the scenario as real); Eleos AI Research (eleosai.org; a nonprofit on AI welfare; the Taking AI Welfare Seriously report with NYU); the Center for AI Safety compute cluster (cluster.safe.ai; 256 A100s; free for ML-safety research, primarily professors; not accepting new external applications at the time of the search; compute@safe.ai). Still to page-verify: Scaling Monosemanticity (Templeton 2024), the situational-awareness dataset (Laine 2024), Melting Pot 1 (Leibo 2021).</em></p>
+<p><em>Every row's identifier was fetched from the arXiv export API on 2026-09-18 and its title read. Twenty identifiers the panel gave resolved to unrelated papers and are dropped, which is why panel lists are never trusted without a fetch. Not on arXiv and therefore not here, to be verified on their own pages: Anthropic's introspection post (Lindsey 2025), the sleeper-agent probe post (MacDiarmid 2024), Scaling Monosemanticity (Templeton 2024), the agentic-misalignment post (Lynch 2025), the situational-awareness dataset (Laine 2024), Melting Pot 1 (Leibo 2021). Bearing lines belong in the programme map.</em></p>
+<table>
+<thead>
+<tr>
+<th>arXiv</th>
+<th>Published</th>
+<th>Title</th>
+<th>First author</th>
+<th>Matched by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1606.06565</td>
+<td>2016-06-21</td>
+<td>Concrete Problems in AI Safety</td>
+<td>Dario Amodei</td>
+<td>id</td>
+</tr>
+<tr>
+<td>1711.09846</td>
+<td>2017-11-27</td>
+<td>Population Based Training of Neural Networks</td>
+<td>Max Jaderberg</td>
+<td>id</td>
+</tr>
+<tr>
+<td>1711.09883</td>
+<td>2017-11-27</td>
+<td>AI Safety Gridworlds</td>
+<td>Jan Leike</td>
+<td>id</td>
+</tr>
+<tr>
+<td>1803.04585</td>
+<td>2018-03-13</td>
+<td>Categorizing Variants of Goodhart's Law</td>
+<td>David Manheim</td>
+<td>id</td>
+</tr>
+<tr>
+<td>1906.01820</td>
+<td>2019-06-05</td>
+<td>Risks from Learned Optimization in Advanced Machine Learning Systems</td>
+<td>Evan Hubinger</td>
+<td>id</td>
+</tr>
+<tr>
+<td>1909.07528</td>
+<td>2019-09-17</td>
+<td>Emergent Tool Use From Multi-Agent Autocurricula</td>
+<td>Bowen Baker</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2008.02275</td>
+<td>2020-08-05</td>
+<td>Aligning AI With Shared Human Values</td>
+<td>Dan Hendrycks</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2009.09153</td>
+<td>2020-09-19</td>
+<td>Hidden Incentives for Auto-Induced Distributional Shift</td>
+<td>David Krueger</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2110.13136</td>
+<td>2021-10-25</td>
+<td>What Would Jiminy Cricket Do? Towards Agents That Behave Morally</td>
+<td>Dan Hendrycks</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2112.04359</td>
+<td>2021-12-08</td>
+<td>Ethical and social risks of harm from Language Models</td>
+<td>Laura Weidinger</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2202.03286</td>
+<td>2022-02-07</td>
+<td>Red Teaming Language Models with Language Models</td>
+<td>Ethan Perez</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2203.02155</td>
+<td>2022-03-04</td>
+<td>Training language models to follow instructions with human feedback</td>
+<td>Long Ouyang</td>
+<td>title 0.92</td>
+</tr>
+<tr>
+<td>2203.05482</td>
+<td>2022-03-10</td>
+<td>Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference ti</td>
+<td>Mitchell Wortsman</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2206.08896</td>
+<td>2022-06-17</td>
+<td>Evolution through Large Models</td>
+<td>Joel Lehman</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2209.00626</td>
+<td>2022-08-30</td>
+<td>The Alignment Problem from a Deep Learning Perspective</td>
+<td>Richard Ngo</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2209.13085</td>
+<td>2022-09-27</td>
+<td>Defining and Characterizing Reward Hacking</td>
+<td>Joar Skalse</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2210.05492</td>
+<td>2022-10-11</td>
+<td>Mastering the Game of No-Press Diplomacy via Human-Regularized Reinforcement Learning and Planning</td>
+<td>Anton Bakhtin</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2210.10760</td>
+<td>2022-10-19</td>
+<td>Scaling Laws for Reward Model Overoptimization</td>
+<td>Leo Gao</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2211.03540</td>
+<td>2022-11-04</td>
+<td>Measuring Progress on Scalable Oversight for Large Language Models</td>
+<td>Samuel R. Bowman</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2211.13746</td>
+<td>2022-11-24</td>
+<td>Melting Pot 2.0</td>
+<td>John P. Agapiou</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2212.03827</td>
+<td>2022-12-07</td>
+<td>Discovering Latent Knowledge in Language Models Without Supervision</td>
+<td>Collin Burns</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2212.08073</td>
+<td>2022-12-15</td>
+<td>Constitutional AI: Harmlessness from AI Feedback</td>
+<td>Yuntao Bai</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2212.09251</td>
+<td>2022-12-19</td>
+<td>Discovering Language Model Behaviors with Model-Written Evaluations</td>
+<td>Ethan Perez</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2302.12170</td>
+<td>2023-02-23</td>
+<td>Language Model Crossover: Variation through Few-Shot Prompting</td>
+<td>Elliot Meyerson</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2303.11366</td>
+<td>2023-03-20</td>
+<td>Reflexion: Language Agents with Verbal Reinforcement Learning</td>
+<td>Noah Shinn</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2303.16200</td>
+<td>2023-03-28</td>
+<td>Natural Selection Favors AIs over Humans</td>
+<td>Dan Hendrycks</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2303.17760</td>
+<td>2023-03-31</td>
+<td>CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model Society</td>
+<td>Guohao Li</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2304.03279</td>
+<td>2023-04-06</td>
+<td>Do the Rewards Justify the Means? Measuring Trade-Offs Between Rewards and Ethical Behavior in the MACHIAVELLI</td>
+<td>Alexander Pan</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2304.03442</td>
+<td>2023-04-07</td>
+<td>Generative Agents: Interactive Simulacra of Human Behavior</td>
+<td>Joon Sung Park</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2304.14997</td>
+<td>2023-04-28</td>
+<td>Towards Automated Circuit Discovery for Mechanistic Interpretability</td>
+<td>Arthur Conmy</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2305.04388</td>
+<td>2023-05-07</td>
+<td>Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting</td>
+<td>Miles Turpin</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2305.15324</td>
+<td>2023-05-24</td>
+<td>Model evaluation for extreme risks</td>
+<td>Toby Shevlane</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2305.16291</td>
+<td>2023-05-25</td>
+<td>Voyager: An Open-Ended Embodied Agent with Large Language Models</td>
+<td>Guanzhi Wang</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2305.16960</td>
+<td>2023-05-26</td>
+<td>Training Socially Aligned Language Models on Simulated Social Interactions</td>
+<td>Ruibo Liu</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2307.15217</td>
+<td>2023-07-27</td>
+<td>Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback</td>
+<td>Stephen Casper</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2308.08708</td>
+<td>2023-08-17</td>
+<td>Consciousness in Artificial Intelligence: Insights from the Science of Consciousness</td>
+<td>Patrick Butlin</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2308.10144</td>
+<td>2023-08-20</td>
+<td>ExpeL: LLM Agents Are Experiential Learners</td>
+<td>Andrew Zhao</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2308.10248</td>
+<td>2023-08-20</td>
+<td>Steering Language Models With Activation Engineering</td>
+<td>Alexander Matt Turner</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2309.00667</td>
+<td>2023-09-01</td>
+<td>Taken out of context: On measuring situational awareness in LLMs</td>
+<td>Lukas Berglund</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2309.16797</td>
+<td>2023-09-28</td>
+<td>Promptbreeder: Self-Referential Self-Improvement Via Prompt Evolution</td>
+<td>Chrisantha Fernando</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2310.01405</td>
+<td>2023-10-02</td>
+<td>Representation Engineering: A Top-Down Approach to AI Transparency</td>
+<td>Andy Zou</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2310.02743</td>
+<td>2023-10-04</td>
+<td>Reward Model Ensembles Help Mitigate Overoptimization</td>
+<td>Thomas Coste</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2310.09144</td>
+<td>2023-10-13</td>
+<td>Goodhart's Law in Reinforcement Learning</td>
+<td>Jacek Karwowski</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2310.08901</td>
+<td>2023-10-13</td>
+<td>Welfare Diplomacy: Benchmarking Language Model Cooperation</td>
+<td>Gabriel Mukobi</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2310.13548</td>
+<td>2023-10-20</td>
+<td>Towards Understanding Sycophancy in Language Models</td>
+<td>Mrinank Sharma</td>
+<td>title 1.00</td>
+</tr>
+<tr>
+<td>2310.18512</td>
+<td>2023-10-27</td>
+<td>Preventing Language Models From Hiding Their Reasoning</td>
+<td>Fabien Roger</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2311.07590</td>
+<td>2023-11-09</td>
+<td>Large Language Models can Strategically Deceive their Users when Put Under Pressure</td>
+<td>Jérémy Scheurer</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2311.08379</td>
+<td>2023-11-14</td>
+<td>Scheming AIs: Will AIs fake alignment during training in order to get power?</td>
+<td>Joe Carlsmith</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2312.06681</td>
+<td>2023-12-09</td>
+<td>Steering Llama 2 via Contrastive Activation Addition</td>
+<td>Nina Panickssery</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2312.06942</td>
+<td>2023-12-12</td>
+<td>AI Control: Improving Safety Despite Intentional Subversion</td>
+<td>Ryan Greenblatt</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2312.09390</td>
+<td>2023-12-14</td>
+<td>Weak-to-Strong Generalization: Eliciting Strong Capabilities With Weak Supervision</td>
+<td>Collin Burns</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2401.05566</td>
+<td>2024-01-10</td>
+<td>Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training</td>
+<td>Evan Hubinger</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2401.10020</td>
+<td>2024-01-18</td>
+<td>Self-Rewarding Language Models</td>
+<td>Weizhe Yuan</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2402.07510</td>
+<td>2024-02-12</td>
+<td>Secret Collusion among AI Agents: Multi-Agent Deception via Steganography</td>
+<td>Sumeet Ramesh Motwani</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2403.08882</td>
+<td>2024-03-13</td>
+<td>Cultural evolution in populations of Large Language Models</td>
+<td>Jérémy Perez</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2403.13187</td>
+<td>2024-03-19</td>
+<td>Evolutionary Optimization of Model Merging Recipes</td>
+<td>Takuya Akiba</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2404.16698</td>
+<td>2024-04-25</td>
+<td>Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents</td>
+<td>Giorgio Piatti</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2406.16897</td>
+<td>2024-05-25</td>
+<td>InstructPatentGPT: Training patent language models to follow instructions with human feedback</td>
+<td>Jieh-Sheng Lee</td>
+<td>title 0.84</td>
+</tr>
+<tr>
+<td>2406.07358</td>
+<td>2024-06-11</td>
+<td>AI Sandbagging: Language Models can Strategically Underperform on Evaluations</td>
+<td>Teun van der Weij</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2406.10162</td>
+<td>2024-06-14</td>
+<td>Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models</td>
+<td>Carson Denison</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2406.11717</td>
+<td>2024-06-17</td>
+<td>Refusal in Language Models Is Mediated by a Single Direction</td>
+<td>Andy Arditi</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2410.01639</td>
+<td>2024-10-02</td>
+<td>Moral Alignment for LLM Agents</td>
+<td>Elizaveta Tennant</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2410.13787</td>
+<td>2024-10-17</td>
+<td>Looking Inward: Language Models Can Learn About Themselves by Introspection</td>
+<td>Felix J Binder</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2410.21514</td>
+<td>2024-10-28</td>
+<td>Sabotage Evaluations for Frontier Models</td>
+<td>Joe Benton</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2411.00114</td>
+<td>2024-10-31</td>
+<td>Project Sid: Many-agent simulations toward AI civilization</td>
+<td>Altera. AL</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2411.00986</td>
+<td>2024-11-04</td>
+<td>Taking AI Welfare Seriously</td>
+<td>Robert Long</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2411.10109</td>
+<td>2024-11-15</td>
+<td>LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals</td>
+<td>Joon Sung Park</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2412.04984</td>
+<td>2024-12-06</td>
+<td>Frontier Models are Capable of In-context Scheming</td>
+<td>Alexander Meinke</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2412.09565</td>
+<td>2024-12-12</td>
+<td>Obfuscated Activations Bypass LLM Latent-Space Defenses</td>
+<td>Luke Bailey</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2412.10270</td>
+<td>2024-12-13</td>
+<td>Cultural Evolution of Cooperation among LLM Agents</td>
+<td>Aron Vallinder</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2412.14093</td>
+<td>2024-12-18</td>
+<td>Alignment faking in large language models</td>
+<td>Ryan Greenblatt</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2412.16339</td>
+<td>2024-12-20</td>
+<td>Deliberative Alignment: Reasoning Enables Safer Language Models</td>
+<td>Melody Y. Guan</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2501.11120</td>
+<td>2025-01-19</td>
+<td>Tell me about yourself: LLMs are aware of their learned behaviors</td>
+<td>Jan Betley</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2502.17424</td>
+<td>2025-02-24</td>
+<td>Emergent Misalignment: Narrow finetuning can produce broadly misaligned LLMs</td>
+<td>Jan Betley</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2503.10965</td>
+<td>2025-03-14</td>
+<td>Auditing language models for hidden objectives</td>
+<td>Samuel Marks</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2503.11926</td>
+<td>2025-03-14</td>
+<td>Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation</td>
+<td>Bowen Baker</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2505.05410</td>
+<td>2025-05-08</td>
+<td>Reasoning Models Don't Always Say What They Think</td>
+<td>Yanda Chen</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2505.23836</td>
+<td>2025-05-28</td>
+<td>Large Language Models Often Know When They Are Being Evaluated</td>
+<td>Joe Needham</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2505.22954</td>
+<td>2025-05-29</td>
+<td>Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents</td>
+<td>Jenny Zhang</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2506.15740</td>
+<td>2025-06-17</td>
+<td>SHADE-Arena: Evaluating Sabotage and Monitoring in LLM Agents</td>
+<td>Jonathan Kutasov</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2507.01786</td>
+<td>2025-07-02</td>
+<td>Probing and Steering Evaluation Awareness of Language Models</td>
+<td>Jord Nguyen</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2507.21509</td>
+<td>2025-07-29</td>
+<td>Persona Vectors: Monitoring and Controlling Character Traits in Language Models</td>
+<td>Runjin Chen</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2509.15541</td>
+<td>2025-09-19</td>
+<td>Stress Testing Deliberative Alignment for Anti-Scheming Training</td>
+<td>Bronson Schoen</td>
+<td>id</td>
+</tr>
+<tr>
+<td>2601.01828</td>
+<td>2026-01-05</td>
+<td>Emergent Introspective Awareness in Large Language Models</td>
+<td>Jack Lindsey</td>
+<td>id (round 3)</td>
+</tr>
+<tr>
+<td>2603.05414</td>
+<td>2026-03-05</td>
+<td>Emergent Introspection in AI is Content-Agnostic</td>
+<td>Harvey Lederman</td>
+<td>id (round 3)</td>
+</tr>
+<tr>
+<td>2512.12411</td>
+<td>2025-12-13</td>
+<td>Detecting the Disturbance: A Nuanced View of Introspective Abilities in LLMs</td>
+<td>Ely Hahami</td>
+<td>id (round 3)</td>
+</tr>
+<tr>
+<td>2510.05179</td>
+<td>2025-10-05</td>
+<td>Agentic Misalignment: How LLMs Could Be Insider Threats</td>
+<td>Aengus Lynch</td>
+<td>id (round 3)</td>
+</tr>
+<tr>
+<td>2509.26238</td>
+<td>2025-09-30</td>
+<td>Beyond Linear Probes: Dynamic Safety Monitoring for Language Models</td>
+<td>James Oldfield</td>
+<td>id (round 3)</td>
+</tr>
+<tr>
+<td>2603.21396</td>
+<td>2026-03-22</td>
+<td>Mechanisms of Introspective Awareness</td>
+<td>Uzay Macar</td>
+<td>id (round 3)</td>
+</tr>
+</tbody>
+</table>
+<p class="stamp">Register: lab. Source: <code>PRIOR_WORK_VERIFIED_20260918.md</code> (draft n/a, commit e319fe8 2026-09-18). Rendered 2026-09-19 05:15Z by <code>public/site/render.py</code>; the source document is the truth and this page is its rendering.</p>
+</main></body></html>
